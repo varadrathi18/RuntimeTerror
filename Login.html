@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Login / Sign Up - Govt. Education Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            govblue: '#235789',
+            govgreen: '#238823',
+            govnavy: '#03396c',
+            govgrey: '#f3f6fa',
+            govdk: '#14532d'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .animate-slide {
+      transition: all 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .blur-out {
+      filter: blur(10px);
+      opacity: 0;
+      transform: translateX(120%);
+      pointer-events: none;
+    }
+    .blur-in {
+      filter: blur(0);
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    .page-fade {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out;
+    }
+    .page-fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-govgrey min-h-screen flex items-center justify-center">
+
+  <div id="auth-wrapper" class="relative w-full max-w-3xl bg-gradient-to-tr from-govgrey via-white to-govblue rounded-2xl shadow-lg overflow-hidden flex page-fade" style="height: 420px;">
+    
+    <!-- Login Panel -->
+    <div id="login-panel" class="w-2/3 h-full flex flex-col justify-center px-10 animate-slide blur-in absolute top-0 left-0 bg-white/80">
+      <h2 class="text-2xl font-bold text-govblue mb-6">Login</h2>
+      <form id="login-form" class="flex flex-col gap-5">
+        <div>
+          <label class="text-govblue text-sm">Email</label>
+          <div class="flex items-center border-b border-govblue mt-1">
+            <input type="email" id="login-email" required class="w-full bg-transparent text-govdk px-2 py-2 outline-none"/>
+            <span class="material-icons text-govblue">person</span>
+          </div>
+        </div>
+        <div>
+          <label class="text-govblue text-sm">Password</label>
+          <div class="flex items-center border-b border-govblue mt-1">
+            <input type="password" id="login-password" required class="w-full bg-transparent text-govdk px-2 py-2 outline-none"/>
+            <span class="material-icons text-govblue">lock</span>
+          </div>
+        </div>
+        <button type="submit" class="bg-govgreen text-white py-2 rounded-full font-semibold mt-2 shadow hover:bg-govdk transition">Login</button>
+      </form>
+      <div class="mt-6 text-center">
+        <span class="text-govblue text-sm">Don't have an account?</span>
+        <button id="to-signup" class="ml-1 text-govgreen hover:underline font-semibold text-sm">Sign Up</button>
+      </div>
+    </div>
+
+    <!-- Right Panel: Welcome Message (Login) -->
+    <div class="w-1/3 px-6 flex items-center justify-center absolute top-0 right-0 h-full animate-slide blur-in" id="welcome-login">
+      <div>
+        <h2 class="text-2xl text-govblue font-bold mb-3">WELCOME BACK!</h2>
+        <p class="text-govdk">
+          We are happy to have you with us again. If you need anything, we are here to help.
+        </p>
+      </div>
+    </div>
+
+    <!-- Signup Panel -->
+    <div id="signup-panel" class="w-2/3 h-full flex flex-col justify-center px-10 animate-slide blur-out absolute top-0 right-0 bg-white/80">
+      <h2 class="text-2xl font-bold text-govblue mb-6">Register</h2>
+      <form id="signup-form" class="flex flex-col gap-5">
+        <div>
+          <label class="text-govblue text-sm">Name</label>
+          <div class="flex items-center border-b border-govblue mt-1">
+            <input type="text" id="signup-name" required class="w-full bg-transparent text-govdk px-2 py-2 outline-none"/>
+            <span class="material-icons text-govblue">person</span>
+          </div>
+        </div>
+        <div>
+          <label class="text-govblue text-sm">Email</label>
+          <div class="flex items-center border-b border-govblue mt-1">
+            <input type="email" id="signup-email" required class="w-full bg-transparent text-govdk px-2 py-2 outline-none"/>
+            <span class="material-icons text-govblue">mail</span>
+          </div>
+        </div>
+        <div>
+          <label class="text-govblue text-sm">Password</label>
+          <div class="flex items-center border-b border-govblue mt-1">
+            <input type="password" id="signup-password" required class="w-full bg-transparent text-govdk px-2 py-2 outline-none"/>
+            <span class="material-icons text-govblue">lock</span>
+          </div>
+        </div>
+        <button type="submit" class="bg-govgreen text-white py-2 rounded-full font-semibold mt-2 shadow hover:bg-govdk transition">Register</button>
+      </form>
+      <div class="mt-6 text-center">
+        <span class="text-govblue text-sm">Already have an account?</span>
+        <button id="to-login" class="ml-1 text-govgreen hover:underline font-semibold text-sm">Sign In</button>
+      </div>
+    </div>
+
+    <!-- Left Panel: Welcome Message (Signup) -->
+    <div class="w-1/3 px-6 flex items-center justify-center absolute top-0 left-0 h-full animate-slide blur-out" id="welcome-signup">
+      <div>
+        <h2 class="text-2xl text-govblue font-bold mb-3">WELCOME!</h2>
+        <p class="text-govdk">
+          We're delighted to have you here. If you need any assistance, feel free to reach out.
+        </p>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Use Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script>
+    const loginPanel = document.getElementById("login-panel");
+    const signupPanel = document.getElementById("signup-panel");
+    const welcomeLogin = document.getElementById("welcome-login");
+    const welcomeSignup = document.getElementById("welcome-signup");
+    const toSignup = document.getElementById("to-signup");
+    const toLogin = document.getElementById("to-login");
+
+    // Switch panels
+    toSignup.onclick = () => {
+      loginPanel.classList.replace("blur-in", "blur-out");
+      welcomeLogin.classList.replace("blur-in", "blur-out");
+      signupPanel.classList.replace("blur-out", "blur-in");
+      welcomeSignup.classList.replace("blur-out", "blur-in");
+    };
+    toLogin.onclick = () => {
+      signupPanel.classList.replace("blur-in", "blur-out");
+      welcomeSignup.classList.replace("blur-in", "blur-out");
+      loginPanel.classList.replace("blur-out", "blur-in");
+      welcomeLogin.classList.replace("blur-out", "blur-in");
+    };
+
+    // Fade-in animation
+    window.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("auth-wrapper").classList.add("show");
+    });
+
+    // Signup
+    document.getElementById("signup-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("signup-name").value;
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+
+      const res = await fetch("http://localhost:5000/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        localStorage.setItem("studentName", name);
+        localStorage.setItem("studentEmail", email);
+        window.location.href = "Profile.html";
+      } else {
+        alert(data.message || "Signup failed!");
+      }
+    });
+
+    // Login
+    document.getElementById("login-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      const res = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        localStorage.setItem("studentName", data.user.name);
+        localStorage.setItem("studentEmail", data.user.email);
+        window.location.href = "Profile.html";
+      } else {
+        alert(data.message || "Invalid credentials!");
+      }
+    });
+  </script>
+</body>
+</html>

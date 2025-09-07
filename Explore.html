@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Explore Careers - Govt. Education Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            govblue: '#235789',
+            govgreen: '#238823',
+            govnavy: '#03396c',
+            govgrey: '#f3f6fa',
+            govdk: '#14532d'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-govgrey text-gray-900 font-sans">
+
+  <!-- Navbar -->
+  <header class="container mx-auto px-4">
+    <nav class="flex justify-between items-center py-6">
+      <div class="flex items-center text-govblue font-bold text-2xl">
+        <i class="fas fa-graduation-cap mr-2"></i>
+        CareerGuide
+      </div>
+      <div>
+        <button onclick="location.href='auth.html'"
+          class="bg-govblue hover:bg-govnavy text-white font-semibold px-6 py-2 rounded-full shadow transition">
+          Join Us
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="container mx-auto px-4 text-center py-16">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-govblue mb-6">
+      Explore Your Career Journey
+    </h1>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+      Whether you’ve just passed 10th or 12th, we help you choose the right stream, degree, and career path. Explore all possibilities with step-by-step guidance.
+    </p>
+  </section>
+
+  <!-- Steps / Roadmap -->
+  <!-- Steps / Roadmap -->
+<section class="container mx-auto px-4 py-16">
+  <h2 class="text-center text-3xl font-bold text-gray-900 mb-12">Your Roadmap</h2>
+  
+  <div class="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto border border-gray-200">
+    <div class="space-y-12">
+      
+      <!-- Step 1 -->
+      <div class="flex items-center gap-6 hover:bg-govgrey p-4 rounded-lg transition">
+        <div class="bg-govblue text-white rounded-full w-12 h-12 flex items-center justify-center font-bold shadow">1</div>
+        <div>
+          <h3 class="text-xl font-semibold text-govblue">Choose Your Grade</h3>
+          <p class="text-gray-600">Select whether you are in 10th or 12th.</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="flex items-center gap-6 justify-end hover:bg-govgrey p-4 rounded-lg transition">
+        <div>
+          <h3 class="text-xl font-semibold text-govgreen">Pick Your Stream</h3>
+          <p class="text-gray-600">Science, Commerce, Arts, or Vocational – explore based on your interest.</p>
+        </div>
+        <div class="bg-govgreen text-white rounded-full w-12 h-12 flex items-center justify-center font-bold shadow">2</div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="flex items-center gap-6 hover:bg-govgrey p-4 rounded-lg transition">
+        <div class="bg-pink-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold shadow">3</div>
+        <div>
+          <h3 class="text-xl font-semibold text-pink-600">Discover Courses</h3>
+          <p class="text-gray-600">See which degrees are offered in government colleges near you.</p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="flex items-center gap-6 justify-end hover:bg-govgrey p-4 rounded-lg transition">
+        <div>
+          <h3 class="text-xl font-semibold text-govnavy">Explore Careers</h3>
+          <p class="text-gray-600">Visualize job roles, higher education, and exams linked to your choices.</p>
+        </div>
+        <div class="bg-govnavy text-white rounded-full w-12 h-12 flex items-center justify-center font-bold shadow">4</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- Why Govt Colleges -->
+  <section class="container mx-auto px-4 py-16">
+    <h2 class="text-center text-3xl font-bold text-gray-900 mb-12">Why Choose Government Colleges?</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-govblue mb-3">Affordable Education</h3>
+        <p class="text-gray-600">Get access to quality courses at minimal fees compared to private institutions.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-govblue mb-3">Experienced Faculty</h3>
+        <p class="text-gray-600">Learn from highly qualified teachers with years of academic expertise.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-govblue mb-3">Scholarship Opportunities</h3>
+        <p class="text-gray-600">Benefit from government scholarships and financial aid programs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="container mx-auto px-4 py-16">
+    <h2 class="text-center text-3xl font-bold text-gray-900 mb-12">Frequently Asked Questions</h2>
+    <div class="space-y-4 max-w-3xl mx-auto">
+      <details class="bg-white rounded-lg shadow p-4 hover:shadow-md transition">
+        <summary class="cursor-pointer font-semibold text-govblue">Is graduation necessary after 12th?</summary>
+        <p class="mt-2 text-gray-600">Graduation opens doors to government jobs, higher studies, and professional careers. While short-term courses help in skills, a degree adds long-term stability.</p>
+      </details>
+      <details class="bg-white rounded-lg shadow p-4 hover:shadow-md transition">
+        <summary class="cursor-pointer font-semibold text-govblue">Which stream should I choose after 10th?</summary>
+        <p class="mt-2 text-gray-600">It depends on your interest. Science, Commerce, Arts, and Vocational streams each lead to unique opportunities. Our platform helps match your interest with future careers.</p>
+      </details>
+      <details class="bg-white rounded-lg shadow p-4 hover:shadow-md transition">
+        <summary class="cursor-pointer font-semibold text-govblue">What support do government colleges provide?</summary>
+        <p class="mt-2 text-gray-600">Most government colleges offer affordable fees, scholarships, library and hostel facilities, and access to qualified teachers.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="bg-govblue py-16">
+    <div class="container mx-auto px-4 text-center text-white">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Journey?</h2>
+      <p class="mb-8 max-w-2xl mx-auto">
+        Join our portal to get personalized career recommendations, course details, and guidance for your future.
+      </p>
+      <button onclick="location.href='Login.html'"
+        class="bg-white text-govblue font-semibold px-8 py-3 rounded-full shadow-md hover:bg-govgrey transition">
+        Join Us Now
+      </button>
+    </div>
+  </section>
+  <!-- Footer -->
+<footer class="bg-gray-800 text-white rounded-lg p-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Disha J&K</h3>
+                    <p class="text-gray-400">Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Career Assessment</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Scholarships</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">College Directory</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Success Stories</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Disha J&K. All rights reserved. An initiative for Smart India Hackathon 2025.</p>
+            </div>
+        </footer>
+    </div>
+  <script src="https://kit.fontawesome.com/a2e0a1f6d2.js" crossorigin="anonymous"></script>
+</body>
+</html>

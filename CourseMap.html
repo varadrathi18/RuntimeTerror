@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Course to Career Roadmap</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .roadmap-container {
+      position: relative;
+      margin: 3rem auto;
+      max-width: 900px;
+    }
+    .roadmap-line {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 3px;
+      height: 100%;
+      background: #e2e8f0;
+      transform: translateX(-50%);
+    }
+    .roadmap-step {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      margin-bottom: 2rem;
+      padding: 1.2rem 1.5rem;
+      position: relative;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .roadmap-step:hover {
+      background: #f9fafb;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    .roadmap-step::before {
+      content: '';
+      position: absolute;
+      top: 1.5rem;
+      left: 50%;
+      width: 14px;
+      height: 14px;
+      background: #3b82f6;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 0 2px #e2e8f0;
+      transform: translateX(-50%);
+    }
+    .step-left, .step-right {
+      width: 45%;
+    }
+    .extra-info {
+      display: none;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #374151;
+      line-height: 1.4;
+    }
+    .roadmap-step.active .extra-info {
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .roadmap-step {
+        flex-direction: column;
+        text-align: center;
+      }
+      .step-left, .step-right {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+      .roadmap-line { left: 20px; }
+      .roadmap-step::before { left: 20px; transform: none; }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+  <!-- Header -->
+  <div class="bg-slate-800 text-white text-center py-8 border-b border-gray-200 shadow-sm">
+    <h1 class="text-3xl font-bold">🎓 Course to Career Roadmap</h1>
+    <p class="mt-2 text-lg text-gray-200">Plan your journey after 10th & 12th with trusted guidance</p>
+  </div>
+
+  <!-- Selection Form -->
+  <!-- Selection Form -->
+<form id="course-form" class="max-w-3xl mx-auto mt-10 bg-white border border-gray-200 p-6 shadow-sm rounded-md">
+  <!-- First row -->
+  <div class="grid md:grid-cols-3 gap-4 items-end">
+    
+    <!-- Grade Dropdown -->
+    <div class="md:col-span-2">
+      <label for="level-input" class="block text-lg font-semibold text-gray-700 mb-2">🎯 Select Your Level</label>
+      <select id="level-input" required
+              class="w-full border border-gray-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300">
+        <option value="">-- Choose --</option>
+        <option value="After 10th">After 10th</option>
+        <option value="After 12th">After 12th</option>
+      </select>
+    </div>
+
+    <!-- Button -->
+    <div class="flex justify-start md:justify-center">
+      <button type="submit"
+              class="w-full md:w-auto px-6 py-3 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 transition">
+        Show Path
+      </button>
+    </div>
+  </div>
+
+  <!-- Second row (Interest dropdown appears here) -->
+  <div id="interest-group" class="hidden mt-6">
+    <label for="interest-input" class="block text-lg font-semibold text-gray-700 mb-2">📘 Select Your Path</label>
+    <select id="interest-input"
+            class="w-full border border-gray-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-green-300">
+      <!-- Options will be populated dynamically -->
+    </select>
+  </div>
+</form>
+
+
+  <p id="course-error" class="text-red-500 text-center mt-4"></p>
+
+  <!-- Roadmap -->
+  <div class="roadmap-container" id="roadmap">
+    <div class="roadmap-line"></div>
+  </div>
+
+<script>
+  const optionsData = {
+    "After 10th": ["Science Stream", "Commerce Stream", "Arts Stream", "Vocational Courses"],
+    "After 12th": ["B.Sc.", "B.Com.", "B.A.", "BBA", "Vocational"]
+  };
+
+  const roadmapData = {
+    "Science Stream": [
+      { step: "Choose Science Subjects 🧪", info: "Physics, Chemistry, Biology/Maths." },
+      { step: "Higher Studies", info: "Engineering, Medicine, Research, Pure Sciences." },
+      { step: "Exams", info: "JEE, NEET, State CETs." }
+    ],
+    "Commerce Stream": [
+      { step: "Learn Business & Accounts 📊", info: "Core subjects: Accounts, Economics, Business Studies." },
+      { step: "Higher Studies", info: "B.Com., CA, MBA, CFA." },
+      { step: "Exams", info: "CA Foundation, CPT, CUET." }
+    ],
+    "Arts Stream": [
+      { step: "Focus on Humanities 🎨", info: "History, Political Science, Sociology, Psychology." },
+      { step: "Careers", info: "UPSC, Law, Journalism, Teaching, Social Sciences." },
+      { step: "Exams", info: "CLAT, UPSC, SSC." }
+    ],
+    "Vocational Courses": [
+      { step: "Pick a Skill 🛠️", info: "ITI, Polytechnic, Diplomas." },
+      { step: "Careers", info: "Technician, Skilled Trades, Industry Jobs." }
+    ],
+    "B.Sc.": [
+      { step: "Pursue B.Sc. 🧬", info: "Specialize in Science & Technology." },
+      { step: "Careers", info: "Scientist, IT Professional, Healthcare." },
+      { step: "Exams", info: "CSIR NET, DRDO, ICMR." }
+    ],
+    "B.Com.": [
+      { step: "Pursue B.Com. 💼", info: "Accounting, Finance, Economics." },
+      { step: "Careers", info: "Accountant, Analyst, Banking, MBA." },
+      { step: "Exams", info: "RBI, IBPS, SSC." }
+    ],
+    "B.A.": [
+      { step: "Pursue B.A. 📘", info: "Humanities, Literature, Social Sciences." },
+      { step: "Careers", info: "Civil Services, Journalism, Education." },
+      { step: "Exams", info: "UPSC, PSC, SSC." }
+    ],
+    "BBA": [
+      { step: "Pursue BBA 📊", info: "Management, Business, Marketing." },
+      { step: "Careers", info: "Manager, Entrepreneur, Consultant." },
+      { step: "Exams", info: "CAT, MAT, XAT." }
+    ],
+    "Vocational": [
+      { step: "Pick a Skill 📂", info: "Industry-focused short courses." },
+      { step: "Careers", info: "Technician, Junior Manager, Govt Jobs." }
+    ]
+  };
+
+  const levelSelect = document.getElementById('level-input');
+  const interestGroup = document.getElementById('interest-group');
+  const interestSelect = document.getElementById('interest-input');
+  const form = document.getElementById('course-form');
+  const roadmapSection = document.getElementById('roadmap');
+  const errorMsg = document.getElementById('course-error');
+
+  // Show relevant second dropdown when level selected
+  levelSelect.addEventListener('change', () => {
+    const level = levelSelect.value;
+    if (!level) {
+      interestGroup.classList.add('hidden');
+      return;
+    }
+    // Populate options
+    interestSelect.innerHTML = "";
+    optionsData[level].forEach(opt => {
+      const option = document.createElement('option');
+      option.value = opt;
+      option.textContent = opt;
+      interestSelect.appendChild(option);
+    });
+    interestGroup.classList.remove('hidden');
+  });
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    errorMsg.textContent = '';
+    roadmapSection.innerHTML = '<div class="roadmap-line"></div>';
+
+    const interest = interestSelect.value;
+    const roadmap = roadmapData[interest];
+    if (!roadmap) {
+      errorMsg.textContent = "Please select a valid stream or course.";
+      return;
+    }
+
+    roadmap.forEach((stepObj, idx) => {
+      const div = document.createElement('div');
+      div.className = 'roadmap-step';
+      div.innerHTML = `
+        <div class="step-left font-semibold text-gray-800">Step ${idx + 1}: ${stepObj.step}</div>
+        <div class="step-right text-gray-600">
+          <p class="extra-info">${stepObj.info}</p>
+          <span class="text-sm text-blue-500">(Click to view details)</span>
+        </div>
+      `;
+      div.addEventListener('click', () => {
+        div.classList.toggle('active');
+      });
+      roadmapSection.appendChild(div);
+    });
+  });
+</script>
+</body>
+</html>

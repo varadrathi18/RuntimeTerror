@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disha J&K - Your Career Saarthi</title>
+    
+    <!-- Tailwind CSS for rapid, responsive UI development -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins for a modern, clean look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Custom Styles for a Unique Look and Feel */
+        
+        /* Apply the Poppins font family */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+        }
+        
+        /* Smooth scrolling behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section Gradient Background with Animation */
+        .hero-gradient {
+            background: linear-gradient(-45deg, #4f46e5, #7c3aed, #db2777, #f59e0b);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+        }
+
+        /* Keyframes for the gradient animation */
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism effect for cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+        }
+
+        /* Custom animation for elements appearing on scroll */
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Styling for the innovative Aspiration Map */
+        #aspiration-map {
+            background-image: url('https://placehold.co/1200x800/e0e7ff/4f46e5?text=Map+of+J%26K');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Pulsing animation for map pins */
+        .map-pin {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(236, 72, 153, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
+        }
+        
+        /* Styling for the AI chatbot interface */
+        .chat-bubble {
+            max-width: 75%;
+        }
+
+        /* Styling for the career reels section */
+        .reels-container {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        .reels-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Opera */
+        }
+
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-600">
+                <i class="fas fa-compass mr-2"></i>Disha J&K
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#features" class="text-gray-600 hover:text-indigo-600">Features</a>
+                <a href="#innovations" class="text-gray-600 hover:text-indigo-600">Innovations</a>
+                <a href="#awareness" class="text-gray-600 hover:text-indigo-600">Awareness Hub</a>
+                <a href="#colleges" class="text-gray-600 hover:text-indigo-600">Colleges</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- <a href="#" class="px-4 py-2 text-sm font-medium text-indigo-600 border border-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white transition-all">Log In</a> -->
+                <a href="./Login.html" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-full hover:bg-indigo-700 transition-all">Login/Sign Up</a>
+                 <button id="mobile-menu-button" class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4">
+            <a href="#features" class="block py-2 text-gray-600 hover:text-indigo-600">Features</a>
+            <a href="#innovations" class="block py-2 text-gray-600 hover:text-indigo-600">Innovations</a>
+            <a href="#awareness" class="block py-2 text-gray-600 hover:text-indigo-600">Awareness Hub</a>
+            <a href="#colleges" class="block py-2 text-gray-600 hover:text-indigo-600">Colleges</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-gradient text-white py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight reveal">Your Future, Your Path.</h1>
+                <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto reveal" style="transition-delay: 200ms;">Confused after 10th or 12th? Let Disha J&K be your 'Saarthi' (guide) to a successful career, starting from your local government college.</p>
+                <div class="flex justify-center space-x-4 reveal" style="transition-delay: 400ms;">
+                    <a href="./Login.html" class="bg-white text-indigo-600 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-100 transform hover:scale-105 transition-all shadow-lg">Get Started <i class="fas fa-arrow-right ml-2"></i></a>
+                    <a href="./Explore.html" class="bg-pink-500 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-pink-600 transform hover:scale-105 transition-all shadow-lg">I'm Confused!</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Innovations Showcase Section -->
+        <section id="innovations" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-indigo-600 reveal">Our Groundbreaking Innovations</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto reveal">We're not just another career portal. We've built features that truly understand and inspire the youth of J&K.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <!-- Aspiration Map Card -->
+                    <div class="bg-indigo-50 p-8 rounded-2xl shadow-lg reveal">
+                        <div class="text-3xl text-indigo-500 mb-4"><i class="fas fa-map-marked-alt"></i></div>
+                        <h3 class="text-2xl font-bold mb-3">The Hyper-Local Aspiration Map</h3>
+                        <p class="text-gray-600 mb-6">See success stories from your own village, tehsil, and district. Discover that your dreams are achievable because people just like you have done it before.</p>
+                        <div id="aspiration-map" class="h-64 rounded-xl shadow-inner relative overflow-hidden">
+                            <div class="absolute top-1/4 left-1/3 w-5 h-5 bg-pink-500 rounded-full map-pin"></div>
+                            <div class="absolute top-1/2 left-3/4 w-5 h-5 bg-pink-500 rounded-full map-pin" style="animation-delay: 0.5s;"></div>
+                             <div class="absolute top-2/3 left-1/4 w-5 h-5 bg-pink-500 rounded-full map-pin" style="animation-delay: 1s;"></div>
+                            <div class="absolute bottom-4 right-4 glass-card p-2 text-xs text-white">
+                                <p class="font-bold">Anantnag District</p>
+                                <p>150+ Success Stories</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Saarthi AI Chatbot Card -->
+                    <div class="bg-pink-50 p-8 rounded-2xl shadow-lg reveal">
+                         <div class="text-3xl text-pink-500 mb-4"><i class="fas fa-robot"></i></div>
+                        <h3 class="text-2xl font-bold mb-3">Conversational AI Test</h3>
+                        <p class="text-gray-600 mb-6">Forget boring quizzes. Have a natural conversation with our 'Saarthi' AI in Kashmiri, Urdu, or English to discover your true passion and strengths.</p>
+                        <div class="bg-white h-64 rounded-xl shadow-inner p-4 flex flex-col space-y-2">
+                           <div class="chat-bubble self-start bg-gray-200 p-3 rounded-lg rounded-bl-none">
+                                <p class="text-sm">Salaam! What problem in your village would you love to solve?</p>
+                            </div>
+                            <div class="chat-bubble self-end bg-pink-500 text-white p-3 rounded-lg rounded-br-none">
+                                <p class="text-sm">Walaikum Salaam! I'd love to help local artisans sell their crafts online.</p>
+                            </div>
+                             <div class="chat-bubble self-start bg-gray-200 p-3 rounded-lg rounded-bl-none">
+                                <p class="text-sm">That's wonderful! This shows you have an entrepreneurial and creative spirit...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Career Reels Card -->
+                    <div class="bg-yellow-50 p-8 rounded-2xl shadow-lg reveal">
+                        <div class="text-3xl text-yellow-500 mb-4"><i class="fas fa-video"></i></div>
+                        <h3 class="text-2xl font-bold mb-3">GenAI Career Reels</h3>
+                        <p class="text-gray-600 mb-6">Explore careers through engaging, 30-second video reels generated by AI. See a "day in the life" of a software developer, a tourism manager, and more!</p>
+                        <div class="h-64 w-40 mx-auto bg-gray-800 rounded-2xl p-2 shadow-lg flex flex-col justify-between" >
+                            <img src="https://placehold.co/150x250/db2777/ffffff?text=Career+Reel" alt="Career Reel" class="w-full h-full object-cover rounded-lg"/>
+                            <div class="flex justify-around items-center text-white mt-2">
+                                <i class="fas fa-heart"></i>
+                                <i class="fas fa-comment"></i>
+                                <i class="fas fa-share"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kashmir's Pride Card -->
+                    <div class="bg-green-50 p-8 rounded-2xl shadow-lg reveal">
+                        <div class="text-3xl text-green-500 mb-4"><i class="fas fa-hands-helping"></i></div>
+                        <h3 class="text-2xl font-bold mb-3">Kashmir's Pride Mentorship</h3>
+                        <p class="text-gray-600 mb-6">Connect one-on-one with successful professionals from J&K who have walked the same path. Get real advice from people who understand your background.</p>
+                         <div class="h-64 rounded-xl flex items-center justify-center space-x-4">
+                           <div class="bg-white p-4 rounded-lg shadow-md text-center transform -rotate-6">
+                               <img src="https://placehold.co/80x80/7c3aed/ffffff?text=Mentor" class="rounded-full mx-auto mb-2 border-4 border-white"/>
+                               <h4 class="font-bold">Aisha Begum</h4>
+                               <p class="text-xs text-gray-500">JKAS Officer</p>
+                           </div>
+                           <div class="bg-white p-4 rounded-lg shadow-md text-center transform rotate-6 z-10 scale-110">
+                               <img src="https://placehold.co/80x80/f59e0b/ffffff?text=Mentor" class="rounded-full mx-auto mb-2 border-4 border-white"/>
+                               <h4 class="font-bold">Imran Khan</h4>
+                               <p class="text-xs text-gray-500">Software Eng.</p>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Awareness Hub -->
+        <section id="awareness" class="py-20">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-indigo-600 reveal">The Awareness Hub</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto reveal">Empowering you with knowledge. Busting myths and showing you the true value of a degree.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Blog Post 1 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden reveal">
+                        <img src="https://placehold.co/600x400/4f46e5/ffffff?text=Myth+Buster" alt="Article image" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="text-xs font-semibold text-indigo-500">MYTH BUSTER</span>
+                            <h3 class="text-xl font-bold mt-2 mb-3">Is a B.A. Degree "Useless"? Think Again!</h3>
+                            <p class="text-gray-600 text-sm">Discover how an Arts degree can be your direct ticket to Civil Services, journalism, and creative industries.</p>
+                            <a href="#" class="inline-block mt-4 text-indigo-600 font-semibold hover:underline">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Blog Post 2 -->
+                     <div class="bg-white rounded-lg shadow-lg overflow-hidden reveal" style="transition-delay: 200ms;">
+                        <img src="https://placehold.co/600x400/db2777/ffffff?text=Govt.+Colleges" alt="Article image" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                             <span class="text-xs font-semibold text-pink-500">SPOTLIGHT</span>
+                            <h3 class="text-xl font-bold mt-2 mb-3">The Hidden Gems: Why J&K Govt. Colleges are Your Best Bet</h3>
+                            <p class="text-gray-600 text-sm">Low fees, experienced faculty, and a direct path to success. We uncover the real advantages.</p>
+                            <a href="#" class="inline-block mt-4 text-pink-600 font-semibold hover:underline">Read More &rarr;</a>
+                        </div>
+                    </div>
+                     <!-- Blog Post 3 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden reveal" style="transition-delay: 400ms;">
+                        <img src="https://placehold.co/600x400/f59e0b/ffffff?text=Scholarships" alt="Article image" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                             <span class="text-xs font-semibold text-yellow-500">GUIDE</span>
+                            <h3 class="text-xl font-bold mt-2 mb-3">Your Guide to PMSSS and Other Scholarships</h3>
+                            <p class="text-gray-600 text-sm">A step-by-step guide to applying for financial aid that can make your education completely free.</p>
+                            <a href="#" class="inline-block mt-4 text-yellow-600 font-semibold hover:underline">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- College Directory Section -->
+        <section id="colleges" class="py-20 bg-indigo-700 text-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold reveal">Explore Your Future College</h2>
+                    <p class="mt-4 max-w-2xl mx-auto opacity-80 reveal">Don't just read about colleges. Experience them from your home with our immersive virtual tours.</p>
+                </div>
+                <div class="bg-white text-gray-800 rounded-2xl shadow-2xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center reveal">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">Govt. Degree College, Baramulla</h3>
+                        <p class="mb-6">Discover courses, check eligibility, and see cut-off trends. But most importantly, take a virtual walk through the campus and see the facilities for yourself.</p>
+                        <div class="space-y-3 text-sm">
+                            <p><i class="fas fa-check-circle text-green-500 mr-2"></i> Courses: B.A, B.Sc, B.Com</p>
+                            <p><i class="fas fa-check-circle text-green-500 mr-2"></i> Facilities: Library, Hostel, Labs</p>
+                            <p><i class="fas fa-check-circle text-green-500 mr-2"></i> Medium: English, Urdu</p>
+                        </div>
+                         <a href="#" class="mt-8 inline-block bg-pink-500 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-pink-600 transform hover:scale-105 transition-all">
+                           <i class="fas fa-vr-cardboard mr-2"></i> Take 360° Virtual Tour
+                        </a>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg h-80">
+                         <img src="https://placehold.co/600x400/e0e7ff/4f46e5?text=Virtual+Tour+of+GDC+Baramulla" alt="College Campus" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- Parent Guidance Kit Section -->
+        <section id="parents" class="py-20 bg-green-50">
+            <div class="container mx-auto px-6 text-center">
+                <div class="reveal">
+                    <i class="fas fa-users text-5xl text-green-500 mb-4"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold text-green-800">A Guide for Parents & Guardians</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto mb-8">We believe in family. Here are simple, shareable resources to help you support your child in making the best decision for their future.</p>
+                     <a href="#" class="bg-green-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-green-700 transform hover:scale-105 transition-all shadow-lg">
+                       <i class="fas fa-download mr-2"></i> Access Parent Kit
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white rounded-lg p-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Disha J&K</h3>
+                    <p class="text-gray-400">Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Career Assessment</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Scholarships</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">College Directory</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Success Stories</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Disha J&K. All rights reserved. An initiative for Smart India Hackathon 2025.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript for Interactivity
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Intersection Observer for revealing elements on scroll
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            revealElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+    </script>
+</body>
+</html>

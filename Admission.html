@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admission & Scholarship Advisor</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          50:"#eef7ff",100:"#d8ecff",200:"#b6dbff",300:"#88c2ff",400:"#56a2ff",500:"#2f83f9",
+          600:"#1f67d6",700:"#1b56af",800:"#184a91",900:"#163f77",
+        }
+      }
+    }
+  }
+}
+</script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+<!-- Header -->
+<header class="bg-white border-b sticky top-0 z-10 shadow">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="h-10 w-10 bg-brand-600 text-white grid place-content-center font-bold rounded-xl">AI</div>
+      <div>
+        <h1 class="text-lg font-semibold text-slate-900">Admission & Scholarship Advisor</h1>
+        <p class="text-xs text-slate-500">Government-guided college & scholarship suggestions</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 py-8 space-y-10">
+
+<!-- Input Section -->
+<section class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+  <div class="bg-gradient-to-r from-brand-50 to-white px-6 py-5 border-b">
+    <h2 class="text-xl font-semibold text-slate-900">Enter Your Details</h2>
+    <p class="text-sm text-slate-500">Fill the details to get college and scholarship suggestions.</p>
+  </div>
+  <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- Class -->
+    <div>
+      <label class="block text-sm font-medium text-slate-700">Class *</label>
+      <select id="classSelect" class="w-full rounded-lg border-slate-300 focus:ring-1 focus:ring-brand-500 focus:border-brand-500">
+        <option value="">Select</option>
+        <option value="10th">10th</option>
+        <option value="12th">12th</option>
+        <option value="Diploma">Diploma</option>
+      </select>
+    </div>
+
+    <!-- Marks -->
+    <div id="marksBlock" class="hidden">
+      <label id="marksLabel" class="block text-sm font-medium text-slate-700">Marks (%)</label>
+      <input type="number" id="marksInput" placeholder="e.g., 82" min="0" max="100" step="0.1"
+        class="w-full rounded-lg border-slate-300 focus:ring-1 focus:ring-brand-500 focus:border-brand-500" />
+    </div>
+
+    <!-- Grade (10th only) -->
+    <div id="gradeBlock" class="hidden">
+      <label class="block text-sm font-medium text-slate-700">Grade</label>
+      <select id="gradeSelect" class="w-full rounded-lg border-slate-300 focus:ring-1 focus:ring-brand-500 focus:border-brand-500">
+        <option value="">Select</option>
+        <option>A+</option><option>A</option><option>B+</option><option>B</option><option>C</option><option>D</option>
+      </select>
+    </div>
+
+    <!-- Stream (12th only) -->
+    <div id="streamBlock" class="hidden">
+      <label class="block text-sm font-medium text-slate-700">Stream (12th)</label>
+      <select id="streamSelect" class="w-full rounded-lg border-slate-300 focus:ring-1 focus:ring-brand-500 focus:border-brand-500">
+        <option value="">Select</option>
+        <option value="Science">Science</option>
+        <option value="Commerce">Commerce</option>
+        <option value="Arts">Arts</option>
+        <option value="Vocational">Vocational</option>
+      </select>
+    </div>
+
+    <!-- Exam -->
+    <div id="examBlock" class="hidden">
+      <label id="examLabel" class="block text-sm font-medium text-slate-700">Exam Score</label>
+      <input type="number" id="examInput" min="0" step="1" placeholder="Enter exam score"
+        class="w-full rounded-lg border-slate-300 focus:ring-1 focus:ring-brand-500 focus:border-brand-500" />
+      <p id="examHint" class="text-xs text-slate-500 mt-1"></p>
+    </div>
+
+    <!-- Polytechnic Rank (Diploma only) -->
+    <div id="rankBlock" class="hidden">
+      <label class="block text-sm font-medium text-slate-700">Polytechnic Entrance Rank (optional)</label>
+      <input type="number" id="rankInput" placeholder="Enter rank if available"
+        class="w-full rounded-lg border-slate-300 focus:ring-1 focus:ring-brand-500 focus:border-brand-500" />
+    </div>
+
+    <!-- Category -->
+    <div>
+      <label class="block text-sm font-medium text-slate-700">Category</label>
+      <select id="categorySelect" class="w-full rounded-lg border-slate-300 focus:ring-1 focus:ring-brand-500 focus:border-brand-500">
+        <option value="">Select</option>
+        <option value="GEN">General</option>
+        <option value="OBC">OBC</option>
+        <option value="SC">SC</option>
+        <option value="ST">ST</option>
+        <option value="EWS">EWS</option>
+        <option value="PWD">PwD</option>
+      </select>
+    </div>
+
+    <!-- Income -->
+    <div>
+      <label class="block text-sm font-medium text-slate-700">Annual Family Income (₹)</label>
+      <input type="number" id="incomeInput" min="0" step="1000" placeholder="e.g., 200000"
+        class="w-full rounded-lg border-slate-300 focus:ring-1 focus:ring-brand-500 focus:border-brand-500" />
+    </div>
+
+    <!-- Buttons -->
+    <div class="md:col-span-2 flex flex-wrap items-center gap-3 pt-2">
+      <button id="suggestBtn" class="px-5 py-2.5 rounded-lg bg-brand-600 text-white font-medium hover:bg-brand-700">Get Suggestions</button>
+      <button id="resetBtn" class="px-4 py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200">Reset</button>
+    </div>
+  </div>
+</section>
+
+<!-- Results -->
+<section class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200">
+  <div class="px-6 py-5 border-b">
+    <h3 class="text-lg font-semibold">Eligible Colleges</h3>
+  </div>
+  <div id="collegeContainer" class="p-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  <div id="collegeEmpty" class="p-6 hidden">
+    <p class="text-slate-500 text-sm">No colleges found. Adjust your inputs.</p>
+  </div>
+</section>
+
+<section class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200">
+  <div class="px-6 py-5 border-b">
+    <h3 class="text-lg font-semibold">Eligible Scholarships</h3>
+  </div>
+  <div id="scholarshipContainer" class="p-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  <div id="scholarshipEmpty" class="p-6 hidden">
+    <p class="text-slate-500 text-sm">No scholarships found. Adjust your inputs.</p>
+  </div>
+</section>
+</main>
+<!-- Footer -->
+  <footer class="bg-gray-800 text-white rounded-lg p-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Disha J&K</h3>
+                    <p class="text-gray-400">Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Career Assessment</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Scholarships</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">College Directory</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Success Stories</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Disha J&K. All rights reserved. An initiative for Smart India Hackathon 2025.</p>
+            </div>
+        </footer>
+    </div>
+
+<script>
+// ---------- Input logic ----------
+const classSelect=document.getElementById("classSelect");
+const marksBlock=document.getElementById("marksBlock");
+const gradeBlock=document.getElementById("gradeBlock");
+const streamBlock=document.getElementById("streamBlock");
+const examBlock=document.getElementById("examBlock");
+const rankBlock=document.getElementById("rankBlock");
+const examLabel=document.getElementById("examLabel");
+const examHint=document.getElementById("examHint");
+
+classSelect.addEventListener("change",()=>{
+  [marksBlock,gradeBlock,streamBlock,examBlock,rankBlock].forEach(b=>b.classList.add("hidden"));
+  if(classSelect.value==="10th"){marksBlock.classList.remove("hidden");gradeBlock.classList.remove("hidden");}
+  if(classSelect.value==="12th"){marksBlock.classList.remove("hidden");streamBlock.classList.remove("hidden");}
+  if(classSelect.value==="Diploma"){marksBlock.classList.remove("hidden");rankBlock.classList.remove("hidden");}
+});
+
+document.getElementById("streamSelect").addEventListener("change",()=>{
+  const s=document.getElementById("streamSelect").value;
+  examBlock.classList.add("hidden");
+  if(s==="Science"){examLabel.textContent="JEE / CET / NEET Score";examHint.textContent="Enter your competitive exam score";examBlock.classList.remove("hidden");}
+  if(s==="Commerce"){examLabel.textContent="CA Foundation / CUET Score";examHint.textContent="Enter your score";examBlock.classList.remove("hidden");}
+  if(s==="Arts"){examLabel.textContent="CUET / State Entrance Score";examHint.textContent="Enter score";examBlock.classList.remove("hidden");}
+  if(s==="Vocational"){examLabel.textContent="Skill Test / Diploma Entrance";examHint.textContent="Optional";examBlock.classList.remove("hidden");}
+});
+
+// ---------- Colleges ----------
+const colleges=[
+  {name:"Delhi Public School",class:"10th",minMarks:35,details:"Admission to 11th Science/Commerce/Arts."},
+  {name:"St. Xavier's High School, Mumbai",class:"10th",minMarks:35,details:"ICSE/CBSE 11th admissions."},
+  {name:"IIT Bombay",class:"12th",stream:"Science",minMarks:80,exam:"JEE",details:"Admission via JEE Advanced."},
+  {name:"AIIMS Delhi",class:"12th",stream:"Science",minMarks:80,exam:"NEET",details:"MBBS admissions via NEET."},
+  {name:"NIT Trichy",class:"12th",stream:"Science",minMarks:80,exam:"JEE",details:"Engineering programs."},
+  {name:"SRCC, Delhi",class:"12th",stream:"Commerce",minMarks:80,exam:"CUET",details:"B.Com, Economics."},
+  {name:"Lady Shri Ram, Delhi",class:"12th",stream:"Arts",minMarks:80,exam:"CUET",details:"Arts & Humanities."},
+  {name:"Christ University, Bangalore",class:"12th",stream:"Commerce",minMarks:75,exam:"CUET",details:"Commerce/Management."},
+  {name:"VJTI Mumbai",class:"Diploma",minMarks:60,details:"Polytechnic & Engineering."},
+  {name:"PICT Pune",class:"Diploma",minMarks:60,details:"Computer & IT Engineering."}
+];
+
+// ---------- Scholarships ----------
+const scholarships=[
+  {name:"National Means Cum Merit Scholarship",minMarks:55,category:["GEN","OBC","SC","ST"],income:200000,details:"₹12,000 per year till Class 12"},
+  {name:"INSPIRE (Science)",minMarks:80,category:["GEN","OBC","SC","ST"],income:Infinity,details:"₹80,000/year for 5 years"},
+  {name:"AICTE Pragati (Girls)",minMarks:60,category:["GEN","OBC","SC","ST"],income:800000,details:"₹50,000/year for girls in technical education"},
+  {name:"Post-Matric Scholarship",minMarks:50,category:["SC","ST","OBC","EWS"],income:250000,details:"Covers tuition + allowance"}
+];
+
+// ---------- Suggestion logic ----------
+document.getElementById("suggestBtn").addEventListener("click",()=>{
+  const cls=classSelect.value;
+  const marks=parseFloat(document.getElementById("marksInput").value)||0;
+  const stream=document.getElementById("streamSelect").value;
+  const exam=parseFloat(document.getElementById("examInput").value)||0;
+  const category=document.getElementById("categorySelect").value;
+  const income=parseFloat(document.getElementById("incomeInput").value)||Infinity;
+
+  // Colleges
+  const colC=document.getElementById("collegeContainer");colC.innerHTML="";
+  const eligibleCols=colleges.filter(c=>{
+    if(c.class!==cls)return false;
+    if(marks<c.minMarks)return false;
+    if(c.stream&&c.stream!==stream)return false;
+    if(c.exam&&exam===0)return false;
+    return true;
+  });
+  if(eligibleCols.length===0){document.getElementById("collegeEmpty").classList.remove("hidden");}
+  else{
+    document.getElementById("collegeEmpty").classList.add("hidden");
+    eligibleCols.forEach(c=>{
+      const div=document.createElement("div");
+      div.className="p-4 bg-brand-50 rounded-lg shadow cursor-pointer";
+      div.innerHTML=`<strong>${c.name}</strong><p class="text-sm">${c.details}</p>`;
+      colC.appendChild(div);
+    });
+  }
+
+  // Scholarships
+  const schC=document.getElementById("scholarshipContainer");schC.innerHTML="";
+  const eligibleSch=scholarships.filter(s=>{
+    if(marks<s.minMarks)return false;
+    if(s.category&&!s.category.includes(category))return false;
+    if(income>s.income)return false;
+    return true;
+  });
+  if(eligibleSch.length===0){document.getElementById("scholarshipEmpty").classList.remove("hidden");}
+  else{
+    document.getElementById("scholarshipEmpty").classList.add("hidden");
+    eligibleSch.forEach(s=>{
+      const div=document.createElement("div");
+      div.className="p-4 bg-green-50 rounded-lg shadow cursor-pointer";
+      div.innerHTML=`<strong>${s.name}</strong><p class="text-sm">${s.details}</p>`;
+      schC.appendChild(div);
+    });
+  }
+});
+
+// Reset
+document.getElementById("resetBtn").addEventListener("click",()=>{
+  document.querySelectorAll("input,select").forEach(i=>i.value="");
+  document.getElementById("collegeContainer").innerHTML="";
+  document.getElementById("scholarshipContainer").innerHTML="";
+  document.getElementById("collegeEmpty").classList.add("hidden");
+  document.getElementById("scholarshipEmpty").classList.add("hidden");
+});
+</script>
+</body>
+</html>
