@@ -4,235 +4,417 @@
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Course to Career Roadmap</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    .roadmap-container {
-      position: relative;
-      margin: 3rem auto;
-      max-width: 900px;
-    }
-    .roadmap-line {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 3px;
-      height: 100%;
-      background: #e2e8f0;
-      transform: translateX(-50%);
-    }
-    .roadmap-step {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      margin-bottom: 2rem;
-      padding: 1.2rem 1.5rem;
-      position: relative;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      transition: background 0.2s, box-shadow 0.2s;
-    }
-    .roadmap-step:hover {
-      background: #f9fafb;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    }
-    .roadmap-step::before {
-      content: '';
-      position: absolute;
-      top: 1.5rem;
-      left: 50%;
-      width: 14px;
-      height: 14px;
-      background: #3b82f6;
-      border-radius: 50%;
-      border: 2px solid #ffffff;
-      box-shadow: 0 0 0 2px #e2e8f0;
-      transform: translateX(-50%);
-    }
-    .step-left, .step-right {
-      width: 45%;
-    }
-    .extra-info {
+    /* ========================= */
+    /* Apps Menu Dropdown        */
+    /* ========================= */
+    .apps-menu {
       display: none;
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-      color: #374151;
-      line-height: 1.4;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 300px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      padding: 16px;
+      z-index: 1000;
+      margin-top: 10px;
     }
-    .roadmap-step.active .extra-info {
+    .apps-menu.active {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .app-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .app-item:hover { background: #f3f4f6; }
+    .app-icon {
+      width: 40px;
+      height: 40px;
+      background: #4f46e5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+    .app-name {
+      font-size: 12px;
+      text-align: center;
+      color: #4b5563;
+    }
+    /* ========================= */
+    /* Profile Menu Dropdown     */
+    /* ========================= */
+    #profile-menu {
+      background: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 50;
+    }
+    #profile-menu a {
       display: block;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      color: #374151;
+      text-decoration: none;
+      transition: background-color 0.2s ease-in-out;
     }
-    @media (max-width: 768px) {
-      .roadmap-step {
-        flex-direction: column;
-        text-align: center;
-      }
-      .step-left, .step-right {
-        width: 100%;
-        margin-bottom: 1rem;
-      }
-      .roadmap-line { left: 20px; }
-      .roadmap-step::before { left: 20px; transform: none; }
-    }
+    #profile-menu a:hover { background-color: #f9fafb; }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans">
 
-  <!-- Header -->
-  <div class="bg-slate-800 text-white text-center py-8 border-b border-gray-200 shadow-sm">
-    <h1 class="text-3xl font-bold">🎓 Course to Career Roadmap</h1>
-    <p class="mt-2 text-lg text-gray-200">Plan your journey after 10th & 12th with trusted guidance</p>
-  </div>
+  <!-- ================= HEADER START ================= -->
+  <header class="bg-white border-b sticky top-0 z-10 shadow">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <!-- Left: Logo -->
+      <a href="./Dashboard.html" class="text-2xl font-bold text-indigo-600">
+        <i class="fas fa-compass mr-2"></i>Disha J&K
+      </a>  
+      <!-- Right: Apps + Profile -->
+      <div class="flex items-center space-x-4">
+        <!-- Apps Menu -->
+        <div class="relative">
+          <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all">
+            <div class="grid grid-cols-3 gap-1 w-6 h-6">
+              <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            </div>
+          </button>
+          <div id="apps-menu" class="apps-menu dropdown">
+            <a href="Dashboard.html" class="app-item"><div class="app-icon"><i class="fas fa-road"></i></div><span class="app-name">Dashboard</span></a>
+            <a href="CourseMap.html" class="app-item"><div class="app-icon"><i class="fas fa-list"></i></div><span class="app-name">Career Shortlist</span></a>
+            <a href="Quiz.html" class="app-item"><div class="app-icon"><i class="fas fa-chart-line"></i></div><span class="app-name">Quiz</span></a>
+            <a href="Admission.html" class="app-item"><div class="app-icon"><i class="fas fa-book"></i></div><span class="app-name">Admission Tracking</span></a>
+            <a href="Map.html" class="app-item"><div class="app-icon"><i class="fas fa-brain"></i></div><span class="app-name"> Map </span></a>
+            <a href="guidance.html" class="app-item"><div class="app-icon"><i class="fas fa-user-graduate"></i></div><span class="app-name">Guidance</span></a>
+            <a href="global-learning.html" class="app-item"><div class="app-icon"><i class="fas fa-globe"></i></div><span class="app-name">Global Learning</span></a>
+            <a href="career-videos.html" class="app-item"><div class="app-icon"><i class="fas fa-video"></i></div><span class="app-name">Career Videos</span></a>
+            <a href="articles.html" class="app-item"><div class="app-icon"><i class="fas fa-newspaper"></i></div><span class="app-name">Articles</span></a>
+          </div>
+        </div>
+        <!-- Profile -->
+        <div class="relative">
+          <button id="profile-button" class="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">A</button>
+          <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden dropdown">
+            <div class="px-4 py-2 border-b">
+              <p class="text-sm font-medium">Ayesha Khan</p>
+              <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
+            </div>
+            <a href="Profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+            <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t">Logout</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ================= HEADER END ================= -->
 
-  <!-- Selection Form -->
-  <!-- Selection Form -->
-<form id="course-form" class="max-w-3xl mx-auto mt-10 bg-white border border-gray-200 p-6 shadow-sm rounded-md">
-  <!-- First row -->
-  <div class="grid md:grid-cols-3 gap-4 items-end">
-    
-    <!-- Grade Dropdown -->
+  <!-- Sub - Heading-->
+ <!-- Subheading -->
+<div class="bg-indigo-700 text-white text-center py-10 border-b border-gray-200 shadow-sm">
+  <h1 class="text-4xl font-extrabold">🎓 Course to Career Roadmap</h1>
+  <p class="mt-3 text-xl text-indigo-100 max-w-2xl mx-auto">
+    Plan your journey after 10th & 12th with trusted guidance and clear steps for your future career.
+  </p>
+</div>
+
+<!-- Selection Form -->
+<form id="course-form" class="max-w-3xl mx-auto mt-10 bg-white border border-gray-200 p-8 shadow-md rounded-lg">
+  <div class="grid md:grid-cols-3 gap-6 items-end">
     <div class="md:col-span-2">
-      <label for="level-input" class="block text-lg font-semibold text-gray-700 mb-2">🎯 Select Your Level</label>
-      <select id="level-input" required
-              class="w-full border border-gray-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300">
+      <label for="level-input" class="block text-lg font-semibold text-gray-700 mb-2 flex items-center gap-2">
+        <i class="fas fa-user-graduate text-indigo-600"></i> Select Your Level
+      </label>
+      <select id="level-input" required class="w-full border border-gray-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-300 hover:border-indigo-400 transition">
         <option value="">-- Choose --</option>
         <option value="After 10th">After 10th</option>
         <option value="After 12th">After 12th</option>
       </select>
     </div>
-
-    <!-- Button -->
     <div class="flex justify-start md:justify-center">
-      <button type="submit"
-              class="w-full md:w-auto px-6 py-3 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 transition">
+      <button type="submit" class="w-full md:w-auto px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 transition-colors">
         Show Path
       </button>
     </div>
   </div>
-
-  <!-- Second row (Interest dropdown appears here) -->
   <div id="interest-group" class="hidden mt-6">
-    <label for="interest-input" class="block text-lg font-semibold text-gray-700 mb-2">📘 Select Your Path</label>
-    <select id="interest-input"
-            class="w-full border border-gray-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-green-300">
-      <!-- Options will be populated dynamically -->
+    <label for="interest-input" class="block text-lg font-semibold text-gray-700 mb-2 flex items-center gap-2">
+      <i class="fas fa-book text-green-600"></i> Select Your Path
+    </label>
+    <select id="interest-input" class="w-full border border-gray-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-green-300 hover:border-green-400 transition">
     </select>
   </div>
 </form>
+<p id="course-error" class="text-red-500 text-center mt-4"></p>
 
 
-  <p id="course-error" class="text-red-500 text-center mt-4"></p>
+  <!-- ================= Roadmap Section ================= -->
+  <section id="roadmap-section" class="max-w-5xl mx-auto px-6 py-12 hidden">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-indigo-700">Your Career Path Roadmap 🚀</h2>
+      <p class="text-gray-600 mt-2">Follow these steps to achieve your dream career.</p>
+    </div>
+    <!-- Roadmap Intro Section -->
+<section id="roadmap-intro" class="max-w-3xl mx-auto text-center mt-12 px-6 hidden">
+  <h2 class="text-2xl font-bold text-indigo-700">Your Personalized Roadmap</h2>
+  <p id="roadmap-intro-text" class="mt-3 text-gray-600 leading-relaxed"></p>
+</section>
 
-  <!-- Roadmap -->
-  <div class="roadmap-container" id="roadmap">
-    <div class="roadmap-line"></div>
-  </div>
+<!-- Roadmap -->
+<div class="roadmap-container" id="roadmap">
+  <div class="roadmap-line"></div>
+</div>
 
+  </section>
+  <!-- Footer -->
+   <footer class="bg-gray-800 text-white rounded-lg p-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Disha J&K</h3>
+                    <p class="text-gray-400">Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Career Assessment</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Scholarships</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">College Directory</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Success Stories</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Disha J&K. All rights reserved. An initiative for Smart India Hackathon 2025.</p>
+            </div>
+        </footer>
 <script>
-  const optionsData = {
-    "After 10th": ["Science Stream", "Commerce Stream", "Arts Stream", "Vocational Courses"],
-    "After 12th": ["B.Sc.", "B.Com.", "B.A.", "BBA", "Vocational"]
-  };
+const optionsData = {
+  "After 10th": ["Science Stream", "Commerce Stream", "Arts Stream", "Vocational Courses"],
+  "After 12th": ["Engineering", "MBBS", "B.Sc.", "B.Com.", "B.A.", "BBA", "Vocational"]
+};
 
-  const roadmapData = {
-    "Science Stream": [
-      { step: "Choose Science Subjects 🧪", info: "Physics, Chemistry, Biology/Maths." },
-      { step: "Higher Studies", info: "Engineering, Medicine, Research, Pure Sciences." },
-      { step: "Exams", info: "JEE, NEET, State CETs." }
-    ],
-    "Commerce Stream": [
-      { step: "Learn Business & Accounts 📊", info: "Core subjects: Accounts, Economics, Business Studies." },
-      { step: "Higher Studies", info: "B.Com., CA, MBA, CFA." },
-      { step: "Exams", info: "CA Foundation, CPT, CUET." }
-    ],
-    "Arts Stream": [
-      { step: "Focus on Humanities 🎨", info: "History, Political Science, Sociology, Psychology." },
-      { step: "Careers", info: "UPSC, Law, Journalism, Teaching, Social Sciences." },
-      { step: "Exams", info: "CLAT, UPSC, SSC." }
-    ],
-    "Vocational Courses": [
-      { step: "Pick a Skill 🛠️", info: "ITI, Polytechnic, Diplomas." },
-      { step: "Careers", info: "Technician, Skilled Trades, Industry Jobs." }
-    ],
-    "B.Sc.": [
-      { step: "Pursue B.Sc. 🧬", info: "Specialize in Science & Technology." },
-      { step: "Careers", info: "Scientist, IT Professional, Healthcare." },
-      { step: "Exams", info: "CSIR NET, DRDO, ICMR." }
-    ],
-    "B.Com.": [
-      { step: "Pursue B.Com. 💼", info: "Accounting, Finance, Economics." },
-      { step: "Careers", info: "Accountant, Analyst, Banking, MBA." },
-      { step: "Exams", info: "RBI, IBPS, SSC." }
-    ],
-    "B.A.": [
-      { step: "Pursue B.A. 📘", info: "Humanities, Literature, Social Sciences." },
-      { step: "Careers", info: "Civil Services, Journalism, Education." },
-      { step: "Exams", info: "UPSC, PSC, SSC." }
-    ],
-    "BBA": [
-      { step: "Pursue BBA 📊", info: "Management, Business, Marketing." },
-      { step: "Careers", info: "Manager, Entrepreneur, Consultant." },
-      { step: "Exams", info: "CAT, MAT, XAT." }
-    ],
-    "Vocational": [
-      { step: "Pick a Skill 📂", info: "Industry-focused short courses." },
-      { step: "Careers", info: "Technician, Junior Manager, Govt Jobs." }
-    ]
-  };
+const roadmapData = {
+  "Science Stream": [
+    { step: "Choose Science Subjects", icon: "🧪", info: "Select Physics and Chemistry as your core subjects, along with either Mathematics (PCM) for those interested in engineering and technology or Biology (PCB) for those pursuing careers in the life sciences and health. This foundation opens up the widest range of opportunities in higher education and careers." },
+    { step: "Develop Foundation", icon: "📘", info: "Immerse yourself in NCERT textbooks and trusted reference materials to sharpen your conceptual clarity and problem-solving abilities. Building a strong base in 11th and 12th is the most important step toward cracking competitive exams." },
+    { step: "Pick Your Goal", icon: "🎯", info: "Decide early whether your target is Engineering, Medicine, or Pure Sciences. Clarity of vision will help you focus your preparation and avoid distractions." },
+    { step: "Competitive Exams", icon: "📝", info: "Prepare confidently for exams like JEE, NEET, KVPY, or State CETs. Dedication, practice, and consistency in solving mock tests will sharpen your exam temperament." },
+    { step: "Explore Careers", icon: "🚀", info: "With Science, the doors are wide open: pursue Engineering, Medicine, Research, Biotechnology, Data Science, or even emerging interdisciplinary careers." }
+  ],
+  "Commerce Stream": [
+    { step: "Core Subjects", icon: "📊", info: "Master Accounts, Economics, Business Studies, and Mathematics (optional). These subjects build the foundation for careers in finance, management, and business." },
+    { step: "Build Skills", icon: "💡", info: "Work on analytical ability, logical reasoning, and business awareness. Strong numeracy and problem-solving skills will help you stand out in competitive fields." },
+    { step: "Career Paths", icon: "💼", info: "Explore prestigious career options such as Chartered Accountant (CA), MBA, CFA, or Company Secretary. Each path offers immense growth and recognition." },
+    { step: "Exams", icon: "📝", info: "Prepare for entrance exams like CA Foundation, CUET, CPT, or IPMAT with a focused and consistent strategy." },
+    { step: "Opportunities", icon: "🌍", info: "Commerce opens doors to diverse fields such as Banking, Finance, Consulting, Auditing, and Entrepreneurship. With the right skills, global opportunities are limitless." }
+  ],
+  "Arts Stream": [
+    { step: "Core Focus", icon: "🎨", info: "Study History, Political Science, Psychology, Sociology, or Literature. These subjects shape critical thinking and provide a deep understanding of society and culture." },
+    { step: "Skill Development", icon: "🗣️", info: "Hone your writing, public speaking, research, and creativity. Strong communication and analytical skills are your biggest strengths." },
+    { step: "Exams", icon: "📝", info: "Arts students can target competitive exams like UPSC, CLAT, SSC, NET, or State PSCs. Early preparation makes all the difference." },
+    { step: "Careers", icon: "📚", info: "Arts opens up respected careers in Civil Services, Law, Journalism, Teaching, Social Work, and Policy Making. Each path allows you to create meaningful impact." },
+    { step: "Future Scope", icon: "🌟", info: "Graduates can move into Academia, International Relations, NGOs, or even leadership roles in think tanks and government." }
+  ],
+  "Vocational Courses": [
+    { step: "Pick a Vocational Field", icon: "🛠️", info: "Choose from ITI, Polytechnic, or Skill Diplomas based on your interest in practical, hands-on careers. This is a direct route to employability." },
+    { step: "Hands-on Training", icon: "🏭", info: "Engage in real-world industrial visits, workshops, and apprenticeships. Practical learning ensures job-ready skills." },
+    { step: "Certifications", icon: "📜", info: "Opt for certifications from NSDC, Skill India, or other recognized boards. Certified training improves your employability and credibility." },
+    { step: "Career Paths", icon: "👷", info: "Enter industries as a Technician, Skilled Trade Professional, or Supervisor in government and private sectors. Demand for skilled workers is always high." },
+    { step: "Growth", icon: "📈", info: "As you gain experience, pursue advanced certifications or lateral entry into higher education. Skill-based careers offer steady growth." }
+  ],
+  "Engineering": [
+    { step: "Choose Engineering Path", icon: "🏗️", info: "Decide your branch early — Computer Science, Mechanical, Civil, Electrical, Electronics, or emerging fields like AI & Robotics. This choice shapes your career direction." },
+    { step: "Entrance Exams", icon: "📝", info: "Prepare strategically for JEE Main/Advanced, State CETs, or private university exams. Success in these exams gives access to top institutions." },
+    { step: "Get Admission", icon: "🎓", info: "Secure a seat in IITs, NITs, State Colleges, or reputed private universities. The quality of your institute influences your career opportunities." },
+    { step: "Skill Building", icon: "💻", info: "Go beyond textbooks: work on coding, projects, internships, hackathons, and research. Industry wants problem-solvers, not just degree-holders." },
+    { step: "Careers", icon: "🚀", info: "Engineering opens global opportunities in Software, Core Industries, Startups, and Research. With the right skills, the sky is the limit." }
+  ],
+  "MBBS": [
+    { step: "Prepare for Medical Path", icon: "🩺", info: "Focus deeply on Physics, Chemistry, and Biology in your 11th & 12th. A strong conceptual base is critical for cracking NEET." },
+    { step: "Entrance Exams", icon: "📝", info: "Appear for NEET UG, which covers AIIMS and other medical institutions. Consistent practice and mock tests are essential." },
+    { step: "Medical College Admission", icon: "🏥", info: "Secure admission in MBBS programs through NEET counselling in government or private colleges." },
+    { step: "Internships", icon: "👨‍⚕️", info: "During MBBS, a 1-year compulsory internship gives real-world hospital experience, sharpening your clinical skills." },
+    { step: "Career Growth", icon: "📈", info: "After MBBS, pursue MD/MS for specialization, enter hospital practice, research, or even global healthcare opportunities." }
+  ],
+  "B.Sc.": [
+    { step: "Choose Specialization", icon: "🔬", info: "Select a subject of interest such as Physics, Chemistry, Biology, or Computer Science. Specialization gives you focus and expertise." },
+    { step: "Prepare Academically", icon: "📘", info: "Strengthen your fundamentals by engaging in experiments, projects, and theoretical depth. Academic excellence opens research doors." },
+    { step: "Entrance Exams", icon: "📝", info: "Some universities conduct entrance tests, while many rely on merit-based admissions. Stay updated with university notifications." },
+    { step: "Apply to Colleges", icon: "🏫", info: "Target reputed institutions and universities offering your chosen specialization. College choice matters for exposure and placements." },
+    { step: "Future Career", icon: "🚀", info: "Pursue careers in Research, Lab Work, Data Analysis, Industry Roles, or move toward higher education like M.Sc. and Ph.D." }
+  ],
+  "B.Com.": [
+    { step: "Select Stream", icon: "📊", info: "Decide your focus: Accounting, Finance, Economics, or Business Management. This helps shape your career early." },
+    { step: "Skill Development", icon: "💡", info: "Develop strong analytical skills, learn taxation basics, and explore modern accounting software to stay competitive." },
+    { step: "Entrance/Admission", icon: "📝", info: "Get into top colleges via CUET or merit-based admissions. Early preparation ensures success." },
+    { step: "Internships", icon: "💼", info: "Pursue internships in banking, finance firms, or accounting companies to gain practical exposure." },
+    { step: "Career Paths", icon: "📈", info: "Grow into roles like Chartered Accountant, CFA, MBA graduate, or enter corporate finance jobs." }
+  ],
+  "B.A.": [
+    { step: "Choose Major", icon: "📚", info: "Pick from majors such as History, Literature, Political Science, Sociology, or Psychology. Your choice should reflect your passion." },
+    { step: "Academic Focus", icon: "📝", info: "Develop strong research and writing skills. Consistent academic work builds credibility for future studies." },
+    { step: "Entrance/Admission", icon: "🏫", info: "Top universities may have entrance exams, while others admit through merit lists. Apply widely for better chances." },
+    { step: "Internships/Experience", icon: "💼", info: "Gain experience in NGOs, Media Houses, or Research Centers. Practical exposure complements academic learning." },
+    { step: "Career Opportunities", icon: "🌟", info: "B.A. graduates can excel in Civil Services, Law, Journalism, Teaching, Social Work, or advanced academic roles." }
+  ],
+  "BBA": [
+    { step: "Choose Specialization", icon: "💼", info: "Opt for Marketing, Finance, HR, Operations, or International Business depending on your interest." },
+    { step: "Skill Development", icon: "💡", info: "Focus on leadership, communication, analytics, and entrepreneurship. These are the most valued skills in business." },
+    { step: "Apply to Colleges", icon: "🏫", info: "Secure admission into reputed management institutes offering BBA programs for strong placement opportunities." },
+    { step: "Internships", icon: "💼", info: "Gain hands-on corporate exposure through internships in consulting firms, startups, or multinational companies." },
+    { step: "Career Path", icon: "🚀", info: "Progress into MBA, Management Roles, Entrepreneurship, or International Careers." }
+  ],
+  "Vocational": [
+    { step: "Select Vocational Field", icon: "🛠️", info: "Pick an industry-aligned program like ITI, Diploma, or Polytechnic. These courses offer direct skills for jobs." },
+    { step: "Practical Training", icon: "🏭", info: "Engage in labs, apprenticeships, and workshops to build confidence and industry experience." },
+    { step: "Certification", icon: "📜", info: "Get certified by NSDC or other recognized bodies. A certificate adds credibility to your skills." },
+    { step: "Career Options", icon: "👷", info: "Vocational training leads to direct jobs in industries, government, and technical fields." },
+    { step: "Further Growth", icon: "📈", info: "Pursue advanced certifications or lateral entry to engineering and higher education. Growth is assured with upskilling." }
+  ]
+};
 
-  const levelSelect = document.getElementById('level-input');
-  const interestGroup = document.getElementById('interest-group');
-  const interestSelect = document.getElementById('interest-input');
-  const form = document.getElementById('course-form');
-  const roadmapSection = document.getElementById('roadmap');
-  const errorMsg = document.getElementById('course-error');
 
-  // Show relevant second dropdown when level selected
-  levelSelect.addEventListener('change', () => {
-    const level = levelSelect.value;
-    if (!level) {
-      interestGroup.classList.add('hidden');
-      return;
-    }
-    // Populate options
-    interestSelect.innerHTML = "";
-    optionsData[level].forEach(opt => {
-      const option = document.createElement('option');
-      option.value = opt;
-      option.textContent = opt;
-      interestSelect.appendChild(option);
-    });
-    interestGroup.classList.remove('hidden');
+const levelSelect = document.getElementById('level-input');
+const interestGroup = document.getElementById('interest-group');
+const interestSelect = document.getElementById('interest-input');
+const form = document.getElementById('course-form');
+const roadmapContainer = document.getElementById('roadmap');
+const roadmapSection = document.getElementById('roadmap-section');
+const errorMsg = document.getElementById('course-error');
+const roadmapIntro = document.getElementById('roadmap-intro');
+const roadmapIntroText = document.getElementById('roadmap-intro-text');
+
+// Populate interest dropdown based on level
+levelSelect.addEventListener('change', () => {
+  const level = levelSelect.value;
+  if (!level) { 
+    interestGroup.classList.add('hidden'); 
+    return; 
+  }
+  interestSelect.innerHTML = "";
+  optionsData[level].forEach(opt => {
+    const option = document.createElement('option');
+    option.value = opt;
+    option.textContent = opt;
+    interestSelect.appendChild(option);
   });
+  interestGroup.classList.remove('hidden');
+});
 
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    errorMsg.textContent = '';
-    roadmapSection.innerHTML = '<div class="roadmap-line"></div>';
+// Show roadmap on form submit
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  errorMsg.textContent = '';
+  roadmapContainer.innerHTML = '<div class="roadmap-line"></div>';
 
-    const interest = interestSelect.value;
-    const roadmap = roadmapData[interest];
-    if (!roadmap) {
-      errorMsg.textContent = "Please select a valid stream or course.";
-      return;
-    }
+  // Set intro text dynamically
+  if (levelSelect.value === "After 10th") {
+    roadmapIntroText.textContent =
+      "Starting from Class 10th, this roadmap will guide you in selecting the right stream, preparing for future exams, and building a strong foundation for your career path.";
+  } else if (levelSelect.value === "After 12th") {
+    roadmapIntroText.textContent =
+      "After Class 12th, this roadmap will help you explore suitable courses, prepare for entrance exams, and secure admission into top colleges.";
+  } else {
+    roadmapIntroText.textContent =
+      "This roadmap will guide you step by step — from choosing the right subjects to preparing for competitive exams and securing admission in top institutions.";
+  }
 
-    roadmap.forEach((stepObj, idx) => {
-      const div = document.createElement('div');
-      div.className = 'roadmap-step';
-      div.innerHTML = `
-        <div class="step-left font-semibold text-gray-800">Step ${idx + 1}: ${stepObj.step}</div>
-        <div class="step-right text-gray-600">
-          <p class="extra-info">${stepObj.info}</p>
-          <span class="text-sm text-blue-500">(Click to view details)</span>
-        </div>
-      `;
-      div.addEventListener('click', () => {
-        div.classList.toggle('active');
-      });
-      roadmapSection.appendChild(div);
-    });
+  const interest = interestSelect.value;
+  const roadmap = roadmapData[interest];
+  if (!roadmap) { 
+    errorMsg.textContent = "Please select a valid stream or course."; 
+    return; 
+  }
+  roadmapSection.classList.remove('hidden');
+
+  roadmap.forEach((stepObj, idx) => {
+    const isLeft = idx % 2 === 0;
+    const stepDiv = document.createElement('div');
+    stepDiv.className = `group mb-12 flex items-center w-full ${isLeft ? "" : "flex-row-reverse"}`;
+    stepDiv.innerHTML = `
+      <div class="w-1/2 ${isLeft ? "pr-8 text-right" : "pl-8"}">
+        <h3 class="font-bold text-lg flex ${isLeft ? "justify-end" : ""} items-center gap-2">
+          ${stepObj.step}
+        </h3>
+        <p class="extra-info mt-2 text-gray-600 max-h-0 overflow-hidden opacity-0 transform transition-all duration-500 ease-in-out group-hover:max-h-40 group-hover:opacity-100 group-hover:translate-y-1">
+          ${stepObj.info}
+        </p>
+      </div>
+      <div class="w-12 h-12 flex-shrink-0 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl shadow-lg transform transition group-hover:scale-110 ">
+        ${stepObj.icon}
+      </div>
+      <div class="w-1/2"></div>
+    `;
+    roadmapContainer.appendChild(stepDiv);
   });
+});
+
+// ================= Dropdown Menu Logic =================
+const profileButton = document.getElementById('profile-button');
+const profileMenu = document.getElementById('profile-menu');
+const appsMenuButton = document.getElementById('apps-menu-button');
+const appsMenu = document.getElementById('apps-menu');
+
+profileButton.addEventListener('click', function(e) {
+  e.stopPropagation();
+  profileMenu.classList.toggle('hidden');
+});
+
+appsMenuButton.addEventListener('click', function(e) {
+  e.stopPropagation();
+  appsMenu.classList.toggle('active');
+});
+
+// Close dropdowns on click outside
+document.addEventListener('click', function(event) {
+  if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+    profileMenu.classList.add('hidden');
+  }
+  if (!appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
+    appsMenu.classList.remove('active');
+  }
+});
 </script>
 </body>
 </html>

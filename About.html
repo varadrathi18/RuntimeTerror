@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Disha J&K</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .counter { font-weight: bold; }
+    .wave-divider {
+      position: relative;
+      height: 80px;
+      overflow: hidden;
+    }
+    .wave-divider svg {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-r from-indigo-600 to bg-indigo-600 text-white text-center py-20 px-6">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">About Disha J&K</h1>
+    <p class="max-w-2xl mx-auto text-lg">
+      A Government of Jammu & Kashmir initiative dedicated to guiding students in education, admissions, and scholarships with trust and clarity.
+    </p>
+  </section>
+
+  <!-- Divider -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 320">
+      <path fill="#f9fafb" fill-opacity="1" d="M0,224L1440,96L1440,0L0,0Z"></path>
+    </svg>
+  </div>
+
+  <!-- Why Choose Us -->
+  <section class="max-w-6xl mx-auto py-16 px-6 text-center">
+    <h2 class="text-3xl font-bold text-blue-600 mb-6">Why Choose Disha J&K?</h2>
+    <div class="grid gap-8 md:grid-cols-3">
+      <div class="p-6 bg-white shadow-md rounded-xl transition transform hover:-translate-y-2">
+        <div class="text-blue-600 text-4xl mb-4">🎓</div>
+        <h3 class="text-xl font-semibold mb-2">Career Guidance</h3>
+        <p>Personalized pathways for students after 10th and 12th, helping them make informed choices.</p>
+      </div>
+      <div class="p-6 bg-white shadow-md rounded-xl transition transform hover:-translate-y-2">
+        <div class="text-blue-600 text-4xl mb-4">🏛️</div>
+        <h3 class="text-xl font-semibold mb-2">Trusted Information</h3>
+        <p>Verified data on colleges, admission processes, and scholarship opportunities.</p>
+      </div>
+      <div class="p-6 bg-white shadow-md rounded-xl transition transform hover:-translate-y-2">
+        <div class="text-blue-600 text-4xl mb-4">🤝</div>
+        <h3 class="text-xl font-semibold mb-2">Student Support</h3>
+        <p>Workshops, helplines, and resources to ensure no student is left behind.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 320">
+      <path fill="#2563eb" fill-opacity="1" d="M0,64L1440,224L1440,320L0,320Z"></path>
+    </svg>
+  </div>
+
+  <!-- Stats -->
+  <section class="bg-blue-600 text-white py-16 px-6 text-center">
+    <h2 class="text-3xl font-bold mb-8">Our Impact</h2>
+    <div class="grid gap-8 md:grid-cols-3">
+      <div>
+        <div class="counter text-4xl mb-2" data-count="10000">0</div>
+        <p>Students Guided</p>
+      </div>
+      <div>
+        <div class="counter text-4xl mb-2" data-count="500">0</div>
+        <p>Scholarships Listed</p>
+      </div>
+      <div>
+        <div class="counter text-4xl mb-2" data-count="200">0</div>
+        <p>Colleges Covered</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 320">
+      <path fill="#f9fafb" fill-opacity="1" d="M0,192L1440,64L1440,0L0,0Z"></path>
+    </svg>
+  </div>
+
+  <!-- Contact -->
+  <section class="max-w-4xl mx-auto py-16 px-6 text-center">
+    <h2 class="text-3xl font-bold text-blue-600 mb-6">Need Help? Get in Touch</h2>
+    <p class="mb-8 text-gray-600">Reach out to us for career queries, admission details, or scholarship assistance.</p>
+    <a href="mailto:support@disha.jk.gov.in" 
+       class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition">
+      Contact Us
+    </a>
+  </section>
+
+  <script>
+    // Counter Animation
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-count');
+        const current = +counter.innerText;
+        const increment = Math.ceil(target / 200);
+
+        if (current < target) {
+          counter.innerText = current + increment;
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target.toLocaleString() + "+";
+        }
+      };
+      updateCount();
+    });
+  </script>
+</body>
+</html>
