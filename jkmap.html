@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pune Startup Map - Live Prototype</title>
+    
+    <!-- 1. Include Leaflet.js library for the map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- 2. Custom Styles for the page -->
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header {
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-bottom: 3px solid #4a90e2;
+        }
+        h1 {
+            margin: 0;
+            color: #333;
+        }
+        p {
+            color: #666;
+            margin-top: 5px;
+        }
+        /* The map container needs a specific height */
+        #map {
+            height: 75vh;
+            width: 95%;
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Pune Startup Map - Prototype</h1>
+        <p>This is a live demo of the interactive "Aspiration Map" feature.</p>
+    </div>
+    
+    <!-- 3. The HTML container where the map will be displayed -->
+    <div id="map"></div>
+
+    <script>
+        // This event listener ensures the script runs after the page is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // ===================================================================
+            // A. SIMULATED BACKEND DATA
+            // In your real project, you would get this data by calling your backend API.
+            // For this prototype, we've defined it directly here as a JavaScript array.
+            // ===================================================================
+            const puneStartups = [
+                {
+                    name: "FinTech Innovations",
+                    industry: "FinTech",
+                    description: "A leading platform for digital payments and investments.",
+                    latitude: 18.5204,
+                    longitude: 73.8567
+                },
+                {
+                    name: "SaaS Solutions Inc.",
+                    industry: "SaaS",
+                    description: "Provides cloud-based software for business management.",
+                    latitude: 18.5679,
+                    longitude: 73.9143
+                },
+                {
+                    name: "HealthBot AI",
+                    industry: "HealthTech",
+                    description: "AI-powered diagnostic tools for rural clinics.",
+                    latitude: 18.5314,
+                    longitude: 73.8446
+                },
+                {
+                    name: "AutoVerse Tech",
+                    industry: "Automotive",
+                    description: "Developing self-driving technology for commercial vehicles.",
+                    latitude: 18.6187,
+                    longitude: 73.7381
+                },
+                {
+                    name: "EduSphere",
+                    industry: "EdTech",
+                    description: "An interactive learning platform for K-12 students.",
+                    latitude: 18.4591,
+                    longitude: 73.8474
+                }
+            ];
+
+            // ===================================================================
+            // B. MAP INITIALIZATION
+            // Set the map's starting view to the coordinates of Pune with a zoom level.
+            // ===================================================================
+            const map = L.map('map').setView([18.5204, 73.8567], 12);
+
+            // Add the visual map layer from OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+
+            // ===================================================================
+            // C. CUSTOM MARKER ICONS
+            // Create different colored pins for different startup industries.
+            // ===================================================================
+            const iconColors = {
+                "FinTech": "blue",
+                "SaaS": "green",
+                "HealthTech": "red",
+                "Automotive": "orange",
+                "EdTech": "orange"
+            };
+
+            function createCustomIcon(industry) {
+                const color = iconColors[industry] || "grey"; // Default to grey if industry not found
+                return L.icon({
+                    iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
+                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                    shadowSize: [41, 41]
+                });
+            }
+
+            // ===================================================================
+            // D. ADDING PINS TO THE MAP
+            // Loop through our simulated data and create a marker for each startup.
+            // ===================================================================
+            puneStartups.forEach(startup => {
+                const marker = L.marker([startup.latitude, startup.longitude], {
+                    icon: createCustomIcon(startup.industry)
+                }).addTo(map);
+
+                // Create the content that will appear in the pop-up when a pin is clicked
+                const popupContent = `
+                    <div style="font-family: sans-serif; line-height: 1.5;">
+                        <strong style="font-size: 16px; color: #333;">${startup.name}</strong>
+                        <p style="font-size: 12px; background-color: #eee; border-radius: 10px; padding: 2px 8px; display: inline-block; margin: 5px 0;">${startup.industry}</p>
+                        <p style="font-size: 14px; color: #555;">${startup.description}</p>
+                    </div>
+                `;
+
+                // Attach the pop-up to the marker
+                marker.bindPopup(popupContent);
+            });
+
+        });
+    </script>
+
+</body>
+</html>
