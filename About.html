@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - Disha J&K</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     .counter { font-weight: bold; }
     .wave-divider {
@@ -18,24 +19,199 @@
       width: 100%;
       height: 100%;
     }
+    /* ========================= */
+/* Apps Menu Dropdown        */
+/* ========================= */
+.apps-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 300px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  z-index: 1000;
+  margin-top: 10px;
+}
+
+.apps-menu.active {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.app-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.app-item:hover {
+  background: #f3f4f6;
+}
+
+.app-icon {
+  width: 40px;
+  height: 40px;
+  background: #4f46e5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.app-name {
+  font-size: 12px;
+  text-align: center;
+  color: #4b5563;
+}
+
+/* ========================= */
+/* Profile Menu Dropdown     */
+/* ========================= */
+#profile-menu {
+  background: white;
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 50;
+}
+
+#profile-menu a {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem; /* text-sm */
+  color: #374151; /* gray-700 */
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#profile-menu a:hover {
+  background-color: #f9fafb; /* gray-50 */
+}
   </style>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("rt3S3PPN-JFeXIX6Q"); // 🔑 Replace with your EmailJS Public Key
+    })();
+  </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
+<!-- ================= HEADER START ================= -->
+<header class="bg-white border-b sticky top-0 z-10 shadow">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+    
+    <!-- Left: Logo -->
+    <a href="./Dashboard.html" class="text-2xl font-bold text-indigo-600">
+      <i class="fas fa-compass mr-2"></i>Disha J&K
+    </a>  
 
+    <!-- Right: Apps + Profile -->
+    <div class="flex items-center space-x-4">
+      
+      <!-- Apps Menu -->
+      <div class="relative">
+        <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all">
+          <div class="grid grid-cols-3 gap-1 w-6 h-6">
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+          </div>
+        </button>
+        <div id="apps-menu" class="apps-menu dropdown">
+          <!-- app items -->
+          <a href="career-roadmap.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-road"></i></div>
+            <span class="app-name">Career Roadmap</span>
+          </a>
+          <a href="career-shortlist.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-list"></i></div>
+            <span class="app-name">Career Shortlist</span>
+          </a>
+          <a href="future-trends.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-chart-line"></i></div>
+            <span class="app-name">Future Trends</span>
+          </a>
+          <a href="course-mapping.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-book"></i></div>
+            <span class="app-name">Course Mapping</span>
+          </a>
+          <a href="ai-study-planner.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-brain"></i></div>
+            <span class="app-name">AI Study Planner</span>
+          </a>
+          <a href="guidance.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-user-graduate"></i></div>
+            <span class="app-name">Guidance</span>
+          </a>
+          <a href="global-learning.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-globe"></i></div>
+            <span class="app-name">Global Learning</span>
+          </a>
+          <a href="career-videos.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-video"></i></div>
+            <span class="app-name">Career Videos</span>
+          </a>
+          <a href="articles.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-newspaper"></i></div>
+            <span class="app-name">Articles</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Profile -->
+      <div class="relative">
+        <button id="profile-button" class="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
+          A
+        </button>
+        <div id="profile-menu"
+          class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden dropdown">
+          <div class="px-4 py-2 border-b">
+            <p class="text-sm font-medium">Ayesha Khan</p>
+            <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
+          </div>
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- ================= HEADER END ================= -->
   <!-- Hero -->
-  <section class="bg-gradient-to-r from-indigo-600 to bg-indigo-600 text-white text-center py-20 px-6">
+<section class="bg-gradient-to-r from-indigo-600 to-blue-600 text-white text-center px-6 py-16">
+  <div class="max-w-3xl mx-auto">
     <h1 class="text-4xl md:text-5xl font-bold mb-4">About Disha J&K</h1>
-    <p class="max-w-2xl mx-auto text-lg">
+    <p class="text-lg">
       A Government of Jammu & Kashmir initiative dedicated to guiding students in education, admissions, and scholarships with trust and clarity.
     </p>
-  </section>
+  </div>
+</section>
+
 
   <!-- Divider -->
-  <div class="wave-divider">
+  <!-- <div class="wave-divider">
     <svg viewBox="0 0 1440 320">
       <path fill="#f9fafb" fill-opacity="1" d="M0,224L1440,96L1440,0L0,0Z"></path>
     </svg>
-  </div>
+  </div> -->
 
   <!-- Why Choose Us -->
   <section class="max-w-6xl mx-auto py-16 px-6 text-center">
@@ -60,14 +236,14 @@
   </section>
 
   <!-- Divider -->
-  <div class="wave-divider">
+  <!-- <div class="wave-divider">
     <svg viewBox="0 0 1440 320">
       <path fill="#2563eb" fill-opacity="1" d="M0,64L1440,224L1440,320L0,320Z"></path>
     </svg>
-  </div>
+  </div> -->
 
   <!-- Stats -->
-  <section class="bg-blue-600 text-white py-16 px-6 text-center">
+  <section class="bg-indigo-600 text-white py-16 px-6 text-center">
     <h2 class="text-3xl font-bold mb-8">Our Impact</h2>
     <div class="grid gap-8 md:grid-cols-3">
       <div>
@@ -92,15 +268,97 @@
     </svg>
   </div>
 
-  <!-- Contact -->
-  <section class="max-w-4xl mx-auto py-16 px-6 text-center">
-    <h2 class="text-3xl font-bold text-blue-600 mb-6">Need Help? Get in Touch</h2>
-    <p class="mb-8 text-gray-600">Reach out to us for career queries, admission details, or scholarship assistance.</p>
-    <a href="mailto:support@disha.jk.gov.in" 
-       class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition">
-      Contact Us
-    </a>
-  </section>
+  <!-- Contact Us CTA -->
+<section class=" py-16 text-center text-blue-600">
+  <h2 class="text-3xl font-bold mb-4">Have Questions?</h2>
+  <p class="mb-6 text-lg">Our team is here to guide you every step of the way.</p>
+  <button onclick="document.getElementById('contact-modal').classList.remove('hidden')"
+          class="inline-block px-8 py-3 bg-white text-blue-600 font-semibold rounded-full shadow-md hover:bg-gray-100 transition">
+    Contact Us
+  </button>
+</section>
+
+<!-- Contact Form Modal -->
+<div id="contact-modal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+  <div class="bg-white rounded-xl shadow-lg max-w-lg w-full p-8 relative">
+    <!-- Close Button -->
+    <button onclick="document.getElementById('contact-modal').classList.add('hidden')"
+            class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl">&times;</button>
+
+    <h2 class="text-2xl font-bold text-blue-600 mb-4 text-center">Get in Touch</h2>
+    <p class="mb-6 text-gray-600 text-center">Reach out for career queries, admission details, or scholarship assistance.</p>
+
+    <form id="contact-form" class="space-y-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+        <input type="text" name="from_name" placeholder="Enter your name" required
+               class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+        <input type="email" name="from_email" placeholder="Enter your email" required
+               class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+        <textarea name="message" rows="4" placeholder="Write your message..." required
+                  class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500"></textarea>
+      </div>
+
+      <button type="submit"
+              class="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg shadow-md hover:scale-105 transform transition">
+        Send Message
+      </button>
+      <p id="form-status" class="mt-2 text-sm text-gray-600"></p>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+   <footer class="bg-gray-800 text-white rounded-lg p-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Disha J&K</h3>
+                    <p class="text-gray-400">Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Career Assessment</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Scholarships</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">College Directory</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Success Stories</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Disha J&K. All rights reserved. An initiative for Smart India Hackathon 2025.</p>
+            </div>
+        </footer> 
 
   <script>
     // Counter Animation
@@ -120,6 +378,52 @@
       };
       updateCount();
     });
+
+    // EmailJS Contact Form
+  document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    emailjs.sendForm("service_o3m6pvv", "template_sejmmwk", this)
+      .then(() => {
+        document.getElementById("form-status").innerText = "✅ Message sent successfully!";
+        this.reset();
+      }, (error) => {
+        document.getElementById("form-status").innerText = "❌ Failed to send. Try again.";
+        console.error("EmailJS Error:", error);
+      });
+  });
+
+  //Header
+  
+document.addEventListener('DOMContentLoaded', function() {
+  // Profile dropdown
+  const profileButton = document.getElementById('profile-button');
+  const profileMenu = document.getElementById('profile-menu');
+  
+  profileButton.addEventListener('click', function(e) {
+    e.stopPropagation();
+    profileMenu.classList.toggle('hidden');
+  });
+  
+  // Apps menu
+  const appsMenuButton = document.getElementById('apps-menu-button');
+  const appsMenu = document.getElementById('apps-menu');
+  
+  appsMenuButton.addEventListener('click', function(e) {
+    e.stopPropagation();
+    appsMenu.classList.toggle('active');
+  });
+  
+  // Close menus when clicking outside
+  document.addEventListener('click', function(event) {
+    if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+      profileMenu.classList.add('hidden');
+    }
+    if (!appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
+      appsMenu.classList.remove('active');
+    }
+  });
+});
+
   </script>
 </body>
 </html>

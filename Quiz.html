@@ -112,6 +112,59 @@
             background: #fffbeb;
             color: #d97706;
         }
+        
+        /* Apps menu styling */
+        .apps-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            padding: 16px;
+            z-index: 1000;
+            margin-top: 10px;
+        }
+        
+        .apps-menu.active {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        
+        .app-item:hover {
+            background: #f3f4f6;
+        }
+        
+        .app-icon {
+            width: 40px;
+            height: 40px;
+            background: #4f46e5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        
+        .app-name {
+            font-size: 12px;
+            text-align: center;
+            color: #4b5563;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -121,9 +174,98 @@
             <a href="#" class="text-2xl font-bold text-indigo-600">
                 <i class="fas fa-compass mr-2"></i>Disha J&K
             </a>
-            <div class="flex items-center space-x-4">
-                <a href="#" class="px-4 py-2 text-sm font-medium text-indigo-600 border border-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white transition-all">Log In</a>
-                <a href="#" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-full hover:bg-indigo-700 transition-all">Sign Up</a>
+            <div class="flex items-center space-x-4 relative">
+                <!-- Apps Menu Button -->
+                <div class="relative">
+                    <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all">
+                        <div class="grid grid-cols-3 gap-1 w-6 h-6">
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                        </div>
+                    </button>
+                    
+                    <!-- Apps Menu Dropdown -->
+                    <div id="apps-menu" class="apps-menu">
+                        <div class="app-item">
+                            <div class="app-icon">
+                                <i class="fas fa-road"></i>
+                            </div>
+                            <span class="app-name">Career Roadmap</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon">
+                                <i class="fas fa-list"></i>
+                            </div>
+                            <span class="app-name">Career Shortlist</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <span class="app-name">Future Trends</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <span class="app-name">Course Mapping</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <span class="app-name">AI Study Planner</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <span class="app-name">Guidance</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <span class="app-name">Global Learning</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <span class="app-name">Career Videos</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <span class="app-name">Articles</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Profile Dropdown -->
+                <div class="relative">
+                    <button id="profile-button" class="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
+                        A
+                    </button>
+                    
+                    <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden">
+                        <div class="px-4 py-2 border-b">
+                            <p class="text-sm font-medium">Ayesha Khan</p>
+                            <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
+                        </div>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t">Logout</a>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
@@ -224,399 +366,396 @@
             </div>
         </section>
     </main>
-<!-- Footer -->
-     <footer class="bg-gray-800 text-white rounded-lg p-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Disha J&K</h3>
-                    <p class="text-gray-400">Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Resources</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Career Assessment</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Scholarships</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">College Directory</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Success Stories</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
+
+    <footer class="bg-gray-800 text-white py-12 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-xl font-bold mb-4">Disha J&K</p>
+            <p class="mb-6">An initiative for Smart India Hackathon 2025 to empower the youth of Jammu & Kashmir.</p>
+            <div class="flex justify-center space-x-6 text-2xl">
+                <a href="#" class="hover:text-indigo-400"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="hover:text-indigo-400"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-indigo-400"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-indigo-400"><i class="fab fa-youtube"></i></a>
             </div>
-            
-            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
-                <p>&copy; 2025 Disha J&K. All rights reserved. An initiative for Smart India Hackathon 2025.</p>
-            </div>
-        </footer>
-    </div>
+            <p class="mt-8 text-sm text-gray-400">&copy; 2025 Your Team Name. All Rights Reserved.</p>
+        </div>
+    </footer>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Quiz questions data
-        const quizData = [
-            // Part 1: Personality & Interest
-            {
-                part: "Personality & Interest",
-                question: "Which activity do you enjoy the most?",
-                options: [
-                    { text: "Solving puzzles", type: "logical" },
-                    { text: "Drawing, music, or writing", type: "creative" },
-                    { text: "Helping friends with studies", type: "people" },
-                    { text: "Organizing events", type: "leadership" }
-                ]
-            },
-            {
-                part: "Personality & Interest",
-                question: "You are more comfortable with:",
-                options: [
-                    { text: "Numbers and data", type: "logical" },
-                    { text: "Visuals and creativity", type: "creative" },
-                    { text: "People and communication", type: "people" },
-                    { text: "Machines and technology", type: "logical" }
-                ]
-            },
-            {
-                part: "Personality & Interest",
-                question: "Which environment do you prefer?",
-                options: [
-                    { text: "Office setup with structure", type: "logical" },
-                    { text: "Outdoor, moving around", type: "people" },
-                    { text: "Lab or research center", type: "logical" },
-                    { text: "Free/creative workspace", type: "creative" }
-                ]
-            },
-            {
-                part: "Personality & Interest",
-                question: "If given a project, you would rather:",
-                options: [
-                    { text: "Lead and plan it", type: "leadership" },
-                    { text: "Research and analyze it", type: "logical" },
-                    { text: "Design or present it", type: "creative" },
-                    { text: "Help team members complete it", type: "people" }
-                ]
-            },
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Quiz questions data
+    const quizData = [
+        // Part 1: Personality & Interest
+        {
+            part: "Personality & Interest",
+            question: "Which activity do you enjoy the most?",
+            options: [
+                { text: "Solving puzzles", type: "logical" },
+                { text: "Drawing, music, or writing", type: "creative" },
+                { text: "Helping friends with studies", type: "people" },
+                { text: "Organizing events", type: "leadership" }
+            ]
+        },
+        {
+            part: "Personality & Interest",
+            question: "You are more comfortable with:",
+            options: [
+                { text: "Numbers and data", type: "logical" },
+                { text: "Visuals and creativity", type: "creative" },
+                { text: "People and communication", type: "people" },
+                { text: "Machines and technology", type: "logical" }
+            ]
+        },
+        {
+            part: "Personality & Interest",
+            question: "Which environment do you prefer?",
+            options: [
+                { text: "Office setup with structure", type: "logical" },
+                { text: "Outdoor, moving around", type: "people" },
+                { text: "Lab or research center", type: "logical" },
+                { text: "Free/creative workspace", type: "creative" }
+            ]
+        },
+        {
+            part: "Personality & Interest",
+            question: "If given a project, you would rather:",
+            options: [
+                { text: "Lead and plan it", type: "leadership" },
+                { text: "Research and analyze it", type: "logical" },
+                { text: "Design or present it", type: "creative" },
+                { text: "Help team members complete it", type: "people" }
+            ]
+        },
+
+        // Part 2: Aptitude & Skills
+        {
+            part: "Aptitude & Skills",
+            question: "A train leaves station A at 6 PM at 60 km/hr. Another train leaves station B at 6:30 PM at 80 km/hr. When will they meet?",
+            options: [
+                { text: "8 PM", type: "logical" },
+                { text: "8:30 PM", type: "logical" },
+                { text: "9 PM", type: "logical" },
+                { text: "None", type: "logical" }
+            ]
+        },
+        {
+            part: "Aptitude & Skills",
+            question: "Complete the pattern: 2, 4, 8, 16, ?",
+            options: [
+                { text: "24", type: "logical" },
+                { text: "32", type: "logical" },
+                { text: "20", type: "logical" },
+                { text: "18", type: "logical" }
+            ]
+        },
+        {
+            part: "Aptitude & Skills",
+            question: "If you had to explain a difficult topic to a friend, how would you do it?",
+            options: [
+                { text: "Using numbers and formulas", type: "logical" },
+                { text: "Using a story or diagram", type: "creative" },
+                { text: "By giving real-life examples", type: "people" },
+                { text: "By making a flowchart or steps", type: "logical" }
+            ]
+        },
+
+        // Part 3: Subject Preference
+        {
+            part: "Subject Preference",
+            question: "Which subject do you find easiest to study?",
+            options: [
+                { text: "Mathematics/Science", type: "logical" },
+                { text: "Arts/Humanities", type: "creative" },
+                { text: "Languages/Communication", type: "people" },
+                { text: "Commerce/Business", type: "leadership" }
+            ]
+        },
+        {
+            part: "Subject Preference",
+            question: "In exams, which subject do you usually score highest in?",
+            options: [
+                { text: "Math/Physics", type: "logical" },
+                { text: "Biology/Chemistry", type: "logical" },
+                { text: "History/Geography", type: "creative" },
+                { text: "English/Hindi/Urdu", type: "people" }
+            ]
+        },
+
+        // Part 4: Career Awareness
+        {
+            part: "Career Awareness",
+            question: "Who designs software & apps?",
+            options: [
+                { text: "Doctor", type: "people" },
+                { text: "Engineer", type: "logical" },
+                { text: "Artist", type: "creative" },
+                { text: "Lawyer", type: "leadership" }
+            ]
+        },
+        {
+            part: "Career Awareness",
+            question: "A physiotherapist works in which field?",
+            options: [
+                { text: "Healthcare", type: "people" },
+                { text: "Finance", type: "logical" },
+                { text: "Technology", type: "logical" },
+                { text: "Agriculture", type: "logical" }
+            ]
+        },
+
+        // Part 5: Goals & Lifestyle
+        {
+            part: "Goals & Lifestyle",
+            question: "What matters most to you in your future career?",
+            options: [
+                { text: "High income", type: "leadership" },
+                { text: "Creativity & passion", type: "creative" },
+                { text: "Helping people", type: "people" },
+                { text: "Job stability", type: "logical" }
+            ]
+        },
+        {
+            part: "Goals & Lifestyle",
+            question: "Where do you see yourself working in 10 years?",
+            options: [
+                { text: "Big company (Corporate)", type: "logical" },
+                { text: "Government sector", type: "leadership" },
+                { text: "Running own business", type: "leadership" },
+                { text: "Research or teaching field", type: "people" }
+            ]
+        }
+    ];
+
+    // Career suggestions based on types
+    const careerSuggestions = {
+        logical: {
+            title: "Logical & Analytical Careers",
+            description: "You are strong in logical thinking, problem-solving, and analytical skills. You enjoy working with data, systems, and structured environments.",
+            careers: [
+                "Software Engineer", "Data Scientist", "Financial Analyst", 
+                "Research Scientist", "Actuary", "Statistician",
+                "Electrical Engineer", "Mechanical Engineer", "IT Specialist"
+            ]
+        },
+        creative: {
+            title: "Creative & Artistic Careers",
+            description: "You have a creative mind and artistic abilities. You enjoy expressing ideas visually and thinking outside the box.",
+            careers: [
+                "Graphic Designer", "Architect", "Content Creator",
+                "Video Editor", "Animator", "Art Director",
+                "Fashion Designer", "UI/UX Designer", "Writer"
+            ]
+        },
+        people: {
+            title: "People-Oriented Careers",
+            description: "You are empathetic and enjoy working with people. You have strong communication skills and want to make a difference in others' lives.",
+            careers: [
+                "Teacher", "Doctor", "Psychologist",
+                "Social Worker", "HR Manager", "Nurse",
+                "Counselor", "Journalist", "Sales Manager"
+            ]
+        },
+        leadership: {
+            title: "Leadership & Practical Careers",
+            description: "You have natural leadership abilities and practical problem-solving skills. You enjoy taking charge and making decisions.",
+            careers: [
+                "Business Manager", "Entrepreneur", "Lawyer",
+                "Project Manager", "Public Administrator", "Marketing Director",
+                "Operations Manager", "Policy Analyst", "Civil Services"
+            ]
+        }
+    };
+
+    // DOM elements
+    const startQuizBtn = document.getElementById('start-quiz');
+    const quizSection = document.getElementById('quiz-section');
+    const resultsSection = document.getElementById('results-section');
+    const progressText = document.getElementById('quiz-progress-text');
+    const partText = document.getElementById('quiz-part-text');
+    const progressBar = document.getElementById('quiz-progress-bar');
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    const retakeQuizBtn = document.getElementById('retake-quiz');
+    const resultBadges = document.getElementById('result-badges');
+    const resultDescription = document.getElementById('result-description');
+    const careerSuggestionsContainer = document.getElementById('career-suggestions');
+
+    // Profile and apps menu elements
+    const profileButton = document.getElementById('profile-button');
+    const profileMenu = document.getElementById('profile-menu');
+    const appsMenuButton = document.getElementById('apps-menu-button');
+    const appsMenu = document.getElementById('apps-menu');
+
+    // Quiz state
+    let currentQuestion = 0;
+    let userAnswers = [];
+    let userScores = {
+        logical: 0,
+        creative: 0,
+        people: 0,
+        leadership: 0
+    };
+
+    // Initialize quiz
+    startQuizBtn.addEventListener('click', () => {
+        document.querySelector('.text-center').classList.add('hidden');
+        quizSection.classList.remove('hidden');
+        loadQuestion();
+    });
+
+    // Load question
+    function loadQuestion() {
+        const question = quizData[currentQuestion];
+        progressText.textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
+        partText.textContent = `Part ${Math.floor(currentQuestion/4) + 1}: ${question.part}`;
+        progressBar.style.width = `${((currentQuestion + 1) / quizData.length) * 100}%`;
+        
+        questionText.textContent = question.question;
+        optionsContainer.innerHTML = '';
+        
+        question.options.forEach((option, index) => {
+            const optionElement = document.createElement('button');
+            optionElement.classList.add('quiz-option');
+            optionElement.textContent = option.text;
             
-            // Part 2: Aptitude & Skills
-            {
-                part: "Aptitude & Skills",
-                question: "A train leaves station A at 6 PM at 60 km/hr. Another train leaves station B at 6:30 PM at 80 km/hr. When will they meet?",
-                options: [
-                    { text: "8 PM", type: "logical" },
-                    { text: "8:30 PM", type: "logical" },
-                    { text: "9 PM", type: "logical" },
-                    { text: "None", type: "logical" }
-                ]
-            },
-            {
-                part: "Aptitude & Skills",
-                question: "Complete the pattern: 2, 4, 8, 16, ?",
-                options: [
-                    { text: "24", type: "logical" },
-                    { text: "32", type: "logical" },
-                    { text: "20", type: "logical" },
-                    { text: "18", type: "logical" }
-                ]
-            },
-            {
-                part: "Aptitude & Skills",
-                question: "If you had to explain a difficult topic to a friend, how would you do it?",
-                options: [
-                    { text: "Using numbers and formulas", type: "logical" },
-                    { text: "Using a story or diagram", type: "creative" },
-                    { text: "By giving real-life examples", type: "people" },
-                    { text: "By making a flowchart or steps", type: "logical" }
-                ]
-            },
-            
-            // Part 3: Subject Preference
-            {
-                part: "Subject Preference",
-                question: "Which subject do you find easiest to study?",
-                options: [
-                    { text: "Mathematics/Science", type: "logical" },
-                    { text: "Arts/Humanities", type: "creative" },
-                    { text: "Languages/Communication", type: "people" },
-                    { text: "Commerce/Business", type: "leadership" }
-                ]
-            },
-            {
-                part: "Subject Preference",
-                question: "In exams, which subject do you usually score highest in?",
-                options: [
-                    { text: "Math/Physics", type: "logical" },
-                    { text: "Biology/Chemistry", type: "logical" },
-                    { text: "History/Geography", type: "creative" },
-                    { text: "English/Hindi/Urdu", type: "people" }
-                ]
-            },
-            
-            // Part 4: Career Awareness
-            {
-                part: "Career Awareness",
-                question: "Who designs software & apps?",
-                options: [
-                    { text: "Doctor", type: "people" },
-                    { text: "Engineer", type: "logical" },
-                    { text: "Artist", type: "creative" },
-                    { text: "Lawyer", type: "leadership" }
-                ]
-            },
-            {
-                part: "Career Awareness",
-                question: "A physiotherapist works in which field?",
-                options: [
-                    { text: "Healthcare", type: "people" },
-                    { text: "Finance", type: "logical" },
-                    { text: "Technology", type: "logical" },
-                    { text: "Agriculture", type: "logical" }
-                ]
-            },
-            
-            // Part 5: Goals & Lifestyle
-            {
-                part: "Goals & Lifestyle",
-                question: "What matters most to you in your future career?",
-                options: [
-                    { text: "High income", type: "leadership" },
-                    { text: "Creativity & passion", type: "creative" },
-                    { text: "Helping people", type: "people" },
-                    { text: "Job stability", type: "logical" }
-                ]
-            },
-            {
-                part: "Goals & Lifestyle",
-                question: "Where do you see yourself working in 10 years?",
-                options: [
-                    { text: "Big company (Corporate)", type: "logical" },
-                    { text: "Government sector", type: "leadership" },
-                    { text: "Running own business", type: "leadership" },
-                    { text: "Research or teaching field", type: "people" }
-                ]
+            if (userAnswers[currentQuestion] === index) {
+                optionElement.classList.add('selected');
             }
-        ];
+            
+            optionElement.addEventListener('click', () => {
+                document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+                optionElement.classList.add('selected');
+                userAnswers[currentQuestion] = index;
+            });
+            
+            optionsContainer.appendChild(optionElement);
+        });
+        
+        // Update navigation buttons
+        prevButton.style.visibility = currentQuestion > 0 ? 'visible' : 'hidden';
+        nextButton.textContent = currentQuestion === quizData.length - 1 ? 'Finish Quiz' : 'Next';
+    }
 
-        // Career suggestions based on types
-        const careerSuggestions = {
-            logical: {
-                title: "Logical & Analytical Careers",
-                description: "You are strong in logical thinking, problem-solving, and analytical skills. You enjoy working with data, systems, and structured environments.",
-                careers: [
-                    "Software Engineer", "Data Scientist", "Financial Analyst", 
-                    "Research Scientist", "Actuary", "Statistician",
-                    "Electrical Engineer", "Mechanical Engineer", "IT Specialist"
-                ]
-            },
-            creative: {
-                title: "Creative & Artistic Careers",
-                description: "You have a creative mind and artistic abilities. You enjoy expressing ideas visually and thinking outside the box.",
-                careers: [
-                    "Graphic Designer", "Architect", "Content Creator",
-                    "Video Editor", "Animator", "Art Director",
-                    "Fashion Designer", "UI/UX Designer", "Writer"
-                ]
-            },
-            people: {
-                title: "People-Oriented Careers",
-                description: "You are empathetic and enjoy working with people. You have strong communication skills and want to make a difference in others' lives.",
-                careers: [
-                    "Teacher", "Doctor", "Psychologist",
-                    "Social Worker", "HR Manager", "Nurse",
-                    "Counselor", "Journalist", "Sales Manager"
-                ]
-            },
-            leadership: {
-                title: "Leadership & Practical Careers",
-                description: "You have natural leadership abilities and practical problem-solving skills. You enjoy taking charge and making decisions.",
-                careers: [
-                    "Business Manager", "Entrepreneur", "Lawyer",
-                    "Project Manager", "Public Administrator", "Marketing Director",
-                    "Operations Manager", "Policy Analyst", "Civil Services"
-                ]
+    // Navigation
+    nextButton.addEventListener('click', () => {
+        if (userAnswers[currentQuestion] === undefined) {
+            alert('Please select an answer before proceeding.');
+            return;
+        }
+        
+        // Update scores
+        const selectedOption = quizData[currentQuestion].options[userAnswers[currentQuestion]];
+        userScores[selectedOption.type]++;
+        
+        if (currentQuestion < quizData.length - 1) {
+            currentQuestion++;
+            loadQuestion();
+        } else {
+            showResults();
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (currentQuestion > 0) {
+            currentQuestion--;
+            loadQuestion();
+        }
+    });
+
+    // Show results
+    function showResults() {
+        quizSection.classList.add('hidden');
+        resultsSection.classList.remove('hidden');
+        
+        // Calculate dominant type
+        let maxScore = 0;
+        let dominantTypes = [];
+        
+        for (const type in userScores) {
+            if (userScores[type] > maxScore) {
+                maxScore = userScores[type];
+                dominantTypes = [type];
+            } else if (userScores[type] === maxScore) {
+                dominantTypes.push(type);
             }
-        };
+        }
+        
+        // Display result badges
+        resultBadges.innerHTML = '';
+        for (const type in userScores) {
+            const badge = document.createElement('span');
+            badge.classList.add('result-badge', `result-${type}`);
+            badge.textContent = `${type.charAt(0).toUpperCase() + type.slice(1)}: ${userScores[type]}`;
+            resultBadges.appendChild(badge);
+        }
+        
+        // Display result description
+        if (dominantTypes.length === 1) {
+            const type = dominantTypes[0];
+            resultDescription.textContent = `You answered mostly '${type}' → ${careerSuggestions[type].description} Careers like ${careerSuggestions[type].careers.slice(0, 3).join(', ')} may suit you best. Explore these fields.`;
+        } else {
+            resultDescription.textContent = `You have a balanced profile with strengths in ${dominantTypes.join(' and ')} areas. This combination opens up diverse career paths that leverage your multiple strengths.`;
+        }
+        
+        // Display career suggestions
+        careerSuggestionsContainer.innerHTML = '';
+        for (const type of dominantTypes) {
+            const careerCard = document.createElement('div');
+            careerCard.classList.add('career-card');
+            
+            careerCard.innerHTML = `
+                <h4 class="text-lg font-bold mb-2">${careerSuggestions[type].title}</h4>
+                <p class="text-gray-600 mb-4">${careerSuggestions[type].description}</p>
+                <div class="flex flex-wrap">
+                    ${careerSuggestions[type].careers.map(career => 
+                        `<span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded mb-2 mr-2">${career}</span>`
+                    ).join('')}
+                </div>
+            `;
+            
+            careerSuggestionsContainer.appendChild(careerCard);
+        }
+    }
 
-        // DOM elements
-        const startQuizBtn = document.getElementById('start-quiz');
-        const quizSection = document.getElementById('quiz-section');
-        const resultsSection = document.getElementById('results-section');
-        const progressText = document.getElementById('quiz-progress-text');
-        const partText = document.getElementById('quiz-part-text');
-        const progressBar = document.getElementById('quiz-progress-bar');
-        const questionText = document.getElementById('question-text');
-        const optionsContainer = document.getElementById('options-container');
-        const prevButton = document.getElementById('prev-button');
-        const nextButton = document.getElementById('next-button');
-        const retakeQuizBtn = document.getElementById('retake-quiz');
-        const resultBadges = document.getElementById('result-badges');
-        const resultDescription = document.getElementById('result-description');
-        const careerSuggestionsContainer = document.getElementById('career-suggestions');
-
-        // Quiz state
-        let currentQuestion = 0;
-        let userAnswers = [];
-        let userScores = {
+    // Retake quiz
+    retakeQuizBtn.addEventListener('click', () => {
+        currentQuestion = 0;
+        userAnswers = [];
+        userScores = {
             logical: 0,
             creative: 0,
             people: 0,
             leadership: 0
         };
-
-        // Initialize quiz
-        startQuizBtn.addEventListener('click', () => {
-            document.querySelector('.text-center').classList.add('hidden');
-            quizSection.classList.remove('hidden');
-            loadQuestion();
-        });
-
-        // Load question
-        function loadQuestion() {
-            const question = quizData[currentQuestion];
-            progressText.textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
-            partText.textContent = `Part ${Math.floor(currentQuestion/4) + 1}: ${question.part}`;
-            progressBar.style.width = `${((currentQuestion + 1) / quizData.length) * 100}%`;
-            
-            questionText.textContent = question.question;
-            optionsContainer.innerHTML = '';
-            
-            question.options.forEach((option, index) => {
-                const optionElement = document.createElement('button');
-                optionElement.classList.add('quiz-option');
-                optionElement.textContent = option.text;
-                
-                if (userAnswers[currentQuestion] === index) {
-                    optionElement.classList.add('selected');
-                }
-                
-                optionElement.addEventListener('click', () => {
-                    document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
-                    optionElement.classList.add('selected');
-                    userAnswers[currentQuestion] = index;
-                });
-                
-                optionsContainer.appendChild(optionElement);
-            });
-            
-            // Update navigation buttons
-            prevButton.style.visibility = currentQuestion > 0 ? 'visible' : 'hidden';
-            nextButton.textContent = currentQuestion === quizData.length - 1 ? 'Finish Quiz' : 'Next';
-        }
-
-        // Navigation
-        nextButton.addEventListener('click', () => {
-            if (userAnswers[currentQuestion] === undefined) {
-                alert('Please select an answer before proceeding.');
-                return;
-            }
-            
-            // Update scores
-            const selectedOption = quizData[currentQuestion].options[userAnswers[currentQuestion]];
-            userScores[selectedOption.type]++;
-            
-            if (currentQuestion < quizData.length - 1) {
-                currentQuestion++;
-                loadQuestion();
-            } else {
-                showResults();
-            }
-        });
-
-        prevButton.addEventListener('click', () => {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                loadQuestion();
-            }
-        });
-
-        // Show results
-        function showResults() {
-            quizSection.classList.add('hidden');
-            resultsSection.classList.remove('hidden');
-            
-            // Calculate dominant type
-            let maxScore = 0;
-            let dominantTypes = [];
-            
-            for (const type in userScores) {
-                if (userScores[type] > maxScore) {
-                    maxScore = userScores[type];
-                    dominantTypes = [type];
-                } else if (userScores[type] === maxScore) {
-                    dominantTypes.push(type);
-                }
-            }
-            
-            // Display result badges
-            resultBadges.innerHTML = '';
-            for (const type in userScores) {
-                const badge = document.createElement('span');
-                badge.classList.add('result-badge', `result-${type}`);
-                badge.textContent = `${type.charAt(0).toUpperCase() + type.slice(1)}: ${userScores[type]}`;
-                resultBadges.appendChild(badge);
-            }
-            
-            // Display result description
-            if (dominantTypes.length === 1) {
-                const type = dominantTypes[0];
-                resultDescription.textContent = `You answered mostly '${type}' → ${careerSuggestions[type].description} Careers like ${careerSuggestions[type].careers.slice(0, 3).join(', ')} may suit you best. Explore these fields.`;
-            } else {
-                resultDescription.textContent = `You have a balanced profile with strengths in ${dominantTypes.join(' and ')} areas. This combination opens up diverse career paths that leverage your multiple strengths.`;
-            }
-            
-            // Display career suggestions
-            careerSuggestionsContainer.innerHTML = '';
-            for (const type of dominantTypes) {
-                const careerCard = document.createElement('div');
-                careerCard.classList.add('career-card');
-                
-                careerCard.innerHTML = `
-                    <h4 class="text-lg font-bold mb-2">${careerSuggestions[type].title}</h4>
-                    <p class="text-gray-600 mb-4">${careerSuggestions[type].description}</p>
-                    <div class="flex flex-wrap">
-                        ${careerSuggestions[type].careers.map(career => 
-                            `<span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded mb-2 mr-2">${career}</span>`
-                        ).join('')}
-                    </div>
-                `;
-                
-                careerSuggestionsContainer.appendChild(careerCard);
-            }
-        }
-
-        // Retake quiz
-        retakeQuizBtn.addEventListener('click', () => {
-            currentQuestion = 0;
-            userAnswers = [];
-            userScores = {
-                logical: 0,
-                creative: 0,
-                people: 0,
-                leadership: 0
-            };
-            
-            resultsSection.classList.add('hidden');
-            document.querySelector('.text-center').classList.remove('hidden');
-        });
+        
+        resultsSection.classList.add('hidden');
+        document.querySelector('.text-center').classList.remove('hidden');
     });
-</script>
 
+    // Profile and apps menu functionality
+    profileButton.addEventListener('click', function() {
+        profileMenu.classList.toggle('hidden');
+        appsMenu.classList.remove('active');
+    });
+    
+    appsMenuButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        appsMenu.classList.toggle('active');
+        profileMenu.classList.add('hidden');
+    });
+    
+    // Close menus when clicking elsewhere
+    document.addEventListener('click', function(event) {
+        if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+            profileMenu.classList.add('hidden');
+        }
+        if (!appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
+            appsMenu.classList.remove('active');
+        }
+    });
+});
+</script>
 </body>
 </html>
