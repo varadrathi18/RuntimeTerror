@@ -1,373 +1,800 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Student Profile</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
- <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: "#1e3a8a",
-            teal: "#0d9488",
-            aqua: "#06b6d4",
-            accent: "#f59e0b",
-            neutral: "#f8fafc",
-            dark: "#0f172a"
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile - Disha J&K</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Chart.js for radar chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
         }
-      }
-    }
-  </script>
+        
+        .dashboard-card {
+            transition: all 0.3s ease;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-tag {
+            display: inline-block;
+            background-color: #e0f2fe;
+            color: #0891b2;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin: 4px;
+        }
+        
+        .roadmap-step {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .roadmap-step:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #0891b2;
+        }
+        
+        .roadmap-step:after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 25px;
+            width: 2px;
+            height: calc(100% - 10px);
+            background-color: #bae6fd;
+        }
+        
+        .roadmap-step:last-child:after {
+            display: none;
+        }
+        
+        .career-pill {
+            display: inline-block;
+            background: linear-gradient(135deg, #0e7490, #0891b2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .career-pill:hover {
+            transform: scale(1.05);
+        }
+        
+        .profile-header {
+            background: linear-gradient(135deg, #0e7490, #0891b2);
+            color: white;
+        }
+        
+        .career-action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .career-action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .action-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        /* Apps Menu Styles */
+        .apps-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 3rem;
+            width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            z-index: 50;
+        }
+        
+        .apps-menu.show {
+            display: grid;
+        }
+        
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+            color: #334155;
+            text-decoration: none;
+        }
+        
+        .app-item:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+        }
+        
+        .app-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: #e0f2fe;
+            color: #0891b2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .app-name {
+            font-size: 0.75rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        /* Profile Menu Styles */
+        #profile-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 3rem;
+            width: 200px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            z-index: 50;
+        }
+        
+        #profile-menu.show {
+            display: block;
+        }
+
+        /* Apps Menu */
+        .apps-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 320px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        padding: 16px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        z-index: 50;
+        margin-top: 8px;
+        display: grid;
+        }
+
+        /* Keep hidden by default (Tailwind adds hidden class) */
+        .apps-menu.hidden {
+        display: none;
+        }
+
+        .app-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 12px;
+        border-radius: 8px;
+        transition: all 0.2s;
+        text-decoration: none;
+        color: #4b5563;
+        }
+
+        .app-item:hover {
+        background-color: #f3f4f6;
+        transform: translateY(-2px);
+        }
+
+        .app-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: #e0e7ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+        color: #4f46e5;
+        font-size: 18px;
+        }
+
+        .app-name {
+        font-size: 12px;
+        text-align: center;
+        font-weight: 500;
+        }
+    </style>
 </head>
-<body class="bg-neutral min-h-screen font-sans">
+<body class="text-gray-800">
 
-  <!-- Profile Header -->
-   <header class="bg-white border-b sticky top-0 z-10 shadow">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <!-- Left: Logo -->
-      <a href="./Dashboard.html" class="text-2xl font-bold text-indigo-600">
-        <i class="fas fa-compass mr-2"></i>Disha J&K
-      </a>  
-      </div>
-   </header>
-  <section class="relative w-full max-w-6xl mx-auto shadow-lg rounded-2xl overflow-hidden mb-12">
-    <div class="h-40 bg-gradient-to-r from-sky-100 via-blue-50 to-green-100"></div>
+    <!-- Header -->
+<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+  <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center space-x-3">
+      <img src="Disha.png" alt="Disha J&K Logo" class="h-14 md:h-16 w-auto">
+      <span class="text-xl md:text-2xl font-bold text-gray-800">Disha J&amp;K</span>
+    </a>
 
-    <div class="p-8 flex flex-col md:flex-row items-center gap-8 -mt-20">
+    <div class="flex items-center space-x-4 mr-2">
+      <!-- Apps Menu -->
       <div class="relative">
-        <img src="https://ui-avatars.com/api/?background=0d9488&color=fff&name=Student"
-             alt="Profile Photo"
-             class="w-36 h-36 rounded-full border-4 border-white shadow-lg"/>
+        <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all">
+          <div class="grid grid-cols-3 gap-1 w-6 h-6">
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+          </div>
+        </button>    
+
+        <!-- Apps Menu Dropdown -->
+        <div id="apps-menu" class="apps-menu hidden">
+          <a href="Home.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-road"></i></div>
+            <span class="app-name">Home</span>
+          </a>
+          <a href="CareerShortlist.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-list"></i></div>
+            <span class="app-name">Career Shortlist</span>
+          </a>
+          <a href="Quiz.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-chart-line"></i></div>
+            <span class="app-name">Quiz</span>
+          </a>
+          <a href="Admission.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-book"></i></div>
+            <span class="app-name">Admission Tracking</span>
+          </a>
+          <a href="CourseMap.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-brain"></i></div>
+            <span class="app-name">Course to Career Map</span>
+          </a>
+          <a href="Map.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-user-graduate"></i></div>
+            <span class="app-name">Map Feature</span>
+          </a>
+          <a href="FutureTrend.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-globe"></i></div>
+            <span class="app-name">Future Trends</span>
+          </a>
+          <a href="Reels.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-video"></i></div>
+            <span class="app-name">Career Reels</span>
+          </a>
+          <a href="About.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-newspaper"></i></div>
+            <span class="app-name">About Us</span>
+          </a>
+        </div>
       </div>
-      <div class="flex-1 text-center md:text-left">
-        <h2 id="profile-name" class="text-2xl font-bold text-dark">Loading...</h2>
-        <p id="profile-email" class="text-gray-500">Loading...</p>
-        <button id="edit-btn" class="mt-4 px-6 py-2 bg-teal text-white font-semibold rounded-lg shadow hover:bg-navy transition">
-          Edit Profile
-        </button>
-        <button id="save-btn" class="mt-4 ml-2 px-6 py-2 bg-navy text-white font-semibold rounded-lg shadow hover:bg-teal transition hidden">
-          Save
-        </button>
-      </div>
+      
     </div>
-  </section>
+  </nav>
+</header>
 
-  <!-- Profile Details -->
-  <section class="max-w-4xl mx-auto bg-white shadow rounded-xl p-6 mb-12">
-    <h3 class="text-lg font-semibold text-dark mb-6">Student Information</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-      <!-- Birthdate -->
-      <div class="flex items-start gap-3 p-4 rounded-lg bg-neutral/50 hover:bg-neutral/80 transition">
-        <span class="text-xl">📅</span>
-        <div class="flex-1">
-          <p class="text-sm text-gray-500">Birthdate</p>
-          <p id="profile-birthdate" class="font-medium text-gray-800">--</p>
-          <input id="input-birthdate" type="date" class="hidden mt-2 border rounded px-2 py-1 w-full"/>
-        </div>
-      </div>
-
-      <!-- Age -->
-      <div class="flex items-start gap-3 p-4 rounded-lg bg-neutral/50 hover:bg-neutral/80 transition">
-        <span class="text-xl">🎂</span>
-        <div class="flex-1">
-          <p class="text-sm text-gray-500">Age</p>
-          <p id="profile-age" class="font-medium text-gray-800">--</p>
-          <input id="input-age" type="number" min="1" class="hidden mt-2 border rounded px-2 py-1 w-full"/>
-        </div>
-      </div>
-
-      <!-- Contact -->
-      <div class="flex items-start gap-3 p-4 rounded-lg bg-neutral/50 hover:bg-neutral/80 transition">
-        <span class="text-xl">📞</span>
-        <div class="flex-1">
-          <p class="text-sm text-gray-500">Contact</p>
-          <p id="profile-contact" class="font-medium text-gray-800">--</p>
-          <input id="input-contact" type="tel" class="hidden mt-2 border rounded px-2 py-1 w-full"/>
-        </div>
-      </div>
-
-      <!-- Class -->
-      <div class="flex items-start gap-3 p-4 rounded-lg bg-neutral/50 hover:bg-neutral/80 transition">
-        <span class="text-xl">🏫</span>
-        <div class="flex-1">
-          <p class="text-sm text-gray-500">Class</p>
-          <p id="profile-class" class="font-medium text-gray-800">--</p>
-          <select id="input-class" class="hidden mt-2 border rounded px-2 py-1 w-full">
-            <option value="">Select Class</option>
-            <option value="10th">10th</option>
-            <option value="12th">12th</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Stream -->
-      <div id="stream-block" class="flex items-start gap-3 p-4 rounded-lg bg-neutral/50 hover:bg-neutral/80 transition md:col-span-2 hidden">
-        <span class="text-xl">🎓</span>
-        <div class="flex-1">
-          <p class="text-sm text-gray-500">Stream</p>
-          <p id="profile-stream" class="font-medium text-gray-800">--</p>
-          <select id="input-stream" class="hidden mt-2 border rounded px-2 py-1 w-full">
-            <option value="">Select Stream</option>
-          </select>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Subject Progress -->
-  <section class="max-w-6xl mx-auto mb-12">
-    <h3 class="text-xl font-bold text-dark mb-6">Subject Progress</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-      <!-- Progress cards (kept same as before) -->
-      <div class="bg-white p-6 rounded-xl shadow flex flex-col items-center">
-        <svg class="w-24 h-24 -rotate-90">
-          <circle cx="48" cy="48" r="40" stroke="#e5e7eb" stroke-width="10" fill="transparent"/>
-          <circle cx="48" cy="48" r="40" stroke="#0d9488" stroke-width="10" stroke-dasharray="251" stroke-dashoffset="150"/>
-        </svg>
-        <p class="mt-3 font-semibold">Science</p>
-        <p class="text-sm text-gray-500">60% complete</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow flex flex-col items-center">
-        <svg class="w-24 h-24 -rotate-90">
-          <circle cx="48" cy="48" r="40" stroke="#e5e7eb" stroke-width="10" fill="transparent"/>
-          <circle cx="48" cy="48" r="40" stroke="#1e3a8a" stroke-width="10" stroke-dasharray="251" stroke-dashoffset="100"/>
-        </svg>
-        <p class="mt-3 font-semibold">Math</p>
-        <p class="text-sm text-gray-500">70% complete</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow flex flex-col items-center">
-        <svg class="w-24 h-24 -rotate-90">
-          <circle cx="48" cy="48" r="40" stroke="#e5e7eb" stroke-width="10" fill="transparent"/>
-          <circle cx="48" cy="48" r="40" stroke="#06b6d4" stroke-width="10" stroke-dasharray="251" stroke-dashoffset="175"/>
-        </svg>
-        <p class="mt-3 font-semibold">English</p>
-        <p class="text-sm text-gray-500">30% complete</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow flex flex-col items-center">
-        <svg class="w-24 h-24 -rotate-90">
-          <circle cx="48" cy="48" r="40" stroke="#e5e7eb" stroke-width="10" fill="transparent"/>
-          <circle cx="48" cy="48" r="40" stroke="#f59e0b" stroke-width="10" stroke-dasharray="251" stroke-dashoffset="200"/>
-        </svg>
-        <p class="mt-3 font-semibold">Social Studies</p>
-        <p class="text-sm text-gray-500">20% complete</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Scorecard -->
-  <section class="max-w-6xl mx-auto bg-white shadow rounded-xl p-6 mb-12">
-    <h3 class="text-xl font-bold text-dark mb-4">Scorecard</h3>
-    <table class="w-full text-sm border-collapse">
-      <thead>
-        <tr class="text-left bg-neutral text-navy">
-          <th class="py-2 px-3">Subject</th>
-          <th class="py-2 px-3">Marks</th>
-          <th class="py-2 px-3">Total</th>
-          <th class="py-2 px-3">Grade</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="border-b hover:bg-neutral/70">
-          <td>Science</td><td>84</td><td>100</td>
-          <td><span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">A</span></td>
-        </tr>
-        <tr class="border-b hover:bg-neutral/70">
-          <td>Math</td><td>75</td><td>100</td>
-          <td><span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">B+</span></td>
-        </tr>
-        <tr class="border-b hover:bg-neutral/70">
-          <td>English</td><td>68</td><td>100</td>
-          <td><span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs">B</span></td>
-        </tr>
-        <tr>
-          <td>Social Studies</td><td>50</td><td>100</td>
-          <td><span class="px-2 py-1 bg-red-100 text-red-700 rounded-full text-xs">C</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- Download Report -->
-  <section class="w-full max-w-6xl mx-auto bg-gradient-to-r from-navy via-teal to-aqua text-white shadow rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-    <div class="flex items-center gap-4">
-      📄
-      <div>
-        <h3 class="text-xl font-bold">Download Your Progress Report</h3>
-        <p class="text-sm text-gray-200">Get a PDF summary of your academic results and share it with your parents or teachers.</p>
-      </div>
-    </div>
-    <button id="download-btn" class="px-6 py-3 bg-white text-navy rounded-lg font-bold shadow hover:bg-neutral transition">Download PDF</button>
-  </section>
-  <!--Footer -->
-<footer class="bg-gray-800 text-white rounded-lg p-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Disha J&K</h3>
-                    <p class="text-gray-400">Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
+    <!-- Profile Header -->
+    <div class="profile-header p-6">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-lg mb-4 md:mb-0 md:mr-6">
+                    <i class="fas fa-user-circle text-6xl text-cyan-600"></i>
                 </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Resources</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Career Assessment</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Scholarships</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">College Directory</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Success Stories</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                <div class="text-center md:text-left flex-1">
+                    <h1 class="text-3xl font-bold" id="profile-name">Ayesha Khan</h1>
+                    <p class="text-cyan-100 mt-1" id="profile-title">Grade 12 Science Student, Srinagar, J&K</p>
+                    <div class="mt-3 flex flex-wrap justify-center md:justify-start" id="profile-tags">
+                        <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm mr-2 mb-2">Biology Enthusiast</span>
+                        <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm mr-2 mb-2">People-Oriented</span>
+                        <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm mr-2 mb-2">Future Doctor</span>
                     </div>
                 </div>
+                <button class="mt-4 md:mt-0 bg-white text-cyan-700 font-semibold py-2 px-6 rounded-lg hover:bg-cyan-50" onclick="location.href='editprofile.html'">
+                    <i class="fas fa-edit mr-2"></i> Edit Profile
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content Area -->
+    <div class="container mx-auto p-4 md:p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Left Column -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Basic Information Card -->
+                <div class="dashboard-card bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Basic Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-sm text-gray-500">Full Name</p>
+                            <p class="font-medium" id="info-name">Ayesha Khan</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Age</p>
+                            <p class="font-medium" id="info-age">17 years</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Class</p>
+                            <p class="font-medium" id="info-class">12th Grade (Science Stream)</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Gender</p>
+                            <p class="font-medium" id="info-gender">Female</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Location</p>
+                            <p class="font-medium" id="info-location">Srinagar, Jammu & Kashmir</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Contact</p>
+                            <p class="font-medium" id="info-email">ayesha.k@example.com</p>
+                            <p class="font-medium" id="info-phone">+91 98765 43210</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Academic Background Card -->
+                <div class="dashboard-card bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Academic Background</h2>
+                    <div class="mb-6">
+                        <h3 class="font-medium text-gray-700 mb-2">Current Stream</h3>
+                        <p class="bg-cyan-100 text-cyan-700 inline-block px-3 py-1 rounded-full" id="academic-stream">Science (Biology)</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="font-medium text-gray-700 mb-2">Favorite Subjects</h3>
+                        <div id="favorite-subjects">
+                            <span class="skill-tag">Biology</span>
+                            <span class="skill-tag">Chemistry</span>
+                            <span class="skill-tag">English</span>
+                            <span class="skill-tag">Psychology</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="download-section">
+                <!-- Quiz Results Card -->
+                <div class="dashboard-card bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Career Quiz Results</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-medium text-gray-700 mb-2">Your Career Profile</h3>
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <p class="text-sm text-blue-700">Logical</p>
+                                    <div class="flex items-center mt-1">
+                                        <div class="w-full bg-blue-200 rounded-full h-2.5">
+                                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 60%"></div>
+                                        </div>
+                                        <span class="ml-2 text-xs font-medium">3/5</span>
+                                    </div>
+                                </div>
+                                <div class="bg-purple-50 p-3 rounded-lg">
+                                    <p class="text-sm text-purple-700">Creative</p>
+                                    <div class="flex items-center mt-1">
+                                        <div class="w-full bg-purple-200 rounded-full h-2.5">
+                                            <div class="bg-purple-600 h-2.5 rounded-full" style="width: 60%"></div>
+                                        </div>
+                                        <span class="ml-2 text-xs font-medium">3/5</span>
+                                    </div>
+                                </div>
+                                <div class="bg-pink-50 p-3 rounded-lg">
+                                    <p class="text-sm text-pink-700">People</p>
+                                    <div class="flex items-center mt-1">
+                                        <div class="w-full bg-pink-200 rounded-full h-2.5">
+                                            <div class="bg-pink-600 h-2.5 rounded-full" style="width: 100%"></div>
+                                        </div>
+                                        <span class="ml-2 text-xs font-medium">5/5</span>
+                                    </div>
+                                </div>
+                                <div class="bg-yellow-50 p-3 rounded-lg">
+                                    <p class="text-sm text-yellow-700">Leadership</p>
+                                    <div class="flex items-center mt-1">
+                                        <div class="w-full bg-yellow-200 rounded-full h-2.5">
+                                            <div class="bg-yellow-600 h-2.5 rounded-full" style="width: 40%"></div>
+                                        </div>
+                                        <span class="ml-2 text-xs font-medium">2/5</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-gray-700 mb-2">Quiz Insights</h4>
+                                <p class="text-sm text-gray-600">
+                                    You answered mostly 'people' → You are empathetic and enjoy working with people. 
+                                    You have strong communication skills and want to make a difference in others' lives.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <canvas id="radar-chart" width="300" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                    <!-- Skills & Extracurriculars Card -->
+                <div class="dashboard-card bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Skills & Extracurriculars</h2>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-medium text-gray-700 mb-2">Key Skills</h3>
+                        <div id="skills-list">
+                            <span class="skill-tag">Communication</span>
+                            <span class="skill-tag">Empathy</span>
+                            <span class="skill-tag">Teamwork</span>
+                            <span class="skill-tag">Problem Solving</span>
+                            <span class="skill-tag">Leadership</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-medium text-gray-700 mb-2">Extracurricular Activities</h3>
+                        <div id="extracurriculars-list">
+                            <span class="skill-tag">School Science Club</span>
+                            <span class="skill-tag">Debate Team</span>
+                            <span class="skill-tag">Volunteering</span>
+                            <span class="skill-tag">Biology Olympiad</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Predictive Analytics Card -->
+                <!-- <div class="dashboard-card bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Career Outlook in J&K</h2>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg mb-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-medium text-green-700">Healthcare Sector</h3>
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full">High Growth</span>
+                        </div>
+                        <p class="text-sm text-green-600 mt-2">
+                            23% expected growth in healthcare jobs in J&K over the next 5 years
+                        </p>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-medium text-blue-700">Teaching Profession</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full">Stable Demand</span>
+                        </div>
+                        <p class="text-sm text-blue-600 mt-2">
+                            Consistent demand for science teachers in J&K schools and colleges
+                        </p>
+                    </div>
+                </div> -->
             </div>
             
-            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
-                <p>&copy; 2025 Disha J&K. All rights reserved. An initiative for Smart India Hackathon 2025.</p>
+            <!-- Right Column -->
+            <div class="space-y-6">
+                <!-- Career Actions Card -->
+                <div class="dashboard-card bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Career Development</h2>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="career-action-btn">
+                            <div class="action-icon bg-blue-100 text-blue-600">
+                                <i class="fas fa-road"></i>
+                            </div>
+                            <h3 class="font-medium mb-2">Career Roadmap</h3>
+                            <p class="text-sm text-gray-600 mb-3">Create your personalized career plan</p>
+                            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700">
+                                Create
+                            </button>
+                        </div>
+                        
+                        <div class="career-action-btn">
+                            <div class="action-icon bg-green-100 text-green-600">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h3 class="font-medium mb-2">Explore Careers</h3>
+                            <p class="text-sm text-gray-600 mb-3">Discover various career options</p>
+                            <button class="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700">
+                                Explore
+                            </button>
+                        </div>
+                        
+                        <div class="career-action-btn">
+                            <div class="action-icon bg-purple-100 text-purple-600">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="font-medium mb-2">Find Colleges</h3>
+                            <p class="text-sm text-gray-600 mb-3">Discover colleges for your career</p>
+                            <button class="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700">
+                                Search
+                            </button>
+                        </div>
+                        
+                        <div class="career-action-btn">
+                            <div class="action-icon bg-yellow-100 text-yellow-600">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="font-medium mb-2">Mentorship</h3>
+                            <p class="text-sm text-gray-600 mb-3">Connect with career mentors</p>
+                            <button class="px-4 py-2 bg-yellow-600 text-white rounded-lg text-sm font-medium hover:bg-yellow-700">
+                                Connect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recommended Careers Card -->
+                <div class="dashboard-card bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Recommended Career Paths</h2>
+                    
+                    <div class="mb-6">
+                        <h3 class="font-medium text-gray-700 mb-2">People-Oriented Careers</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            You are empathetic and enjoy working with people. You have strong communication skills and want to make a difference in others' lives.
+                        </p>
+                        
+                        <div class="flex flex-wrap">
+                            <span class="career-pill">Teacher</span>
+                            <span class="career-pill">Doctor</span>
+                            <span class="career-pill">Psychologist</span>
+                            <span class="career-pill">Social Worker</span>
+                            <span class="career-pill">HR Manager</span>
+                            <span class="career-pill">Nurse</span>
+                            <span class="career-pill">Counselor</span>
+                            <span class="career-pill">Journalist</span>
+                            <span class="career-pill">Sales Manager</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-cyan-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-cyan-700 mb-2">Pro Tip</h4>
+                        <p class="text-sm text-cyan-600 mb-3">
+                            Your quiz results are just the beginning! Explore our detailed career profiles, connect with mentors from J&K, and try our interactive tools to dive deeper into each career option.
+                        </p>
+                    </div>
+                </div>
+                
+                
             </div>
-        </footer>
+        </div>
     </div>
-  <!-- Script -->
-  <script>
-    async function loadProfile() {
-      // Get logged-in email from localStorage
-      const email = localStorage.getItem("studentEmail");
-      if (!email) {
-        window.location.href = "Login.html";
-        return;
-      }
+    <div class="bg-cyan-200 rounded-xl shadow-md p-6 mt-6 text-center">
+  <h2 class="text-xl font-semibold text-gray-800 mb-4">Download Your Results</h2>
+  <button id="download-btn" class="bg-cyan-700 text-white px-6 py-2 rounded-lg hover:bg-cyan-800">
+    Download PDF
+  </button>
+</div>
 
-      // Fetch profile from backend
-      const res = await fetch("http://localhost:5000/profile?email=" + encodeURIComponent(email));
-      const data = await res.json();
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+  const profileButton = document.getElementById('profile-button');
+  const profileMenu = document.getElementById('profile-menu');
 
-      if (data.success) {
-        document.getElementById("profile-name").textContent = data.user.name;
-        document.getElementById("profile-email").textContent = data.user.email;
-        document.getElementById("profile-birthdate").textContent = data.user.birthdate || "--";
-        document.getElementById("profile-age").textContent = data.user.age || "--";
-        document.getElementById("profile-contact").textContent = data.user.contact || "--";
-        document.getElementById("profile-class").textContent = data.user.class || "--";
-        document.getElementById("profile-stream").textContent = data.user.stream || "--";
+  const appsMenuButton = document.getElementById('apps-menu-button');
+  const appsMenu = document.getElementById('apps-menu');
 
-        toggleStreamVisibility(data.user.class);
-      }
+  function toggleMenu(button, menu) {
+    if (!button || !menu) return;
+    button.addEventListener('click', function (e) {
+      e.stopPropagation();
+
+      // Close other menus
+      document.querySelectorAll('#apps-menu, #profile-menu').forEach(m => {
+        if (m !== menu) m.classList.add('hidden');
+      });
+
+      // Toggle this menu
+      menu.classList.toggle('hidden');
+    });
+  }
+
+  toggleMenu(profileButton, profileMenu);
+  toggleMenu(appsMenuButton, appsMenu);
+
+  // Close menus when clicking outside
+  document.addEventListener('click', function (event) {
+    if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+      profileMenu.classList.add('hidden');
     }
-
-    function toggleStreamVisibility(classValue) {
-      const streamBlock = document.getElementById("stream-block");
-
-      if (classValue === "12th") {
-        streamBlock.classList.remove("hidden");
-        const streamSelect = document.getElementById("input-stream");
-        streamSelect.innerHTML = `
-          <option value="">Select Stream</option>
-          <option value="Science">Science</option>
-          <option value="Commerce">Commerce</option>
-          <option value="Arts">Arts</option>
-          <option value="Vocational">Vocational</option>
-        `;
-      } else {
-        streamBlock.classList.add("hidden");
-      }
+    if (!appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
+      appsMenu.classList.add('hidden');
     }
-
-    function toggleEditMode(editing) {
-      const fields = ["birthdate", "age", "contact", "class", "stream"];
-      fields.forEach(field => {
-        const profileField = document.getElementById("profile-" + field);
-        const inputField = document.getElementById("input-" + field);
-        if (!profileField || !inputField) return;
-
-        profileField.classList.toggle("hidden", editing);
-        inputField.classList.toggle("hidden", !editing);
-
-        if (editing) {
-          inputField.value = profileField.textContent !== "--" ? profileField.textContent : "";
+  });
+});
+        // Radar chart for quiz results
+        const radarCanvas = document.getElementById('radar-chart');
+        if (radarCanvas) {
+            const radarCtx = radarCanvas.getContext('2d');
+            const radarChart = new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Logical', 'Creative', 'People', 'Leadership', 'Analytical', 'Practical'],
+                    datasets: [{
+                        label: 'Your Strengths',
+                        data: [3, 3, 5, 2, 4, 3],
+                        backgroundColor: 'rgba(8, 145, 178, 0.2)',
+                        borderColor: 'rgba(8, 145, 178, 1)',
+                        pointBackgroundColor: 'rgba(8, 145, 178, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(8, 145, 178, 1)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            angleLines: { display: true },
+                            suggestedMin: 0,
+                            suggestedMax: 5,
+                            ticks: { stepSize: 1 }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
         }
-      });
 
-      document.getElementById("edit-btn").classList.toggle("hidden", editing);
-      document.getElementById("save-btn").classList.toggle("hidden", !editing);
+        // Career pill click handler
+        document.querySelectorAll('.career-pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                const career = this.textContent;
+                alert(`You selected: ${career}. We'll show more details about this career.`);
+            });
+        });
+
+        // Career action buttons
+        document.querySelectorAll('.career-action-btn button').forEach(button => {
+            button.addEventListener('click', function() {
+                const action = this.closest('.career-action-btn').querySelector('h3').textContent;
+                alert(`You clicked on: ${action}. This would take you to the relevant page.`);
+            });
+        });
+
+
+    // Function to load user data from localStorage
+    function loadUserData() {
+        const userData = JSON.parse(localStorage.getItem('userProfile')) || {};
+
+        if (userData.name) {
+            document.getElementById('profile-name').textContent = userData.name;
+            document.getElementById('info-name').textContent = userData.name;
+            document.querySelector('#profile-button').textContent = userData.name.charAt(0);
+        }
+
+        if (userData.title) document.getElementById('profile-title').textContent = userData.title;
+        if (userData.age) document.getElementById('info-age').textContent = userData.age + ' years';
+        if (userData.class) document.getElementById('info-class').textContent = userData.class;
+        if (userData.gender) document.getElementById('info-gender').textContent = userData.gender;
+        if (userData.location) document.getElementById('info-location').textContent = userData.location;
+        if (userData.email) document.getElementById('info-email').textContent = userData.email;
+        if (userData.phone) document.getElementById('info-phone').textContent = userData.phone;
+        if (userData.stream) document.getElementById('academic-stream').textContent = userData.stream;
+
+        // Update tags
+        if (userData.tags && userData.tags.length > 0) {
+            const tagsContainer = document.getElementById('profile-tags');
+            tagsContainer.innerHTML = '';
+            userData.tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm mr-2 mb-2';
+                span.textContent = tag;
+                tagsContainer.appendChild(span);
+            });
+        }
+
+        // Update favorite subjects
+        if (userData.subjects && userData.subjects.length > 0) {
+            const subjectsContainer = document.getElementById('favorite-subjects');
+            subjectsContainer.innerHTML = '';
+            userData.subjects.forEach(subject => {
+                const span = document.createElement('span');
+                span.className = 'skill-tag';
+                span.textContent = subject;
+                subjectsContainer.appendChild(span);
+            });
+        }
+
+        // Update skills
+        if (userData.skills && userData.skills.length > 0) {
+            const skillsContainer = document.getElementById('skills-list');
+            skillsContainer.innerHTML = '';
+            userData.skills.forEach(skill => {
+                const span = document.createElement('span');
+                span.className = 'skill-tag';
+                span.textContent = skill;
+                skillsContainer.appendChild(span);
+            });
+        }
+
+        // Update extracurriculars
+        if (userData.extracurriculars && userData.extracurriculars.length > 0) {
+            const extracurricularsContainer = document.getElementById('extracurriculars-list');
+            extracurricularsContainer.innerHTML = '';
+            userData.extracurriculars.forEach(activity => {
+                const span = document.createElement('span');
+                span.className = 'skill-tag';
+                span.textContent = activity;
+                extracurricularsContainer.appendChild(span);
+            });
+        }
     }
-
-    document.getElementById("edit-btn").addEventListener("click", () => toggleEditMode(true));
-
-    document.getElementById("save-btn").addEventListener("click", async () => {
-      const updatedData = {
-        email: localStorage.getItem("studentEmail"),
-        birthdate: document.getElementById("input-birthdate").value,
-        age: document.getElementById("input-age").value,
-        contact: document.getElementById("input-contact").value,
-        class: document.getElementById("input-class").value,
-        stream: document.getElementById("input-stream").value
-      };
-
-      // Save to backend
-      const res = await fetch("http://localhost:5000/profile", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedData)
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        toggleEditMode(false);
-        loadProfile();
-      } else {
-        alert("Failed to update profile!");
-      }
-    });
-
-    // Download Report
+    //download
     document.getElementById("download-btn").addEventListener("click", () => {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
+    const { jsPDF } = window.jspdf;
 
-      doc.setFontSize(16);
-      doc.text("Student Progress Report", 20, 20);
+    // Grab the section
+    const section = document.getElementById("download-section");
 
-      doc.setFontSize(12);
-      doc.text(`Name: ${document.getElementById("profile-name").textContent}`, 20, 40);
-      doc.text(`Email: ${document.getElementById("profile-email").textContent}`, 20, 50);
-      doc.text(`Birthdate: ${document.getElementById("profile-birthdate").textContent}`, 20, 60);
-      doc.text(`Age: ${document.getElementById("profile-age").textContent}`, 20, 70);
-      doc.text(`Contact: ${document.getElementById("profile-contact").textContent}`, 20, 80);
-      doc.text(`Class: ${document.getElementById("profile-class").textContent}`, 20, 90);
-      doc.text(`Stream: ${document.getElementById("profile-stream").textContent}`, 20, 100);
+    // Use html2canvas to capture and jsPDF to export
+    html2canvas(section, { scale: 2 }).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
 
-      doc.text("Marks:", 20, 120);
-      doc.text("Science: 84/100 (A)", 30, 130);
-      doc.text("Math: 75/100 (B+)", 30, 140);
-      doc.text("English: 68/100 (B)", 30, 150);
-      doc.text("Social Studies: 50/100 (C)", 30, 160);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
-      doc.save("Progress_Report.pdf");
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("career-results.pdf");
     });
-
-    window.addEventListener("DOMContentLoaded", loadProfile);
-  </script>
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>

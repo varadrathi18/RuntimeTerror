@@ -6,80 +6,176 @@
   <title>Career Reels</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    /* Scroll snapping effect */
-    .reels-container {
-      height: 100vh;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
+    /* Background animation with logo colors */
+    body {
+      background: linear-gradient(120deg, #00758F, #5EC3D0, #00A0B5);
+      background-size: 300% 300%;
+      animation: gradientShift 12s ease infinite;
+      font-family: 'Poppins', sans-serif;
     }
-    .reel {
-      scroll-snap-align: start;
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
-    video {
+
+    /* Phone Frame with glow */
+    .phone-frame {
+      width: 320px;
+      height: 580px;
+      border-radius: 2rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(145deg, #004D5E, #003841);
+      box-shadow: 0 0 25px rgba(0,117,143,0.6);
+      border: 4px solid transparent;
+      background-clip: padding-box;
+    }
+    .phone-frame::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: inherit;
+      padding: 3px;
+      background: linear-gradient(135deg, #00758F, #5EC3D0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      z-index: -1;
+    }
+
+    iframe {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      border-radius: 2rem;
     }
-    /* Overlay gradient for text readability */
+
+    /* Overlay styling */
     .overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      padding: 2rem;
+      padding: 1rem;
       background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
       color: white;
     }
+    .overlay h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .overlay p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    /* Arrow buttons outside */
+    .arrow-btn {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 0.8rem 1rem;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+    .arrow-btn:hover {
+      transform: scale(1.1);
+      background: rgba(0,117,143,0.5);
+    }
+
+    /* Reel transitions */
+    .reel {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+      position: absolute;
+      inset: 0;
+    }
+    .reel.active {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .phone-frame {
+        width: 90%;
+        height: 70vh;
+      }
+    }
   </style>
 </head>
-<body class="flex flex-col min-h-screen bg-gray-100">
+<body class="flex flex-col min-h-screen">
 
   <!-- Header -->
   <header class="bg-white shadow p-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold text-indigo-600">Career Saarthi</h1>
+    <div class="flex items-center gap-2">
+      <img src="Disha.jpg" alt="Disha Logo" class="h-8">
+      <h1 class="text-xl font-bold text-[#00758F]">Career Saarthi</h1>
+    </div>
     <nav class="space-x-4">
-      <a href="#" class="text-gray-600 hover:text-indigo-600">Home</a>
-      <a href="#" class="text-gray-600 hover:text-indigo-600">About</a>
-      <a href="#" class="text-gray-600 hover:text-indigo-600">Contact</a>
+      <a href="#" class="text-gray-600 hover:text-[#00758F]">Home</a>
+      <a href="#" class="text-gray-600 hover:text-[#00758F]">About</a>
+      <a href="#" class="text-gray-600 hover:text-[#00758F]">Contact</a>
     </nav>
   </header>
 
   <!-- Subheading -->
-  <section class="bg-indigo-50 text-center py-6 shadow-sm">
-    <h2 class="text-3xl font-bold text-gray-800">Career Reels</h2>
-    <p class="text-gray-500 mt-2">Swipe up to explore different career journeys</p>
+  <section class="bg-[#5EC3D0] text-center py-6 shadow-sm">
+    <h2 class="text-3xl font-bold text-white">Career Reels</h2>
+    <p class="text-gray-100 mt-2">Use arrows to explore career journeys</p>
   </section>
 
-  <!-- Reels Container -->
-  <main class="reels-container flex-1">
-    
-    <!-- Reel 1 -->
-    <div class="reel relative h-screen flex items-center justify-center">
-      <video src="videos/comp-eng.mp4" autoplay muted loop playsinline></video>
-      <div class="overlay">
-        <h3 class="text-xl font-bold">Career in Computer Engineering</h3>
-        <p class="text-sm text-gray-200">Opportunities in software, AI & hardware.</p>
+  <!-- Reels Section -->
+  <main class="flex justify-center items-center flex-1 gap-8 py-8">
+    <!-- Left Arrow -->
+    <button class="arrow-btn" id="prevBtn">&#8592;</button>
+
+    <!-- Reel Frame -->
+    <div class="phone-frame relative" id="reelFrame">
+      <!-- Reel 1 -->
+      <div class="reel">
+        <iframe 
+          src="https://www.youtube.com/embed/7aW7aYdV7KQ?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=7aW7aYdV7KQ" 
+          frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
+        </iframe>
+        <div class="overlay">
+          <h3>Career in Computer Engineering</h3>
+          <p>Opportunities in software, AI & hardware.</p>
+        </div>
+      </div>
+
+      <!-- Reel 2 -->
+      <div class="reel">
+        <iframe 
+          src="https://www.youtube.com/embed/EcEQeGFHRbA?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=EcEQeGFHRbA" 
+          frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
+        </iframe>
+        <div class="overlay">
+          <h3>Career in Design</h3>
+          <p>UI/UX, product & creative industries.</p>
+        </div>
+      </div>
+
+      <!-- Reel 3 -->
+      <div class="reel">
+        <iframe 
+          src="https://www.youtube.com/embed/kJQP7kiw5Fk?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=kJQP7kiw5Fk" 
+          frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
+        </iframe>
+        <div class="overlay">
+          <h3>Career in Marketing</h3>
+          <p>Digital marketing & brand strategy.</p>
+        </div>
       </div>
     </div>
 
-    <!-- Reel 2 -->
-    <div class="reel relative h-screen flex items-center justify-center">
-      <video src="videos/design.mp4" autoplay muted loop playsinline></video>
-      <div class="overlay">
-        <h3 class="text-xl font-bold">Career in Design</h3>
-        <p class="text-sm text-gray-200">UI/UX, product & creative industries.</p>
-      </div>
-    </div>
-
-    <!-- Reel 3 -->
-    <div class="reel relative h-screen flex items-center justify-center">
-      <video src="videos/marketing.mp4" autoplay muted loop playsinline></video>
-      <div class="overlay">
-        <h3 class="text-xl font-bold">Career in Marketing</h3>
-        <p class="text-sm text-gray-200">Digital marketing & brand strategy.</p>
-      </div>
-    </div>
-
+    <!-- Right Arrow -->
+    <button class="arrow-btn" id="nextBtn">&#8594;</button>
   </main>
 
   <!-- Footer -->
@@ -87,21 +183,34 @@
     <p class="text-gray-500">&copy; 2025 Career Saarthi. All rights reserved.</p>
   </footer>
 
-  <!-- Small JS trick: play/pause when visible -->
+  <!-- JS for navigation -->
   <script>
-    const reels = document.querySelectorAll("video");
+    const reels = document.querySelectorAll(".reel");
+    let currentIndex = 0;
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.play();
+    function showReel(index) {
+      reels.forEach((reel, i) => {
+        if (i === index) {
+          reel.classList.add("active");
         } else {
-          entry.target.pause();
+          reel.classList.remove("active");
         }
       });
-    }, { threshold: 0.7 });
+    }
 
-    reels.forEach(video => observer.observe(video));
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % reels.length;
+      showReel(currentIndex);
+    });
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + reels.length) % reels.length;
+      showReel(currentIndex);
+    });
+
+    // Initialize
+    showReel(currentIndex);
   </script>
+
 </body>
 </html>

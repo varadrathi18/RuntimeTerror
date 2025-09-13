@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Disha J&K Career Guidance</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Offline Feature-->
+   <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d9488">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+    }
+    /* Animated Gradient Background */
+    .gradient-animate {
+      background: linear-gradient(270deg, #6366f1, #3364ea, #0666d4, #1c4aae);
+      background-size: 800% 800%;
+      animation: gradientShift 12s ease infinite;
+    }
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    /* Scroll Fade-in */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+      .apps-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 320px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            z-index: 50;
+            margin-top: 8px;
+        }
+        
+        .apps-menu.show {
+            display: grid;
+        }
+        
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: #4b5563;
+        }
+        
+        .app-item:hover {
+            background-color: #f3f4f6;
+            transform: translateY(-2px);
+        }
+        
+        .app-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #e0e7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            color: #4f46e5;
+            font-size: 18px;
+        }
+        
+        .app-name {
+            font-size: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        /* Profile Menu */
+        #profile-menu {
+            display: none;
+        }
+        
+        #profile-menu.show {
+            display: block;
+        }
+        /* Awareness Hub Cards (same as dashboard) */
+        .dashboard-card {
+          background: white;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+          transition: all 0.3s ease;
+          border: 1px solid #e5e7eb;
+        }
+
+        .dashboard-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+        }
+
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-3">
+            <img src="Disha.png" alt="Disha J&K Logo" class="h-14 md:h-16 w-auto">
+            <span class="text-xl md:text-2xl font-bold text-gray-800">Disha J&amp;K</span>
+            </a>
+            <!-- <div class="hidden md:flex space-x-6 items-center">
+                <a href="index.html#features" class="text-gray-600 hover:text-indigo-600">Features</a>
+                <a href="index.html#innovations" class="text-gray-600 hover:text-indigo-600">Innovations</a>
+                <a href="index.html#awareness" class="text-gray-600 hover:text-indigo-600">Awareness Hub</a>
+                <a href="index.html#colleges" class="text-gray-600 hover:text-indigo-600">Colleges</a>
+            </div> -->
+            <div class="flex items-center space-x-4 mr-2">
+                <!-- Apps Menu Button -->
+                <div class="relative">
+                    <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all">
+                        <div class="grid grid-cols-3 gap-1 w-6 h-6">
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                        </div>
+                    </button>    
+                    <!-- Apps Menu Dropdown -->
+                    <div id="apps-menu" class="apps-menu">
+                        <a href="Home.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-road"></i></div>
+                            <span class="app-name">Home</span>
+                        </a>
+                        <a href="CareerShortlist.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-list"></i></div>
+                            <span class="app-name">Career Shortlist</span>
+                        </a>
+                        <a href="Quiz.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-chart-line"></i></div>
+                            <span class="app-name">Quiz</span>
+                        </a>
+                        <a href="Admission.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-book"></i></div>
+                            <span class="app-name">Admission Tracking</span>
+                        </a>
+                        <a href="CourseMap.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-brain"></i></div>
+                            <span class="app-name">Course to Career Map</span>
+                        </a>
+                        <a href="Map.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-user-graduate"></i></div>
+                            <span class="app-name">Map Feature</span>
+                        </a>
+                        <a href="FutureTrend.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-globe"></i></div>
+                            <span class="app-name">Future Trends</span>
+                        </a>
+                        <a href="Reels.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-video"></i></div>
+                            <span class="app-name">Career Reels</span>
+                        </a>
+                        <a href="About.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-newspaper"></i></div>
+                            <span class="app-name">About Us</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Profile Dropdown -->
+                <div class="relative">
+                    <button id="profile-button" class="w-10 h-10 bg-cyan-700 text-white rounded-full flex items-center justify-center font-bold">
+                        A
+                    </button>
+                    
+                    <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden">
+                        <div class="px-4 py-2 border-b">
+                            <p class="text-sm font-medium">Ayesha Khan</p>
+                            <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
+                        </div>
+                        <a href="Profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+  <!-- Hero Section -->
+    <!-- Hero Section (Banner Image) -->
+      <section class="relative w-full min-h-[60vh] md:min-h-[75vh] lg:min-h-[85vh] flex items-center justify-center bg-white">
+      <img src="Banner.png" 
+          alt="Disha J&K Banner" 
+          class="w-full h-full object-cover object-center">
+    </section>
+
+    <!-- Find Solutions Section -->
+<section class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+  <h2 class="text-2xl sm:text-3xl font-bold text-center mb-12">Find Solutions to Your Problems</h2>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    
+    <!-- Card 1 -->
+    <a href="CareerShortlist.html" 
+       class="block p-6 bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+      <div class="flex items-center justify-center w-14 h-14 bg-indigo-100 text-indigo-600 rounded-lg mb-4">
+        <i class="fas fa-list text-2xl"></i>
+      </div>
+      <h3 class="text-lg font-semibold mb-2">Too Many Career Choices?</h3>
+      <p class="text-gray-600 text-sm mb-3">Use our <strong>Career Shortlist</strong> tool to narrow down the best paths for you.</p>
+      <span class="text-indigo-600 text-sm font-medium">Explore &rarr;</span>
+    </a>
+    
+    <!-- Card 2 -->
+    <a href="Quiz.html" 
+       class="block p-6 bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+      <div class="flex items-center justify-center w-14 h-14 bg-green-100 text-green-600 rounded-lg mb-4">
+        <i class="fas fa-chart-line text-2xl"></i>
+      </div>
+      <h3 class="text-lg font-semibold mb-2">Not Sure About Your Strengths?</h3>
+      <p class="text-gray-600 text-sm mb-3">Take our <strong>Career Quiz</strong> and discover your natural talents.</p>
+      <span class="text-green-600 text-sm font-medium">Take Quiz &rarr;</span>
+    </a>
+    
+    <!-- Card 3 -->
+    <a href="Admission.html" 
+       class="block p-6 bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+      <div class="flex items-center justify-center w-14 h-14 bg-pink-100 text-pink-600 rounded-lg mb-4">
+        <i class="fas fa-book text-2xl"></i>
+      </div>
+      <h3 class="text-lg font-semibold mb-2">Confused About Admissions?</h3>
+      <p class="text-gray-600 text-sm mb-3">Track applications with our <strong>Admission Tracking</strong> system.</p>
+      <span class="text-pink-600 text-sm font-medium">Track Now &rarr;</span>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="FutureTrend.html" 
+       class="block p-6 bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+      <div class="flex items-center justify-center w-14 h-14 bg-yellow-100 text-yellow-600 rounded-lg mb-4">
+        <i class="fas fa-globe text-2xl"></i>
+      </div>
+      <h3 class="text-lg font-semibold mb-2">Worried About Future Careers?</h3>
+      <p class="text-gray-600 text-sm mb-3">Check out <strong>Future Trends</strong> to prepare for upcoming opportunities.</p>
+      <span class="text-yellow-600 text-sm font-medium">Discover &rarr;</span>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="Reels.html" 
+       class="block p-6 bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+      <div class="flex items-center justify-center w-14 h-14 bg-purple-100 text-purple-600 rounded-lg mb-4">
+        <i class="fas fa-video text-2xl"></i>
+      </div>
+      <h3 class="text-lg font-semibold mb-2">Need Career Inspiration?</h3>
+      <p class="text-gray-600 text-sm mb-3">Watch short <strong>Career Reels</strong> and explore different professions.</p>
+      <span class="text-purple-600 text-sm font-medium">Watch Now &rarr;</span>
+    </a>
+
+    <!-- Card 6 -->
+     <a href="CourseMap.html" 
+       class="block p-6 bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+      <div class="flex items-center justify-center w-14 h-14 bg-cyan-100 text-cyan-600 rounded-lg mb-4">
+        <i class="fas fa-lightbulb text-2xl"></i>
+      </div>
+      <h3 class="text-lg font-semibold mb-2">Need Career Roadmap?</h3>
+      <p class="text-gray-600 text-sm mb-3">Get it here <strong>Career Roadmap</strong> and explore different professions.</p>
+      <span class="text-purple-600 text-sm font-medium">Explore &rarr;</span>
+    </a>
+
+  </div>
+</section>
+
+  <!-- Innovative Solutions Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+  <h2 class="text-2xl sm:text-3xl font-bold mb-8 sm:mb-10 text-center md:text-left">Our Innovative Solutions</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+    <!-- Card (same structure for all) -->
+    <div class="p-6 rounded-xl bg-white border border-gray-200 shadow-md 
+                hover:shadow-xl hover:-translate-y-2 transition duration-300">
+      <div class="text-purple-600 text-3xl mb-4"><i class="fas fa-map-marked-alt"></i></div>
+      <h3 class="text-lg font-semibold mb-2">Hyper-Local Aspiration Map</h3>
+      <p class="text-gray-600 text-sm">Discover success stories from your district and get inspired by local role models.</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="p-6 rounded-xl bg-white border border-gray-200 shadow-md 
+                hover:shadow-xl hover:-translate-y-2 transition duration-300">
+      <div class="text-pink-600 text-3xl mb-4"><i class="fas fa-robot"></i></div>
+      <h3 class="text-lg font-semibold mb-2">Conversational AI Test</h3>
+      <p class="text-gray-600 text-sm">Chat with our AI in Kashmiri, Urdu, or English to discover your passion and strengths.</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="p-6 rounded-xl bg-white border border-gray-200 shadow-md 
+                hover:shadow-xl hover:-translate-y-2 transition duration-300">
+      <div class="text-yellow-600 text-3xl mb-4"><i class="fas fa-video"></i></div>
+      <h3 class="text-lg font-semibold mb-2">GenAI Career Reels</h3>
+      <p class="text-gray-600 text-sm">Watch AI-generated short videos showcasing different careers and day-in-the-life experiences.</p>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="p-6 rounded-xl bg-white border border-gray-200 shadow-md 
+                hover:shadow-xl hover:-translate-y-2 transition duration-300">
+      <div class="text-green-600 text-3xl mb-4"><i class="fas fa-hands-helping"></i></div>
+      <h3 class="text-lg font-semibold mb-2">Kashmir's Pride Mentorship</h3>
+      <p class="text-gray-600 text-sm">Connect with successful professionals from J&K who have walked the same path as you.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Awareness Hub Section -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Awareness Hub</h2>
+                <a href="#" class="text-indigo-600 hover:underline">View all</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Article 1 -->
+                <div class="dashboard-card overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1584697964358-3e14ca57658b?auto=format&fit=crop&q=80&w=500" alt="Article image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-indigo-500">MYTH BUSTER</span>
+                        <h3 class="text-lg font-bold mt-2 mb-3">Is a B.A. Degree "Useless"? Think Again!</h3>
+                        <p class="text-gray-600 text-sm mb-4">Discover how an Arts degree can be your direct ticket to Civil Services, journalism, and creative industries.</p>
+                        <a href="#" class="text-indigo-600 font-semibold text-sm hover:underline">Read More &rarr;</a>
+                    </div>
+                </div>
+                
+                <!-- Article 2 -->
+                <div class="dashboard-card overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=500" alt="Article image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-pink-500">SPOTLIGHT</span>
+                        <h3 class="text-lg font-bold mt-2 mb-3">The Hidden Gems: Why J&K Govt. Colleges are Your Best Bet</h3>
+                        <p class="text-gray-600 text-sm mb-4">Low fees, experienced faculty, and a direct path to success. We uncover the real advantages.</p>
+                        <a href="#" class="text-indigo-600 font-semibold text-sm hover:underline">Read More &rarr;</a>
+                    </div>
+                </div>
+                
+                <!-- Article 3 -->
+                <div class="dashboard-card overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=500" alt="Article image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-green-500">GUIDE</span>
+                        <h3 class="text-lg font-bold mt-2 mb-3">Your Guide to PMSSS and Other Scholarships</h3>
+                        <p class="text-gray-600 text-sm mb-4">Complete list of scholarships available for students from Jammu and Kashmir.</p>
+                        <a href="#" class="text-indigo-600 font-semibold text-sm hover:underline">Read More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+  <!-- Parent Section -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+  <div class="p-8 md:p-12 rounded-xl bg-gradient-to-br from-white to-gray-50 
+              shadow-md hover:shadow-2xl border border-gray-100 
+              transform hover:-translate-y-2 transition duration-300 flex flex-col md:flex-row items-center">
+    
+    <div class="flex-1 mb-6 md:mb-0">
+      <h2 class="text-2xl font-bold mb-4">Learn about your student and their career</h2>
+      <p class="mb-6 text-gray-600">Resources to help parents and mentors guide students in making the best career decisions for their future.</p>
+      <a href="Parents.html" class="bg-cyan-700 text-white font-medium py-3 px-6 rounded-lg shadow hover:bg-indigo-700 transition">
+        <i class="fas fa-lightbulb mr-2"></i> Explore Now
+      </a>
+    </div>
+    
+    <div class="flex-1 flex justify-center">
+      <img src="Parent_Child.png" 
+           alt="Parent and child" 
+           class="rounded-lg shadow-md transition duration-300">
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-10">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Disha J&K</h3>
+        <p>Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-white">About Us</a></li>
+          <li><a href="#" class="hover:text-white">Contact</a></li>
+          <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Resources</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-white">Career Assessment</a></li>
+          <li><a href="#" class="hover:text-white">Scholarships</a></li>
+          <li><a href="#" class="hover:text-white">College Directory</a></li>
+          <li><a href="#" class="hover:text-white">Success Stories</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Connect</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-sm mt-8 border-t border-gray-700 pt-6">&copy; 2025 Disha J&K. All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Profile dropdown
+    const profileButton = document.getElementById('profile-button');
+    const profileMenu = document.getElementById('profile-menu');
+
+    if (profileButton && profileMenu) {
+        profileButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            profileMenu.classList.toggle('hidden');
+        });
+    }
+
+    // Apps menu
+    const appsMenuButton = document.getElementById('apps-menu-button');
+    const appsMenu = document.getElementById('apps-menu');
+
+    if (appsMenuButton && appsMenu) {
+        appsMenuButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            appsMenu.classList.toggle('show');
+        });
+    }
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
+    // Close menus when clicking outside
+    document.addEventListener('click', function(event) {
+        if (profileMenu && !profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+            profileMenu.classList.add('hidden');
+        }
+
+        if (appsMenu && !appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
+            appsMenu.classList.remove('show');
+        }
+
+        if (mobileMenu && !menuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+            mobileMenu.classList.add('hidden');
+        }
+    });
+
+    // Scroll animation
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+});
+</script>
+<script src="main.js"></script>
+</body>
+</html>

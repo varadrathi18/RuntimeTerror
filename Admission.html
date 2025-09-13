@@ -21,96 +21,77 @@ tailwind.config = {
 }
 </script>
 <style>
-  /* ========================= */
-/* Apps Menu Dropdown        */
-/* ========================= */
+ /* Apps Menu */
 .apps-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            width: 300px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            padding: 16px;
-            z-index: 1000;
-            margin-top: 10px;
-        }
-        
-        .apps-menu.active {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-        
-        .app-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 12px;
-            border-radius: 8px;
-            transition: background 0.2s;
-        }
-        
-        .app-item:hover {
-            background: #f3f4f6;
-        }
-        
-        .app-icon {
-            width: 40px;
-            height: 40px;
-            background: #4f46e5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            margin-bottom: 8px;
-            font-size: 18px;
-        }
-        
-        .app-name {
-            font-size: 12px;
-            text-align: center;
-            color: #4b5563;
-        }
-/* ========================= */
-/* Profile Menu Dropdown     */
-/* ========================= */
-#profile-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 320px;
   background: white;
-  border-radius: 0.75rem; /* rounded-xl */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
   z-index: 50;
+  margin-top: 8px;
+  display: grid;
 }
 
-#profile-menu a {
-  display: block;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem; /* text-sm */
-  color: #374151; /* gray-700 */
+/* Keep hidden by default (Tailwind adds hidden class) */
+.apps-menu.hidden {
+  display: none;
+}
+
+.app-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
   text-decoration: none;
-  transition: background-color 0.2s ease-in-out;
+  color: #4b5563;
 }
 
-#profile-menu a:hover {
-  background-color: #f9fafb; /* gray-50 */
+.app-item:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-2px);
+}
+
+.app-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #e0e7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  color: #4f46e5;
+  font-size: 18px;
+}
+
+.app-name {
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
 }
 
 </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-<header class="bg-white border-b sticky top-0 z-10 shadow">
-  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-    
-    <!-- Left: Logo -->
-    <a href="./Dashboard.html" class="text-2xl font-bold text-indigo-600">
-                <i class="fas fa-compass mr-2"></i>Disha J&K
-            </a>  
-    <!-- Right: Apps + Profile -->
-    <div class="flex items-center space-x-4">
+<!-- Header -->
+<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+  <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center space-x-3">
+      <img src="Disha.png" alt="Disha J&K Logo" class="h-14 md:h-16 w-auto">
+      <span class="text-xl md:text-2xl font-bold text-gray-800">Disha J&amp;K</span>
+    </a>
+
+    <div class="flex items-center space-x-4 mr-2">
       <!-- Apps Menu -->
       <div class="relative">
         <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all">
@@ -125,66 +106,66 @@ tailwind.config = {
             <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
             <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
           </div>
-        </button>
-        <div id="apps-menu" class="apps-menu dropdown">
-          <!-- app items -->
-          <a href="career-roadmap.html" class="app-item">
+        </button>    
+
+        <!-- Apps Menu Dropdown -->
+        <div id="apps-menu" class="apps-menu hidden">
+          <a href="Home.html" class="app-item">
             <div class="app-icon"><i class="fas fa-road"></i></div>
-            <span class="app-name">Career Roadmap</span>
+            <span class="app-name">Home</span>
           </a>
-          <a href="career-shortlist.html" class="app-item">
+          <a href="CareerShortlist.html" class="app-item">
             <div class="app-icon"><i class="fas fa-list"></i></div>
             <span class="app-name">Career Shortlist</span>
           </a>
-          <a href="future-trends.html" class="app-item">
+          <a href="Quiz.html" class="app-item">
             <div class="app-icon"><i class="fas fa-chart-line"></i></div>
+            <span class="app-name">Quiz</span>
+          </a>
+          <a href="Admission.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-book"></i></div>
+            <span class="app-name">Admission Tracking</span>
+          </a>
+          <a href="CourseMap.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-brain"></i></div>
+            <span class="app-name">Course to Career Map</span>
+          </a>
+          <a href="Map.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-user-graduate"></i></div>
+            <span class="app-name">Map Feature</span>
+          </a>
+          <a href="FutureTrend.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-globe"></i></div>
             <span class="app-name">Future Trends</span>
           </a>
-          <a href="course-mapping.html" class="app-item">
-            <div class="app-icon"><i class="fas fa-book"></i></div>
-            <span class="app-name">Course Mapping</span>
-          </a>
-          <a href="ai-study-planner.html" class="app-item">
-            <div class="app-icon"><i class="fas fa-brain"></i></div>
-            <span class="app-name">AI Study Planner</span>
-          </a>
-          <a href="guidance.html" class="app-item">
-            <div class="app-icon"><i class="fas fa-user-graduate"></i></div>
-            <span class="app-name">Guidance</span>
-          </a>
-          <a href="global-learning.html" class="app-item">
-            <div class="app-icon"><i class="fas fa-globe"></i></div>
-            <span class="app-name">Global Learning</span>
-          </a>
-          <a href="career-videos.html" class="app-item">
+          <a href="Reels.html" class="app-item">
             <div class="app-icon"><i class="fas fa-video"></i></div>
-            <span class="app-name">Career Videos</span>
+            <span class="app-name">Career Reels</span>
           </a>
-          <a href="articles.html" class="app-item">
+          <a href="About.html" class="app-item">
             <div class="app-icon"><i class="fas fa-newspaper"></i></div>
-            <span class="app-name">Articles</span>
+            <span class="app-name">About Us</span>
           </a>
         </div>
       </div>
-
-      <!-- Profile -->
+      
+      <!-- Profile Menu -->
       <div class="relative">
-        <button id="profile-button" class="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
+        <button id="profile-button" class="w-10 h-10 bg-cyan-700 text-white rounded-full flex items-center justify-center font-bold">
           A
         </button>
-        <div id="profile-menu"
-          class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden dropdown">
+        
+        <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden">
           <div class="px-4 py-2 border-b">
             <p class="text-sm font-medium">Ayesha Khan</p>
             <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
           </div>
-          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+          <a href="Profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
           <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t">Logout</a>
         </div>
       </div>
     </div>
-  </div>
+  </nav>
 </header>
 
 <!-- Subheading (no bottom border now) -->
@@ -466,34 +447,40 @@ document.getElementById("resetBtn").addEventListener("click",()=>{
   document.getElementById("scholarshipEmpty").classList.add("hidden");
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Profile dropdown
-    const profileButton = document.getElementById('profile-button');
-    const profileMenu = document.getElementById('profile-menu');
-    
-    profileButton.addEventListener('click', function(e) {
-        e.stopPropagation();
-        profileMenu.classList.toggle('hidden');
+document.addEventListener('DOMContentLoaded', function () {
+  const profileButton = document.getElementById('profile-button');
+  const profileMenu = document.getElementById('profile-menu');
+
+  const appsMenuButton = document.getElementById('apps-menu-button');
+  const appsMenu = document.getElementById('apps-menu');
+
+  function toggleMenu(button, menu) {
+    if (!button || !menu) return;
+    button.addEventListener('click', function (e) {
+      e.stopPropagation();
+
+      // Close other menus
+      document.querySelectorAll('#apps-menu, #profile-menu').forEach(m => {
+        if (m !== menu) m.classList.add('hidden');
+      });
+
+      // Toggle this menu
+      menu.classList.toggle('hidden');
     });
-    
-    // Apps menu
-    const appsMenuButton = document.getElementById('apps-menu-button');
-    const appsMenu = document.getElementById('apps-menu');
-    
-    appsMenuButton.addEventListener('click', function(e) {
-        e.stopPropagation();
-        appsMenu.classList.toggle('active');
-    });
-    
-    // Close menus when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
-            profileMenu.classList.add('hidden');
-        }
-        if (!appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
-            appsMenu.classList.remove('active');
-        }
-    });
+  }
+
+  toggleMenu(profileButton, profileMenu);
+  toggleMenu(appsMenuButton, appsMenu);
+
+  // Close menus when clicking outside
+  document.addEventListener('click', function (event) {
+    if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+      profileMenu.classList.add('hidden');
+    }
+    if (!appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
+      appsMenu.classList.add('hidden');
+    }
+  });
 });
 
 </script>

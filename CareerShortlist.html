@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Shortlist - Disha J&K</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+        }
+        
+        .career-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #a4086e;
+        }
+        
+        .career-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .comparison-table {
+            border-collapse: separate;
+            border-spacing: 0 10px;
+            width: 100%;
+        }
+        
+        .comparison-table th {
+            background-color: #f3f4f6;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            background-color: white;
+            padding: 12px 15px;
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .comparison-table td:first-child {
+            border-left: 1px solid #e5e7eb;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+        
+        .comparison-table td:last-child {
+            border-right: 1px solid #e5e7eb;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        
+        /* Apps Menu */
+.apps-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 320px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  z-index: 50;
+  margin-top: 8px;
+  display: grid;
+}
+
+/* Keep hidden by default (Tailwind adds hidden class) */
+.apps-menu.hidden {
+  display: none;
+}
+
+.app-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: #4b5563;
+}
+
+.app-item:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-2px);
+}
+
+.app-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #e0e7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  color: #4f46e5;
+  font-size: 18px;
+}
+
+.app-name {
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
+}
+        
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c5c5c5;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header Section -->
+    <!-- Header -->
+<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+  <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center space-x-3">
+      <img src="Disha.png" alt="Disha J&K Logo" class="h-14 md:h-16 w-auto">
+      <span class="text-xl md:text-2xl font-bold text-gray-800">Disha J&amp;K</span>
+    </a>
+
+    <div class="flex items-center space-x-4 mr-2">
+      <!-- Apps Menu -->
+      <div class="relative">
+        <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all">
+          <div class="grid grid-cols-3 gap-1 w-6 h-6">
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+          </div>
+        </button>    
+
+        <!-- Apps Menu Dropdown -->
+        <div id="apps-menu" class="apps-menu hidden">
+          <a href="Home.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-road"></i></div>
+            <span class="app-name">Home</span>
+          </a>
+          <a href="CareerShortlist.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-list"></i></div>
+            <span class="app-name">Career Shortlist</span>
+          </a>
+          <a href="Quiz.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-chart-line"></i></div>
+            <span class="app-name">Quiz</span>
+          </a>
+          <a href="Admission.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-book"></i></div>
+            <span class="app-name">Admission Tracking</span>
+          </a>
+          <a href="CourseMap.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-brain"></i></div>
+            <span class="app-name">Course to Career Map</span>
+          </a>
+          <a href="Map.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-user-graduate"></i></div>
+            <span class="app-name">Map Feature</span>
+          </a>
+          <a href="FutureTrend.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-globe"></i></div>
+            <span class="app-name">Future Trends</span>
+          </a>
+          <a href="Reels.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-video"></i></div>
+            <span class="app-name">Career Reels</span>
+          </a>
+          <a href="About.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-newspaper"></i></div>
+            <span class="app-name">About Us</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Profile Menu -->
+      <div class="relative">
+        <button id="profile-button" class="w-10 h-10 bg-cyan-700 text-white rounded-full flex items-center justify-center font-bold">
+          A
+        </button>
+        
+        <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden">
+          <div class="px-4 py-2 border-b">
+            <p class="text-sm font-medium">Ayesha Khan</p>
+            <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
+          </div>
+          <a href="Profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-cyan-600">Career Shortlist</h1>
+            <p class="text-gray-600 mt-2">Save and compare different career options side by side.</p>
+        </div>
+
+        <!-- Two-column layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left column - Saved Careers -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-xl shadow-md p-6 sticky top-24">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Your Saved Careers</h2>
+                    
+                    <div class="space-y-4 custom-scrollbar" id="saved-careers-list" style="max-height: 500px; overflow-y: auto;">
+                        <!-- Career cards will be added here dynamically -->
+                    </div>
+                    
+                    <div class="mt-6">
+                        <button id="add-career-btn" class="w-full py-2 bg-cyan-100 text-cyan-700 rounded-lg font-medium hover:bg-cyan-200 transition-all">
+                            <i class="fas fa-plus mr-2"></i> Add More Careers
+                        </button>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <button id="compare-btn" class="w-full py-2 bg-cyan-600 text-white rounded-lg font-medium hover:bg-cyan-700 transition-all">
+                            Compare Selected Careers
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right column - Comparison and Details -->
+            <div class="lg:col-span-2">
+                <!-- Comparison View -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Career Comparison</h2>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="comparison-table" id="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th class="rounded-l-lg">Criteria</th>
+                                    <!-- Career headers will be added dynamically -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Comparison data will be added dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <p id="no-comparison-message" class="text-center text-gray-500 mt-4">Add at least two careers to compare them.</p>
+                </div>
+                
+                <!-- Career Suggestions -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Suggested Careers for You</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="career-suggestions">
+                        <!-- Suggestions will be added dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Career Modal -->
+    <div id="add-career-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl shadow-2xl p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-semibold">Add Career to Shortlist</h3>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Career Field</label>
+                <select id="career-field" class="w-full px-4 py-2 border rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="">Select a career field</option>
+                    <option value="Technology & IT">Technology & IT</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Government Services">Government Services</option>
+                    <option value="Business & Finance">Business & Finance</option>
+                    <option value="Education & Research">Education & Research</option>
+                    <option value="Arts & Media">Arts & Media</option>
+                </select>
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Specific Career</label>
+                <input type="text" id="career-name" class="w-full px-4 py-2 border rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="E.g. Software Developer">
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Notes (Optional)</label>
+                <textarea id="career-notes" class="w-full px-4 py-2 border rounded-lg focus:ring-indigo-500 focus:border-indigo-500" rows="3" placeholder="Why are you interested in this career?"></textarea>
+            </div>
+            
+            <button id="confirm-add-career" class="w-full py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700">
+                Add to Shortlist
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-xl font-bold mb-4">Disha J&K</p>
+            <p class="mb-6">An initiative for Smart India Hackathon 2025 to empower the youth of Jammu & Kashmir.</p>
+            <div class="flex justify-center space-x-6 text-2xl">
+                <a href="#" class="hover:text-indigo-400"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="hover:text-indigo-400"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-indigo-400"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-indigo-400"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="mt-8 text-sm text-gray-400">&copy; 2025 Disha J&K. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+            
+document.addEventListener('DOMContentLoaded', function () {
+  const profileButton = document.getElementById('profile-button');
+  const profileMenu = document.getElementById('profile-menu');
+
+  const appsMenuButton = document.getElementById('apps-menu-button');
+  const appsMenu = document.getElementById('apps-menu');
+
+  function toggleMenu(button, menu) {
+    if (!button || !menu) return;
+    button.addEventListener('click', function (e) {
+      e.stopPropagation();
+
+      // Close other menus
+      document.querySelectorAll('#apps-menu, #profile-menu').forEach(m => {
+        if (m !== menu) m.classList.add('hidden');
+      });
+
+      // Toggle this menu
+      menu.classList.toggle('hidden');
+    });
+  }
+
+  toggleMenu(profileButton, profileMenu);
+  toggleMenu(appsMenuButton, appsMenu);
+
+  // Close menus when clicking outside
+  document.addEventListener('click', function (event) {
+    if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+      profileMenu.classList.add('hidden');
+    }
+    if (!appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
+      appsMenu.classList.add('hidden');
+    }
+  });
+});
+    // Career data - in a real app this would come from a database
+    const careerDatabase = {
+        "Software Engineer": {
+            sector: "Technology/IT",
+            salary: "₹6-15 LPA",
+            growth: "High Growth",
+            education: "B.Tech/B.E. in CS/IT",
+            jobSecurity: "High",
+            workLifeBalance: "Moderate",
+            institutes: "NIT Srinagar, IIT Jammu",
+            demand: "Very High"
+        },
+        "Civil Services": {
+            sector: "Government",
+            salary: "₹8-20 LPA",
+            growth: "High Prestige",
+            education: "Any Bachelor's Degree",
+            jobSecurity: "Very High",
+            workLifeBalance: "Varies",
+            institutes: "JKCET, University of Kashmir",
+            demand: "High"
+        },
+        "Medical Doctor": {
+            sector: "Healthcare",
+            salary: "₹10-25 LPA",
+            growth: "High Demand",
+            education: "MBBS + Specialization",
+            jobSecurity: "Very High",
+            workLifeBalance: "Demanding",
+            institutes: "GMC Srinagar, GMC Jammu",
+            demand: "Very High"
+        },
+        "Data Scientist": {
+            sector: "Technology/IT",
+            salary: "₹8-18 LPA",
+            growth: "Very High",
+            education: "B.Tech/B.E. in CS/IT or Statistics",
+            jobSecurity: "High",
+            workLifeBalance: "Moderate",
+            institutes: "NIT Srinagar, IIT Jammu, University of Kashmir",
+            demand: "Very High"
+        },
+        "University Professor": {
+            sector: "Education",
+            salary: "₹7-16 LPA",
+            growth: "High",
+            education: "Ph.D. in relevant field",
+            jobSecurity: "Very High",
+            workLifeBalance: "Good",
+            institutes: "University of Kashmir, University of Jammu",
+            demand: "Moderate"
+        },
+        "Environmental Engineer": {
+            sector: "Engineering",
+            salary: "₹5-12 LPA",
+            growth: "Moderate",
+            education: "B.Tech in Environmental Engineering",
+            jobSecurity: "High",
+            workLifeBalance: "Good",
+            institutes: "NIT Srinagar",
+            demand: "Growing"
+        },
+        "Business Administrator": {
+            sector: "Business",
+            salary: "₹6-14 LPA",
+            growth: "High",
+            education: "BBA/MBA",
+            jobSecurity: "Moderate",
+            workLifeBalance: "Moderate",
+            institutes: "University of Kashmir, University of Jammu",
+            demand: "High"
+        },
+        "Graphic Designer": {
+            sector: "Arts & Media",
+            salary: "₹4-10 LPA",
+            growth: "Moderate",
+            education: "Bachelor's in Design/Fine Arts",
+            jobSecurity: "Moderate",
+            workLifeBalance: "Good",
+            institutes: "Institute of Music and Fine Arts, Jammu",
+            demand: "Steady"
+        }
+    };
+
+    // Sample career suggestions
+    const careerSuggestions = [
+        "Data Scientist",
+        "University Professor",
+        "Environmental Engineer",
+        "Business Administrator",
+        "Graphic Designer"
+    ];
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Apps menu functionality
+        const appsMenuButton = document.getElementById('apps-menu-button');
+        const appsMenu = document.getElementById('apps-menu');
+
+        appsMenuButton.addEventListener('click', function () {
+            appsMenu.classList.toggle('show');
+        });
+
+        // Close apps menu when clicking outside
+        document.addEventListener('click', function (event) {
+            if (!appsMenu.contains(event.target) && !appsMenuButton.contains(event.target)) {
+                appsMenu.classList.remove('show');
+            }
+        });
+
+        // Profile menu functionality
+        const profileButton = document.getElementById('profile-button');
+        const profileMenu = document.getElementById('profile-menu');
+
+        profileButton.addEventListener('click', function () {
+            profileMenu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!profileMenu.contains(event.target) && !profileButton.contains(event.target)) {
+                profileMenu.classList.remove('show');
+            }
+        });
+
+        // Add career modal functionality
+        const addCareerBtn = document.getElementById('add-career-btn');
+        const addCareerModal = document.getElementById('add-career-modal');
+        const closeModal = document.getElementById('close-modal');
+        const confirmAddCareer = document.getElementById('confirm-add-career');
+
+        addCareerBtn.addEventListener('click', function () {
+            addCareerModal.classList.remove('hidden');
+        });
+
+        closeModal.addEventListener('click', function () {
+            addCareerModal.classList.add('hidden');
+        });
+
+        addCareerModal.addEventListener('click', function (event) {
+            if (event.target === addCareerModal) {
+                addCareerModal.classList.add('hidden');
+            }
+        });
+
+        // Initialize saved careers
+        let savedCareers = JSON.parse(localStorage.getItem('savedCareers')) || [
+            "Software Engineer",
+            "Civil Services",
+            "Medical Doctor"
+        ];
+
+        renderSavedCareers();
+        renderComparisonTable();
+        renderCareerSuggestions();
+
+        // Add career functionality
+        confirmAddCareer.addEventListener('click', function () {
+            const careerName = document.getElementById('career-name').value.trim();
+            const careerField = document.getElementById('career-field').value;
+
+            if (!careerName) {
+                alert('Please enter a career name');
+                return;
+            }
+            if (!careerField) {
+                alert('Please select a career field');
+                return;
+            }
+
+            if (!savedCareers.includes(careerName)) {
+                savedCareers.push(careerName);
+
+                if (!careerDatabase[careerName]) {
+                    careerDatabase[careerName] = {
+                        sector: careerField,
+                        salary: "₹5-12 LPA",
+                        growth: "Moderate",
+                        education: "Relevant Bachelor's Degree",
+                        jobSecurity: "Moderate",
+                        workLifeBalance: "Moderate",
+                        institutes: "Local colleges and universities",
+                        demand: "Moderate"
+                    };
+                }
+
+                localStorage.setItem('savedCareers', JSON.stringify(savedCareers));
+
+                renderSavedCareers();
+                renderComparisonTable();
+                renderCareerSuggestions();
+
+                addCareerModal.classList.add('hidden');
+                document.getElementById('career-name').value = '';
+                document.getElementById('career-field').value = '';
+                document.getElementById('career-notes').value = '';
+
+                alert(`${careerName} has been added to your shortlist!`);
+            } else {
+                alert(`${careerName} is already in your shortlist!`);
+            }
+        });
+
+        // Compare button functionality
+        document.getElementById('compare-btn').addEventListener('click', function () {
+            if (savedCareers.length < 2) {
+                alert('Please add at least two careers to compare');
+                return;
+            }
+            renderComparisonTable();
+            alert('Comparison updated!');
+        });
+
+        // Render saved careers
+        function renderSavedCareers() {
+            const savedCareersList = document.getElementById('saved-careers-list');
+            savedCareersList.innerHTML = '';
+
+            if (savedCareers.length === 0) {
+                savedCareersList.innerHTML = '<p class="text-center text-gray-500 py-4">No careers saved yet. Add some careers to your shortlist.</p>';
+                return;
+            }
+
+            savedCareers.forEach(career => {
+                const careerData = careerDatabase[career] || {
+                    sector: "General",
+                    salary: "₹5-12 LPA",
+                    growth: "Moderate"
+                };
+
+                const careerCard = document.createElement('div');
+                careerCard.className = 'career-card bg-white p-4 rounded-lg shadow border';
+                careerCard.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-lg">${career}</h3>
+                            <p class="text-sm text-gray-600">${careerData.sector} Sector</p>
+                        </div>
+                        <button class="text-red-500 hover:text-red-700 remove-career" data-career="${career}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="mt-3 flex justify-between">
+                        <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">${careerData.salary}</span>
+                        <span class="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full">${careerData.growth}</span>
+                    </div>
+                `;
+                savedCareersList.appendChild(careerCard);
+            });
+
+            document.querySelectorAll('.remove-career').forEach(button => {
+                button.addEventListener('click', function () {
+                    const careerToRemove = this.getAttribute('data-career');
+                    removeCareer(careerToRemove);
+                });
+            });
+        }
+
+        // Remove career
+        function removeCareer(career) {
+            if (confirm(`Remove ${career} from your shortlist?`)) {
+                savedCareers = savedCareers.filter(c => c !== career);
+                localStorage.setItem('savedCareers', JSON.stringify(savedCareers));
+
+                renderSavedCareers();
+                renderComparisonTable();
+                renderCareerSuggestions();
+
+                alert(`${career} has been removed from your shortlist`);
+            }
+        }
+
+        // Comparison table
+        function renderComparisonTable() {
+            const comparisonTable = document.getElementById('comparison-table');
+            const tbody = comparisonTable.querySelector('tbody');
+            const thead = comparisonTable.querySelector('thead tr');
+            const noComparisonMessage = document.getElementById('no-comparison-message');
+
+            thead.innerHTML = '<th class="rounded-l-lg">Criteria</th>';
+            tbody.innerHTML = '';
+
+            if (savedCareers.length < 2) {
+                noComparisonMessage.classList.remove('hidden');
+                return;
+            }
+            noComparisonMessage.classList.add('hidden');
+
+            savedCareers.forEach(career => {
+                const th = document.createElement('th');
+                th.textContent = career;
+                thead.appendChild(th);
+            });
+            thead.lastChild.classList.add('rounded-r-lg');
+
+            const criteria = [
+                { name: 'Sector', key: 'sector' },
+                { name: 'Average Salary', key: 'salary' },
+                { name: 'Education Required', key: 'education' },
+                { name: 'Growth Opportunity', key: 'growth' },
+                { name: 'Job Security', key: 'jobSecurity' },
+                { name: 'Work-Life Balance', key: 'workLifeBalance' },
+                { name: 'Job Demand', key: 'demand' },
+                { name: 'Top Institutes in J&K', key: 'institutes' }
+            ];
+
+            criteria.forEach(criterion => {
+                const row = document.createElement('tr');
+                const criteriaCell = document.createElement('td');
+                criteriaCell.textContent = criterion.name;
+                row.appendChild(criteriaCell);
+
+                savedCareers.forEach(career => {
+                    const dataCell = document.createElement('td');
+                    const careerData = careerDatabase[career] || {};
+                    dataCell.textContent = careerData[criterion.key] || 'N/A';
+                    row.appendChild(dataCell);
+                });
+                tbody.appendChild(row);
+            });
+        }
+
+        // Career suggestions
+        function renderCareerSuggestions() {
+            const suggestionsContainer = document.getElementById('career-suggestions');
+            suggestionsContainer.innerHTML = '';
+
+            const filteredSuggestions = careerSuggestions.filter(
+                career => !savedCareers.includes(career)
+            );
+
+            if (filteredSuggestions.length === 0) {
+                suggestionsContainer.innerHTML = '<p class="text-center text-gray-500 col-span-2 py-4">No more suggestions available. You\'ve added all suggested careers!</p>';
+                return;
+            }
+
+            const iconMap = {
+                "Technology/IT": { icon: "fa-laptop-code", color: "purple" },
+                "Healthcare": { icon: "fa-heart-pulse", color: "pink" },
+                "Government": { icon: "fa-landmark", color: "blue" },
+                "Education": { icon: "fa-graduation-cap", color: "indigo" },
+                "Engineering": { icon: "fa-gears", color: "green" },
+                "Business": { icon: "fa-briefcase", color: "yellow" },
+                "Arts & Media": { icon: "fa-palette", color: "red" }
+            };
+
+            filteredSuggestions.forEach(career => {
+                const careerData = careerDatabase[career];
+                const sectorData = iconMap[careerData.sector] || { icon: "fa-briefcase", color: "gray" };
+
+                const suggestionCard = document.createElement('div');
+                suggestionCard.className = 'border rounded-lg p-4 hover:shadow-md transition-all';
+                suggestionCard.innerHTML = `
+                    <div class="flex items-start">
+                        <div class="bg-${sectorData.color}-100 p-3 rounded-lg mr-4">
+                            <i class="fas ${sectorData.icon} text-${sectorData.color}-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold">${career}</h3>
+                            <p class="text-sm text-gray-600">${careerData.sector} Sector</p>
+                            <button class="text-indigo-600 text-sm mt-2 font-medium add-suggestion" data-career="${career}">
+                                + Add to Shortlist
+                            </button>
+                        </div>
+                    </div>
+                `;
+                suggestionsContainer.appendChild(suggestionCard);
+            });
+
+            document.querySelectorAll('.add-suggestion').forEach(button => {
+                button.addEventListener('click', function () {
+                    const careerToAdd = this.getAttribute('data-career');
+
+                    if (!savedCareers.includes(careerToAdd)) {
+                        savedCareers.push(careerToAdd);
+                        localStorage.setItem('savedCareers', JSON.stringify(savedCareers));
+
+                        renderSavedCareers();
+                        renderComparisonTable();
+                        renderCareerSuggestions();
+
+                        alert(`${careerToAdd} has been added to your shortlist!`);
+                    }
+                });
+            });
+        }
+    });
+</script>
+</body>
+</html>

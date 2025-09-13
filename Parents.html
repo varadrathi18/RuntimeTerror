@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parent Guide - Disha J&K</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
+    .card { background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); padding: 20px; transition: all 0.3s ease; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
+    .chip { cursor: pointer; background: #eef2ff; border-radius: 20px; padding: 6px 14px; font-size: 14px; font-weight: 500; color: #4338ca; display: inline-block; margin: 4px; transition: 0.2s; }
+    .chip:hover { background: #c7d2fe; }
+    .info-box { background: #fef3c7; border-left: 4px solid #d97706; padding: 12px; margin-top: 12px; border-radius: 8px; }
+    /* Apps Menu */
+.apps-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 320px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  z-index: 50;
+  margin-top: 8px;
+  display: grid;
+}
+
+/* Keep hidden by default (Tailwind adds hidden class) */
+.apps-menu.hidden {
+  display: none;
+}
+
+.app-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: #4b5563;
+}
+
+.app-item:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-2px);
+}
+
+.app-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #e0e7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  color: #4f46e5;
+  font-size: 18px;
+}
+
+.app-name {
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
+}
+
+  </style>
+</head>
+<body class="text-gray-800">
+
+   <!-- Header -->
+<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+  <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center space-x-3">
+      <img src="Disha.png" alt="Disha J&K Logo" class="h-14 md:h-16 w-auto">
+      <span class="text-xl md:text-2xl font-bold text-gray-800">Disha J&amp;K</span>
+    </a>
+
+    <div class="flex items-center space-x-4 mr-2">
+      <!-- Apps Menu -->
+      <div class="relative">
+        <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all">
+          <div class="grid grid-cols-3 gap-1 w-6 h-6">
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+          </div>
+        </button>    
+
+        <!-- Apps Menu Dropdown -->
+        <div id="apps-menu" class="apps-menu hidden">
+          <a href="Home.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-road"></i></div>
+            <span class="app-name">Home</span>
+          </a>
+          <a href="CareerShortlist.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-list"></i></div>
+            <span class="app-name">Career Shortlist</span>
+          </a>
+          <a href="Quiz.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-chart-line"></i></div>
+            <span class="app-name">Quiz</span>
+          </a>
+          <a href="Admission.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-book"></i></div>
+            <span class="app-name">Admission Tracking</span>
+          </a>
+          <a href="CourseMap.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-brain"></i></div>
+            <span class="app-name">Course to Career Map</span>
+          </a>
+          <a href="Map.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-user-graduate"></i></div>
+            <span class="app-name">Map Feature</span>
+          </a>
+          <a href="FutureTrend.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-globe"></i></div>
+            <span class="app-name">Future Trends</span>
+          </a>
+          <a href="Reels.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-video"></i></div>
+            <span class="app-name">Career Reels</span>
+          </a>
+          <a href="About.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-newspaper"></i></div>
+            <span class="app-name">About Us</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Profile Menu -->
+      <div class="relative">
+        <button id="profile-button" class="w-10 h-10 bg-cyan-700 text-white rounded-full flex items-center justify-center font-bold">
+          A
+        </button>
+        
+        <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden">
+          <div class="px-4 py-2 border-b">
+            <p class="text-sm font-medium">Ayesha Khan</p>
+            <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
+          </div>
+          <a href="Profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+  <!-- Sub-Heading  -->
+  <section class="bg-gradient-to-r from-cyan-300 to-cyan-700 text-white py-12 shadow-lg text-center">
+    <h1 class="text-4xl font-extrabold mb-3">Know About Your Child’s Future</h1>
+    <p class="text-lg max-w-2xl mx-auto">This section is specially designed for parents to understand 
+      <strong>subjects, exams, streams, career paths, and future outcomes</strong> for their children after Class 10 and Class 12.</p>
+    </section>
+
+  <!-- Main Container -->
+  <main class="max-w-5xl mx-auto py-10 px-6">
+
+    <!-- Welcome Message -->
+    <section class="bg-white p-8 rounded-2xl shadow text-center mb-10">
+      <h2 class="text-2xl font-bold mb-3 text-blue-700">👨‍👩‍👧 Welcome Parents</h2>
+      <p class="text-gray-600 leading-relaxed">
+        Choosing the right stream and career path is one of the <strong>most important decisions</strong> in your child’s life. 
+        Here, you’ll find <strong>complete guidance</strong> about the <span class="text-blue-700 font-semibold">subjects</span>, 
+        <span class="text-blue-700 font-semibold">exam patterns</span>, 
+        <span class="text-blue-700 font-semibold">future exams</span>, and 
+        <span class="text-blue-700 font-semibold">long-term outcomes</span> — 
+        all simplified for you. Explore the options and make an <strong>informed decision together</strong>.
+      </p>
+    </section>
+
+  <!-- Stream Selection -->
+  <section class="max-w-4xl mx-auto px-6 text-center">
+    <div class="card">
+      <h2 class="text-lg font-semibold text-gray-800 mb-4">Select Your Child’s Stream</h2>
+      <select id="streamSelect" class="w-full md:w-1/2 mx-auto border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+        <option value="">-- Select Stream --</option>
+        <optgroup label="After 10th">
+          <option value="science10">Science (After 10th)</option>
+          <option value="commerce10">Commerce (After 10th)</option>
+          <option value="arts10">Arts/Humanities (After 10th)</option>
+        </optgroup>
+        <optgroup label="After 12th">
+          <option value="science12">Science (After 12th)</option>
+          <option value="commerce12">Commerce (After 12th)</option>
+          <option value="arts12">Arts/Humanities (After 12th)</option>
+        </optgroup>
+      </select>
+    </div>
+  </section>
+
+  <!-- Info Display -->
+  <section id="infoSection" class="max-w-5xl mx-auto px-6 py-10 hidden">
+    <div class="grid gap-6 md:grid-cols-2">
+      
+      <!-- Subjects -->
+      <div class="card">
+        <h3 class="text-lg font-semibold mb-3">📘 Subjects</h3>
+        <ul id="subjects" class="list-disc list-inside text-gray-600"></ul>
+      </div>
+      
+      <!-- Marking Scheme -->
+      <div class="card">
+        <h3 class="text-lg font-semibold mb-3">📝 Marking Scheme</h3>
+        <p id="markingScheme" class="text-gray-600"></p>
+      </div>
+      
+      <!-- Career Paths -->
+      <div class="card">
+        <h3 class="text-lg font-semibold mb-3">🚀 Future Career Paths</h3>
+        <div id="careerList"></div>
+        <div id="careerDetails" class="info-box hidden">
+          <p id="careerInfo" class="text-gray-700"></p>
+        </div>
+      </div>
+      
+      <!-- Exams -->
+      <div class="card">
+        <h3 class="text-lg font-semibold mb-3">🎯 Future Exams</h3>
+        <div id="examsList"></div>
+        <div id="examDetails" class="info-box hidden">
+          <p id="examInfo" class="text-gray-700"></p>
+        </div>
+      </div>
+      
+      <!-- Outcomes -->
+      <div class="card md:col-span-2">
+        <h3 class="text-lg font-semibold mb-3">🌟 Outcomes</h3>
+        <div id="outcomes" class="text-gray-700 space-y-2"></div>
+      </div>
+      
+      <!-- Goals -->
+      <div class="card md:col-span-2">
+        <h3 class="text-lg font-semibold mb-3">🎯 Future Goals</h3>
+        <p id="goals" class="text-gray-600"></p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-900 text-gray-400">
+  <div class="w-full grid grid-cols-1 md:grid-cols-4 gap-8 px-6 md:px-12 py-10">
+    <div>
+      <h3 class="text-lg font-bold text-white mb-4">Disha J&K</h3>
+      <p>Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
+    </div>
+    <div>
+      <h3 class="text-lg font-bold text-white mb-4">Quick Links</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-white">About Us</a></li>
+        <li><a href="#" class="hover:text-white">Contact</a></li>
+        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="text-lg font-bold text-white mb-4">Resources</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-white">Career Assessment</a></li>
+        <li><a href="#" class="hover:text-white">Scholarships</a></li>
+        <li><a href="#" class="hover:text-white">College Directory</a></li>
+        <li><a href="#" class="hover:text-white">Success Stories</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="text-lg font-bold text-white mb-4">Connect</h3>
+      <div class="flex space-x-4">
+        <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-white"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="w-full text-center text-sm border-t border-gray-700 py-4">
+    &copy; 2025 Disha J&K. All rights reserved.
+  </div>
+</footer>
+
+  <script>
+    // Data for After 10th
+    const data = {
+      science10: {
+        subjects: ["Physics", "Chemistry", "Mathematics/Biology", "English", "Computer Science"],
+        marking: "Boards: 70% theory + 30% practical.",
+        careers: {
+          "Engineering (Later)": "Strong base for JEE/Engineering after 12th.",
+          "Medical (Later)": "Foundation for NEET preparation.",
+          "Defence (NDA)": "Entry possible post 12th with Science."
+        },
+        exams: ["Foundation JEE", "Foundation NEET", "Olympiads"],
+        outcomes: [
+          "Science after 10th builds the strongest academic base.",
+          "Keeps Engineering and Medical options wide open.",
+          "Ideal for students aiming for research and innovation."
+        ],
+        goals: "To prepare for national-level competitive exams with strong basics."
+      },
+      commerce10: {
+        subjects: ["Accountancy", "Business Studies", "Economics", "Mathematics", "English"],
+        marking: "Boards: 80 marks theory + 20 marks practical.",
+        careers: {
+          "CA/CS (Later)": "Base for professional courses after 12th.",
+          "Management": "Foundation for BBA/MBA studies.",
+          "Finance": "Prepares for careers in economics, banking, stock market."
+        },
+        exams: ["Olympiads", "School-level Commerce Competitions"],
+        outcomes: [
+          "Commerce after 10th develops logical and financial thinking.",
+          "Prepares students for CA/CS/MBA future studies.",
+          "Strong choice for financially stable and prestigious careers."
+        ],
+        goals: "Build basics of accounting, business, and economics."
+      },
+      arts10: {
+        subjects: ["History", "Political Science", "Geography", "Psychology", "Sociology", "English"],
+        marking: "Boards: 80 marks theory + 20 marks internal assessment.",
+        careers: {
+          "Civil Services (Later)": "Ideal foundation for UPSC/JKPSC.",
+          "Law (Later)": "Prepares for CLAT after 12th.",
+          "Media/Design": "Creative fields like journalism, design, fine arts."
+        },
+        exams: ["Olympiads (Humanities)", "School-level Competitions"],
+        outcomes: [
+          "Arts after 10th develops critical and creative skills.",
+          "Strong foundation for civil services and law.",
+          "Nurtures leadership and social awareness."
+        ],
+        goals: "Shape perspectives for governance, law, and society."
+      },
+
+      // Data for After 12th
+      science12: {
+        subjects: ["Physics", "Chemistry", "Mathematics/Biology", "English", "Optional (Comp Sci/PE)"],
+        marking: "Boards: 70% theory + 30% practical. Competitive exams: speed & accuracy based.",
+        careers: {
+          "Engineering": "Civil, Mechanical, Computer, Electrical. Avg salary ₹4–10 LPA.",
+          "Medical": "Doctors, Surgeons, Dentists, Researchers. Avg salary ₹6–15 LPA.",
+          "Defence": "NDA, Navy, Airforce — secure and prestigious jobs.",
+          "Research & Abroad Studies": "Scholarships, IITs, foreign universities."
+        },
+        exams: ["JEE Main/Advanced", "NEET", "AIIMS", "BITSAT", "NDA", "SAT (for abroad)"],
+        outcomes: [
+          "Science after 12th opens the widest range of career paths.",
+          "Strong chance to crack JEE/NEET with focused effort.",
+          "Ensures both national and international opportunities."
+        ],
+        goals: "Engineer, Doctor, Scientist, Defence Officer — leadership & technical excellence."
+      },
+      commerce12: {
+        subjects: ["Accountancy", "Business Studies", "Economics", "Mathematics", "English"],
+        marking: "Boards: 80% theory + 20% practical.",
+        careers: {
+          "CA/CS": "Professional careers in finance & law. Avg salary ₹6–12 LPA.",
+          "Management": "BBA → MBA path. Avg salary ₹5–10 LPA.",
+          "Banking/Finance": "Jobs in RBI, Banking sector, Stock Market."
+        },
+        exams: ["CA Foundation", "CS Foundation", "CMA", "CUET", "CLAT"],
+        outcomes: [
+          "Commerce after 12th makes your child job-ready with professional paths.",
+          "CA/CS careers bring financial stability and social prestige.",
+          "Strong gateway for management & entrepreneurship."
+        ],
+        goals: "Lead businesses, manage finances, or pursue entrepreneurship."
+      },
+      arts12: {
+        subjects: ["History", "Political Science", "Geography", "Psychology", "Sociology", "English"],
+        marking: "Boards: 80 marks theory + 20 marks assessment.",
+        careers: {
+          "Civil Services": "UPSC/JKPSC. Salary ₹10–15 LPA.",
+          "Law (CLAT/LLB)": "Lawyer, Judge, Legal Advisor.",
+          "Media & Design": "Journalism, Designing, Fine Arts, Social Sciences."
+        },
+        exams: ["UPSC", "SSC", "CLAT", "State CET", "LSAT India"],
+        outcomes: [
+          "Arts after 12th gives direct access to prestigious exams like UPSC/CLAT.",
+          "Creative industries and media bring global opportunities.",
+          "Strong path for governance, leadership, and social impact."
+        ],
+        goals: "Shape society, create media influence, or practice law."
+      }
+    };
+
+    // Exam Data
+    const examData = {
+      "JEE Main/Advanced": "PCM based. 3–6 hours. High difficulty.",
+      "NEET": "Bio heavy. 720 marks. Duration: 3h 20m.",
+      "AIIMS": "Similar to NEET but more advanced.",
+      "BITSAT": "Online exam, 450 marks.",
+      "NDA": "Maths + GAT (900 marks).",
+      "SAT (for abroad)": "Reading, Writing, Math — used for foreign universities.",
+      "CA Foundation": "400 marks. 50% required to pass.",
+      "CS Foundation": "200 marks (4 subjects).",
+      "CMA": "3 levels, finance specialization.",
+      "CUET": "UG admissions test for central universities.",
+      "CLAT": "150 marks. Law admission test.",
+      "UPSC": "Prelims + Mains + Interview. Top government jobs.",
+      "SSC": "Tier 1 + Tier 2 exams.",
+      "State CET": "200 marks, state-level admissions.",
+      "LSAT India": "Law school admission test."
+    };
+
+    // Elements
+    const streamSelect = document.getElementById("streamSelect");
+    const infoSection = document.getElementById("infoSection");
+    const subjects = document.getElementById("subjects");
+    const markingScheme = document.getElementById("markingScheme");
+    const careerList = document.getElementById("careerList");
+    const careerDetails = document.getElementById("careerDetails");
+    const careerInfo = document.getElementById("careerInfo");
+    const examsList = document.getElementById("examsList");
+    const examDetails = document.getElementById("examDetails");
+    const examInfo = document.getElementById("examInfo");
+    const outcomes = document.getElementById("outcomes");
+    const goals = document.getElementById("goals");
+
+    // Helpers
+    function createCareerChip(career, info) {
+      const chip = document.createElement("span");
+      chip.className = "chip";
+      chip.textContent = career;
+      chip.addEventListener("click", () => {
+        careerDetails.classList.remove("hidden");
+        careerInfo.textContent = info;
+      });
+      return chip;
+    }
+
+    function createExamChip(exam) {
+      const chip = document.createElement("span");
+      chip.className = "chip";
+      chip.textContent = exam;
+      chip.addEventListener("click", () => {
+        examDetails.classList.remove("hidden");
+        examInfo.textContent = examData[exam] || "Details not available.";
+      });
+      return chip;
+    }
+
+    // Display Info
+    streamSelect.addEventListener("change", function() {
+      const stream = this.value;
+      if (!stream) { infoSection.classList.add("hidden"); return; }
+
+      const info = data[stream];
+      infoSection.classList.remove("hidden");
+
+      // Subjects
+      subjects.innerHTML = "";
+      info.subjects.forEach(sub => {
+        const li = document.createElement("li");
+        li.textContent = sub;
+        subjects.appendChild(li);
+      });
+
+      // Marking
+      markingScheme.textContent = info.marking;
+
+      // Careers
+      careerList.innerHTML = "";
+      Object.entries(info.careers).forEach(([career, desc]) => {
+        careerList.appendChild(createCareerChip(career, desc));
+      });
+      careerDetails.classList.add("hidden");
+
+      // Exams
+      examsList.innerHTML = "";
+      info.exams.forEach(exam => {
+        examsList.appendChild(createExamChip(exam));
+      });
+      examDetails.classList.add("hidden");
+
+      // Outcomes
+      outcomes.innerHTML = "";
+      info.outcomes.forEach(line => {
+        const p = document.createElement("p");
+        p.textContent = "✔ " + line;
+        outcomes.appendChild(p);
+      });
+
+      // Goals
+      goals.textContent = info.goals;
+    });
+
+    //Header 
+
+document.addEventListener('DOMContentLoaded', function () {
+  const profileButton = document.getElementById('profile-button');
+  const profileMenu = document.getElementById('profile-menu');
+
+  const appsMenuButton = document.getElementById('apps-menu-button');
+  const appsMenu = document.getElementById('apps-menu');
+
+  function toggleMenu(button, menu) {
+    if (!button || !menu) return;
+    button.addEventListener('click', function (e) {
+      e.stopPropagation();
+
+      // Close other menus
+      document.querySelectorAll('#apps-menu, #profile-menu').forEach(m => {
+        if (m !== menu) m.classList.add('hidden');
+      });
+
+      // Toggle this menu
+      menu.classList.toggle('hidden');
+    });
+  }
+
+  toggleMenu(profileButton, profileMenu);
+  toggleMenu(appsMenuButton, appsMenu);
+
+  // Close menus when clicking outside
+  document.addEventListener('click', function (event) {
+    if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+      profileMenu.classList.add('hidden');
+    }
+    if (!appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
+      appsMenu.classList.add('hidden');
+    }
+  });
+});
+
+  </script>
+</body>
+</html>

@@ -179,7 +179,7 @@
       if (data.success) {
         localStorage.setItem("studentName", name);
         localStorage.setItem("studentEmail", email);
-        window.location.href = "Profile.html";
+        window.location.href = "Home.html";
       } else {
         alert(data.message || "Signup failed!");
       }
@@ -201,7 +201,7 @@
       if (data.success) {
         localStorage.setItem("studentName", data.user.name);
         localStorage.setItem("studentEmail", data.user.email);
-        window.location.href = "Profile.html";
+        window.location.href = "Home.html";
       } else {
         alert(data.message || "Invalid credentials!");
       }

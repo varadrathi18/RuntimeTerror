@@ -108,11 +108,15 @@
 <body class="text-gray-800">
 
     <!-- Header Section -->
-    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+    <header class="bg-white sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="./Dashboard.html" class="text-2xl font-bold text-indigo-600">
-                <i class="fas fa-compass mr-2"></i>Disha J&K
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-3">
+            <img src="Disha.png" alt="Disha J&K Logo" class="h-14 md:h-16 w-auto">
+            <span class="text-xl md:text-2xl font-bold text-gray-800">Disha J&amp;K</span>
             </a>
+
+
             <!-- <div class="hidden md:flex space-x-6 items-center">
                 <a href="#features" class="text-gray-600 hover:text-indigo-600">Features</a>
                 <a href="#innovations" class="text-gray-600 hover:text-indigo-600">Innovations</a>
@@ -121,7 +125,7 @@
             </div> -->
             <div class="flex items-center space-x-4">
                 <!-- <a href="#" class="px-4 py-2 text-sm font-medium text-indigo-600 border border-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white transition-all">Log In</a> -->
-                <a href="./Login.html" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-full hover:bg-indigo-700 transition-all">Login/Sign Up</a>
+                <a href="./Login.html" class="px-4 py-2 text-sm font-medium text-white bg-cyan-600 rounded-full hover:bg-cyan-700 transition-all">Login/Sign Up</a>
                  <button id="mobile-menu-button" class="md:hidden text-2xl">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -264,7 +268,7 @@
         </section>
 
         <!-- College Directory Section -->
-        <section id="colleges" class="py-20 bg-indigo-700 text-white">
+        <section id="colleges" class="py-20 bg-cyan-700 text-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold reveal">Explore Your Future College</h2>
@@ -291,18 +295,26 @@
         </section>
 
          <!-- Parent Guidance Kit Section -->
-        <section id="parents" class="py-20 bg-green-50">
-            <div class="container mx-auto px-6 text-center">
-                <div class="reveal">
-                    <i class="fas fa-users text-5xl text-green-500 mb-4"></i>
-                    <h2 class="text-3xl md:text-4xl font-bold text-green-800">A Guide for Parents & Guardians</h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto mb-8">We believe in family. Here are simple, shareable resources to help you support your child in making the best decision for their future.</p>
-                     <a href="#" class="bg-green-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-green-700 transform hover:scale-105 transition-all shadow-lg">
-                       <i class="fas fa-download mr-2"></i> Access Parent Kit
-                    </a>
-                </div>
-            </div>
-        </section>
+        <section class="max-w-6xl mx-auto px-6 py-16">
+  <div class="p-8 md:p-12 rounded-xl bg-gradient-to-br from-white to-gray-50 
+              shadow-md hover:shadow-2xl border border-gray-100 
+              transform hover:-translate-y-2 transition duration-300 flex flex-col md:flex-row items-center">
+    
+    <div class="flex-1 mb-6 md:mb-0">
+      <h2 class="text-2xl font-bold mb-4">Learn about your student and their career</h2>
+      <p class="mb-6 text-gray-600">Resources to help parents and mentors guide students in making the best career decisions for their future.</p>
+      <a href="#" class="bg-cyan-700 text-white font-medium py-3 px-6 rounded-lg shadow hover:bg-indigo-700 transition">
+        <i class="fas fa-lightbulb mr-2"></i> Explore Now
+      </a>
+    </div>
+    
+    <div class="flex-1 flex justify-center">
+      <img src="Parent_Child.png" 
+           alt="Parent and child" 
+           class="rounded-lg shadow-md transition duration-300">
+    </div>
+  </div>
+</section>
 
     </main>
 
