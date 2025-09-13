@@ -99,13 +99,13 @@
         }
         
         /* Profile Menu */
-        #profile-menu {
+        /* #profile-menu {
             display: none;
         }
         
         #profile-menu.show {
             display: block;
-        }
+        } */
         /* Awareness Hub Cards (same as dashboard) */
         .dashboard-card {
           background: white;
@@ -196,23 +196,23 @@
                 </div>
                 
                 <!-- Profile Dropdown -->
-                <div class="relative">
-                    <button id="profile-button" class="w-10 h-10 bg-cyan-700 text-white rounded-full flex items-center justify-center font-bold">
-                        A
-                    </button>
-                    
-                    <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden">
-                        <div class="px-4 py-2 border-b">
-                            <p class="text-sm font-medium">Ayesha Khan</p>
-                            <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
-                        </div>
-                        <a href="Profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t">Logout</a>
-                    </div>
-                </div>
+        <div class="relative">
+          <button id="profile-button" class="w-10 h-10 bg-cyan-700 text-white rounded-full flex items-center justify-center font-bold">
+            <i class="fas fa-user"></i>
+          </button>
+          <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden">
+            <div class="px-4 py-2 border-b">
+              <p class="text-sm font-medium">Ayesha Khan</p>
+              <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
             </div>
-        </nav>
-    </header>
+            <a href="Profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
 
   <!-- Hero Section -->
     <!-- Hero Section (Banner Image) -->
@@ -442,17 +442,22 @@
 
   <!-- Scripts -->
   <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Profile dropdown
+  document.addEventListener('DOMContentLoaded', function() {
+    // Profile Dropdown
     const profileButton = document.getElementById('profile-button');
     const profileMenu = document.getElementById('profile-menu');
 
-    if (profileButton && profileMenu) {
-        profileButton.addEventListener('click', function(e) {
-            e.stopPropagation();
-            profileMenu.classList.toggle('hidden');
-        });
-    }
+    profileButton.addEventListener('click', function(e) {
+      e.stopPropagation();
+      profileMenu.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!profileButton.contains(e.target) && !profileMenu.contains(e.target)) {
+        profileMenu.classList.add('hidden');
+      }
+    });
+
 
     // Apps menu
     const appsMenuButton = document.getElementById('apps-menu-button');
