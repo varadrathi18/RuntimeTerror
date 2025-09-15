@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Career Reels</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     /* Background animation with logo colors */
     body {
@@ -107,22 +108,160 @@
         height: 70vh;
       }
     }
+    @media (max-width: 640px) {
+      .arrow-btn {
+        padding: 0.6rem 0.8rem;
+        font-size: 1.2rem;
+      }
+    }
+
+    /* Apps Menu */
+    .apps-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 320px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      z-index: 50;
+      margin-top: 8px;
+      display: grid;
+    }
+    .apps-menu.hidden {
+      display: none;
+    }
+    .app-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: #4b5563;
+    }
+    .app-item:hover {
+      background-color: #f3f4f6;
+      transform: translateY(-2px);
+    }
+    .app-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #e0e7ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      color: #0891b2;
+      font-size: 18px;
+    }
+    .app-name {
+      font-size: 12px;
+      text-align: center;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
   <!-- Header -->
+<<<<<<< HEAD
   <header class="bg-white shadow p-4 flex justify-between items-center">
     <div class="flex items-center gap-2">
       <img src="Disha.png" alt="Disha Logo" class="h-8">
       <h1 class="text-xl font-bold text-[#00758F]">Career Saarthi</h1>
+=======
+<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+  <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center space-x-3">
+      <img src="Disha.png" alt="Disha J&K Logo" class="h-14 md:h-16 w-auto">
+      <span class="text-xl md:text-2xl font-bold text-gray-800">Disha J&amp;K</span>
+    </a>
+
+    <div class="flex items-center space-x-4 mr-2">
+      <!-- Apps Menu -->
+      <div class="relative">
+        <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all">
+          <div class="grid grid-cols-3 gap-1 w-6 h-6">
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+          </div>
+        </button>    
+
+        <!-- Apps Menu Dropdown -->
+        <div id="apps-menu" class="apps-menu hidden">
+          <a href="Home.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-road"></i></div>
+            <span class="app-name">Home</span>
+          </a>
+          <a href="CareerShortlist.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-list"></i></div>
+            <span class="app-name">Career Shortlist</span>
+          </a>
+          <a href="Quiz.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-chart-line"></i></div>
+            <span class="app-name">Quiz</span>
+          </a>
+          <a href="Admission.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-book"></i></div>
+            <span class="app-name">Admission Tracking</span>
+          </a>
+          <a href="CourseMap.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-brain"></i></div>
+            <span class="app-name">Course to Career Map</span>
+          </a>
+          <a href="Map.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-user-graduate"></i></div>
+            <span class="app-name">Map Feature</span>
+          </a>
+          <a href="FutureTrend.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-globe"></i></div>
+            <span class="app-name">Future Trends</span>
+          </a>
+          <a href="Reels.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-video"></i></div>
+            <span class="app-name">Career Reels</span>
+          </a>
+          <a href="About.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-newspaper"></i></div>
+            <span class="app-name">About Us</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Profile Menu -->
+      <div class="relative">
+        <button id="profile-button" class="w-10 h-10 bg-cyan-700 text-white rounded-full flex items-center justify-center font-bold">
+          A
+        </button>
+        
+        <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden">
+          <div class="px-4 py-2 border-b">
+            <p class="text-sm font-medium">Aryan Shingare</p>
+            <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
+          </div>
+          <a href="Profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t">Logout</a>
+        </div>
+      </div>
+>>>>>>> 69945db (Final)
     </div>
-    <nav class="space-x-4">
-      <a href="#" class="text-gray-600 hover:text-[#00758F]">Home</a>
-      <a href="#" class="text-gray-600 hover:text-[#00758F]">About</a>
-      <a href="#" class="text-gray-600 hover:text-[#00758F]">Contact</a>
-    </nav>
-  </header>
+  </nav>
+</header>
+
 
   <!-- Subheading -->
   <section class="bg-[#5EC3D0] text-center py-6 shadow-sm">
@@ -140,7 +279,8 @@
       <!-- Reel 1 -->
       <div class="reel">
         <iframe 
-          src="https://www.youtube.com/embed/7aW7aYdV7KQ?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=7aW7aYdV7KQ" 
+          title="Career in Computer Engineering"
+          data-src="https://www.youtube.com/embed/7aW7aYdV7KQ?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=7aW7aYdV7KQ"
           frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
         </iframe>
         <div class="overlay">
@@ -152,7 +292,8 @@
       <!-- Reel 2 -->
       <div class="reel">
         <iframe 
-          src="https://www.youtube.com/embed/EcEQeGFHRbA?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=EcEQeGFHRbA" 
+          title="Career in Design"
+          data-src="https://www.youtube.com/embed/EcEQeGFHRbA?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=EcEQeGFHRbA"
           frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
         </iframe>
         <div class="overlay">
@@ -164,7 +305,86 @@
       <!-- Reel 3 -->
       <div class="reel">
         <iframe 
-          src="https://www.youtube.com/embed/kJQP7kiw5Fk?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=kJQP7kiw5Fk" 
+          title="Career in Marketing"
+          data-src="https://www.youtube.com/embed/kJQP7kiw5Fk?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=kJQP7kiw5Fk"
+          frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
+        </iframe>
+        <div class="overlay">
+          <h3>Career in Marketing</h3>
+          <p>Digital marketing & brand strategy.</p>
+        </div>
+      </div>
+    </div>
+      <!-- Reel 4 -->
+      <div class="reel">
+        <iframe 
+          title="Career in Marketing"
+          data-src="https://www.youtube.com/embed/kJQP7kiw5Fk?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=kJQP7kiw5Fk"
+          frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
+        </iframe>
+        <div class="overlay">
+          <h3>Career in Marketing</h3>
+          <p>Digital marketing & brand strategy.</p>
+        </div>
+      </div>
+    </div>
+      <!-- Reel 5 -->
+      <div class="reel">
+        <iframe 
+          title="Career in Marketing"
+          data-src="https://www.youtube.com/embed/kJQP7kiw5Fk?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=kJQP7kiw5Fk"
+          frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
+        </iframe>
+        <div class="overlay">
+          <h3>Career in Marketing</h3>
+          <p>Digital marketing & brand strategy.</p>
+        </div>
+      </div>
+    </div>
+      <!-- Reel 6 -->
+      <div class="reel">
+        <iframe 
+          title="Career in Marketing"
+          data-src="https://www.youtube.com/embed/kJQP7kiw5Fk?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=kJQP7kiw5Fk"
+          frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
+        </iframe>
+        <div class="overlay">
+          <h3>Career in Marketing</h3>
+          <p>Digital marketing & brand strategy.</p>
+        </div>
+      </div>
+    </div>
+      <!-- Reel 7 -->
+      <div class="reel">
+        <iframe 
+          title="Career in Marketing"
+          data-src="https://www.youtube.com/embed/kJQP7kiw5Fk?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=kJQP7kiw5Fk"
+          frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
+        </iframe>
+        <div class="overlay">
+          <h3>Career in Marketing</h3>
+          <p>Digital marketing & brand strategy.</p>
+        </div>
+      </div>
+    </div>
+      <!-- Reel 8 -->
+      <div class="reel">
+        <iframe 
+          title="Career in Marketing"
+          data-src="https://www.youtube.com/embed/kJQP7kiw5Fk?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=kJQP7kiw5Fk"
+          frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
+        </iframe>
+        <div class="overlay">
+          <h3>Career in Marketing</h3>
+          <p>Digital marketing & brand strategy.</p>
+        </div>
+      </div>
+    </div>
+      <!-- Reel 9 -->
+      <div class="reel">
+        <iframe 
+          title="Career in Marketing"
+          data-src="https://www.youtube.com/embed/kJQP7kiw5Fk?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=kJQP7kiw5Fk"
           frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
         </iframe>
         <div class="overlay">
@@ -179,8 +399,41 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-white shadow p-4 text-center">
-    <p class="text-gray-500">&copy; 2025 Career Saarthi. All rights reserved.</p>
+  <footer class="bg-gray-900 text-gray-400 py-10">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Disha J&K</h3>
+        <p>Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-white">About Us</a></li>
+          <li><a href="#" class="hover:text-white">Contact</a></li>
+          <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Resources</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-white">Career Assessment</a></li>
+          <li><a href="#" class="hover:text-white">Scholarships</a></li>
+          <li><a href="#" class="hover:text-white">College Directory</a></li>
+          <li><a href="#" class="hover:text-white">Success Stories</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Connect</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-sm mt-8 border-t border-gray-700 pt-6">&copy; 2025 Disha J&K. All rights reserved.</div>
   </footer>
 
   <!-- JS for navigation -->
@@ -190,10 +443,13 @@
 
     function showReel(index) {
       reels.forEach((reel, i) => {
+        const iframe = reel.querySelector("iframe");
         if (i === index) {
           reel.classList.add("active");
+          iframe.src = iframe.dataset.src; // load video
         } else {
           reel.classList.remove("active");
+          iframe.src = ""; // stop hidden video
         }
       });
     }
@@ -210,7 +466,43 @@
 
     // Initialize
     showReel(currentIndex);
-  </script>
 
+    // Header menus
+    document.addEventListener('DOMContentLoaded', function () {
+      const profileButton = document.getElementById('profile-button');
+      const profileMenu = document.getElementById('profile-menu');
+
+      const appsMenuButton = document.getElementById('apps-menu-button');
+      const appsMenu = document.getElementById('apps-menu');
+
+      function toggleMenu(button, menu) {
+        if (!button || !menu) return;
+        button.addEventListener('click', function (e) {
+          e.stopPropagation();
+
+          // Close other menus
+          document.querySelectorAll('#apps-menu, #profile-menu').forEach(m => {
+            if (m !== menu) m.classList.add('hidden');
+          });
+
+          // Toggle this menu
+          menu.classList.toggle('hidden');
+        });
+      }
+
+      toggleMenu(profileButton, profileMenu);
+      toggleMenu(appsMenuButton, appsMenu);
+
+      // Close menus when clicking outside
+      document.addEventListener('click', function (event) {
+        if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+          profileMenu.classList.add('hidden');
+        }
+        if (!appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
+          appsMenu.classList.add('hidden');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

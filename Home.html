@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
   <title>Home - Disha J&K Career Guidance</title>
   
   <!-- Tailwind CSS -->
@@ -18,31 +19,68 @@
   <meta name="theme-color" content="#0d9488">
 
   <style>
+    :root {
+      /* Light theme (default) */
+      --bg-primary: #f9fafb;
+      --bg-secondary: #ffffff;
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --border-color: #e5e7eb;
+      --app-icon-bg: #e0e7ff;
+      --app-icon-color: #4f46e5;
+      --app-item-hover: #f3f4f6;
+      --card-bg: #ffffff;
+      --footer-bg: #111827;
+      --footer-text: #9ca3af;
+    }
+
+    [data-theme="dark"] {
+      /* Dark theme */
+      --bg-primary: #111827;
+      --bg-secondary: #1f2937;
+      --text-primary: #f9fafb;
+      --text-secondary: #d1d5db;
+      --border-color: #374151;
+      --app-icon-bg: #374151;
+      --app-icon-color: #e0e7ff;
+      --app-item-hover: #374151;
+      --card-bg: #1f2937;
+      --footer-bg: #030712;
+      --footer-text: #6b7280;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #f9fafb;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      transition: background-color 0.3s, color 0.3s;
     }
+
     /* Animated Gradient Background */
     .gradient-animate {
       background: linear-gradient(270deg, #6366f1, #3364ea, #0666d4, #1c4aae);
       background-size: 800% 800%;
       animation: gradientShift 12s ease infinite;
     }
+    
     @keyframes gradientShift {
       0% {background-position: 0% 50%;}
       50% {background-position: 100% 50%;}
       100% {background-position: 0% 50%;}
     }
+    
     /* Scroll Fade-in */
     .fade-up {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
+    
     .fade-up.show {
       opacity: 1;
       transform: translateY(0);
     }
+<<<<<<< HEAD
       .apps-menu {
             display: none;
             position: absolute;
@@ -114,17 +152,237 @@
           transition: all 0.3s ease;
           border: 1px solid #e5e7eb;
         }
+=======
+    
+    .apps-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 320px;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      z-index: 50;
+      margin-top: 8px;
+      border: 1px solid var(--border-color);
+    }
+    
+    .apps-menu.show {
+      display: grid;
+    }
+    
+    .app-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: var(--text-secondary);
+    }
+    
+    .app-item:hover {
+      background-color: var(--app-item-hover);
+      transform: translateY(-2px);
+    }
+    
+    .app-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--app-icon-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      color: var(--app-icon-color);
+      font-size: 18px;
+    }
+    
+    .app-name {
+      font-size: 12px;
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    /* Profile Menu */
+    /* #profile-menu {
+      display: none;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+    } */
+    
+    /* #profile-menu.show {
+      display: block;
+    } */
+    
+    /* Awareness Hub Cards (same as dashboard) */
+    .dashboard-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+    }
+>>>>>>> 69945db (Final)
 
-        .dashboard-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
-        }
+    .dashboard-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+    }
 
+    /* Theme Toggle Switch */
+    .theme-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 28px;
+    }
+
+    .theme-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .theme-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .theme-slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .theme-slider {
+      background-color: #0ea5e9;
+    }
+
+    input:checked + .theme-slider:before {
+      transform: translateX(32px);
+    }
+
+    /* Dark mode footer */
+    .dark-mode-footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+    }
+
+    /* Chatbot*/
+     df-messenger {
+        flex: 1;
+        width: 100%;
+        border: none;
+      }
+
+      /*Notification */
+      @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  /* Mobile menu styles */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 75%;
+    height: 100vh;
+    background: var(--bg-secondary);
+    z-index: 100;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .mobile-menu.open {
+    transform: translateX(0);
+    display: block;
+  }
+  
+  .mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+  }
+  
+  .mobile-menu-overlay.open {
+    display: block;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .theme-labels {
+      display: none;
+    }
+    
+    .theme-switch {
+      width: 50px;
+      height: 24px;
+    }
+    
+    .theme-slider:before {
+      height: 18px;
+      width: 18px;
+    }
+    
+    input:checked + .theme-slider:before {
+      transform: translateX(26px);
+    }
+    
+    .apps-menu {
+      width: 280px;
+      right: -50px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .header-container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    .logo-text {
+      display: none;
+    }
+  }
   </style>
 </head>
 <body class="text-gray-800">
 
   <!-- Header -->
+<<<<<<< HEAD
   <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <!-- Logo -->
@@ -391,59 +649,574 @@
       <p class="mb-6 text-gray-600">Resources to help parents and mentors guide students in making the best career decisions for their future.</p>
       <a href="Parents.html" class="bg-cyan-700 text-white font-medium py-3 px-6 rounded-lg shadow hover:bg-indigo-700 transition">
         <i class="fas fa-lightbulb mr-2"></i> Explore Now
+=======
+  <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm dark:bg-gray-900/80">
+    <nav class="container mx-auto px-4 py-3 flex justify-between items-center header-container">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-2 md:space-x-3">
+        <img src="Disha.png" alt="Disha J&K Logo" class="h-12 md:h-16 w-auto">
+        <span class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white logo-text">Disha J&amp;K</span>
+>>>>>>> 69945db (Final)
       </a>
-    </div>
+      
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-4 mr-2">
+        <!-- Theme Toggle -->
+        <div class="flex items-center mr-4">
+          <span class="mr-2 text-sm text-gray-600 dark:text-gray-300 theme-labels">Light</span>
+          <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="theme-slider"></span>
+          </label>
+          <span class="ml-2 text-sm text-gray-600 dark:text-gray-300 theme-labels">Dark</span>
+        </div>
+        
+        <!-- Apps Menu Button -->
+        <div class="relative">
+          <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all">
+            <div class="grid grid-cols-3 gap-1 w-6 h-6">
+              <div class="w-1.5 h-1.5 bg-gray-600 dark:bg-gray-300 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 dark:bg-gray-300 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 dark:bg-gray-300 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 dark:bg-gray-300 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 dark:bg-gray-300 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 dark:bg-gray-300 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 dark:bg-gray-300 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 dark:bg-gray-300 rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-gray-600 dark:bg-gray-300 rounded-full"></div>
+            </div>
+          </button>    
+          <!-- Apps Menu Dropdown -->
+          <div id="apps-menu" class="apps-menu">
+            <a href="Home.html" class="app-item">
+              <div class="app-icon"><i class="fas fa-road"></i></div>
+              <span class="app-name">Home</span>
+            </a>
+            <a href="CareerShortlist.html" class="app-item">
+              <div class="app-icon"><i class="fas fa-list"></i></div>
+              <span class="app-name">Career Shortlist</span>
+            </a>
+            <a href="Quiz.html" class="app-item">
+              <div class="app-icon"><i class="fas fa-chart-line"></i></div>
+              <span class="app-name">Quiz</span>
+            </a>
+            <a href="Admission.html" class="app-item">
+              <div class="app-icon"><i class="fas fa-book"></i></div>
+              <span class="app-name">Admission Tracking</span>
+            </a>
+            <a href="CourseMap.html" class="app-item">
+              <div class="app-icon"><i class="fas fa-brain"></i></div>
+              <span class="app-name">Course to Career Map</span>
+            </a>
+            <a href="Map.html" class="app-item">
+              <div class="app-icon"><i class="fas fa-user-graduate"></i></div>
+              <span class="app-name">Map Feature</span>
+            </a>
+            <a href="FutureTrend.html" class="app-item">
+              <div class="app-icon"><i class="fas fa-globe"></i></div>
+              <span class="app-name">Future Trends</span>
+            </a>
+            <a href="Reels.html" class="app-item">
+              <div class="app-icon"><i class="fas fa-video"></i></div>
+              <span class="app-name">Career Reels</span>
+            </a>
+            <a href="About.html" class="app-item">
+              <div class="app-icon"><i class="fas fa-newspaper"></i></div>
+              <span class="app-name">About Us</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Profile Dropdown -->
+        <div class="relative">
+          <button id="profile-button" class="w-10 h-10 bg-cyan-700 text-white rounded-full flex items-center justify-center font-bold">
+            A
+          </button>
+          
+          <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 z-50 hidden">
+            <div class="px-4 py-2 border-b dark:border-gray-700">
+              <p class="text-sm font-medium dark:text-white">Ayesha Khan</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Grade 12, Srinagar</p>
+            </div>
+            <a href="Profile.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Profile</a>
+            <a href="Login.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border-t dark:border-gray-700">Logout</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mobile menu button -->
+      <div class="flex items-center md:hidden">
+        <!-- Theme Toggle (mobile) -->
+        <div class="flex items-center mr-3">
+          <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle-mobile">
+            <span class="theme-slider"></span>
+          </label>
+        </div>
+        
+        <button id="mobile-menu-button" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all">
+          <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
     
-    <div class="flex-1 flex justify-center">
-      <img src="Parent_Child.png" 
-           alt="Parent and child" 
-           class="rounded-lg shadow-md transition duration-300">
+    <!-- Mobile menu -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+    <div id="mobile-menu" class="mobile-menu">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-bold dark:text-white">Menu</h2>
+        <button id="close-mobile-menu" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+          <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="mb-6">
+        <div class="flex items-center space-x-3 mb-4 p-3 bg-gray-100 dark:bg-gray-700 rounded-lg">
+          <div class="w-10 h-10 bg-cyan-700 text-white rounded-full flex items-center justify-center font-bold">A</div>
+          <div>
+            <p class="text-sm font-medium">Aryan Shingare</p>
+            <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
+          </div>
+        </div>
+        
+        <a href="Profile.html" class="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg mb-1">Profile</a>
+        <a href="#" class="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">Logout</a>
+      </div>
+      
+      <h3 class="font-semibold text-gray-500 dark:text-gray-400 text-sm uppercase mb-3 pl-4">Apps</h3>
+      <div class="grid grid-cols-3 gap-3 mb-8">
+        <a href="Home.html" class="app-item">
+          <div class="app-icon"><i class="fas fa-road"></i></div>
+          <span class="app-name">Home</span>
+        </a>
+        <a href="CareerShortlist.html" class="app-item">
+          <div class="app-icon"><i class="fas fa-list"></i></div>
+          <span class="app-name">Career Shortlist</span>
+        </a>
+        <a href="Quiz.html" class="app-item">
+          <div class="app-icon"><i class="fas fa-chart-line"></i></div>
+          <span class="app-name">Quiz</span>
+        </a>
+        <a href="Admission.html" class="app-item">
+          <div class="app-icon"><i class="fas fa-book"></i></div>
+          <span class="app-name">Admission Tracking</span>
+        </a>
+        <a href="CourseMap.html" class="app-item">
+          <div class="app-icon"><i class="fas fa-brain"></i></div>
+          <span class="app-name">Course to Career Map</span>
+        </a>
+        <a href="Map.html" class="app-item">
+          <div class="app-icon"><i class="fas fa-user-graduate"></i></div>
+          <span class="app-name">Map Feature</span>
+        </a>
+        <a href="FutureTrend.html" class="app-item">
+          <div class="app-icon"><i class="fas fa-globe"></i></div>
+          <span class="app-name">Future Trends</span>
+        </a>
+        <a href="Reels.html" class="app-item">
+          <div class="app-icon"><i class="fas fa-video"></i></div>
+          <span class="app-name">Career Reels</span>
+        </a>
+        <a href="About.html" class="app-item">
+          <div class="app-icon"><i class="fas fa-newspaper"></i></div>
+          <span class="app-name">About Us</span>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </header>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-400 py-10">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div>
-        <h3 class="text-lg font-bold text-white mb-4">Disha J&K</h3>
-        <p>Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
-      </div>
-      <div>
-        <h3 class="text-lg font-bold text-white mb-4">Quick Links</h3>
-        <ul class="space-y-2">
-          <li><a href="#" class="hover:text-white">About Us</a></li>
-          <li><a href="#" class="hover:text-white">Contact</a></li>
-          <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
-          <li><a href="#" class="hover:text-white">Terms of Service</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-lg font-bold text-white mb-4">Resources</h3>
-        <ul class="space-y-2">
-          <li><a href="#" class="hover:text-white">Career Assessment</a></li>
-          <li><a href="#" class="hover:text-white">Scholarships</a></li>
-          <li><a href="#" class="hover:text-white">College Directory</a></li>
-          <li><a href="#" class="hover:text-white">Success Stories</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-lg font-bold text-white mb-4">Connect</h3>
-        <div class="flex space-x-4">
-          <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="hover:text-white"><i class="fab fa-youtube"></i></a>
+  <!-- Rest of your content remains exactly the same -->
+  <!-- Hero Section -->
+  <section class="relative w-full min-h-[60vh] md:min-h-[75vh] lg:min-h-[85vh] flex items-center justify-center bg-white dark:bg-gray-900">
+    <img src="Banner.png" 
+         alt="Disha J&K Banner" 
+         class="w-full h-full object-cover object-center">
+
+    <!-- Profile Booster Overlay -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-3xl px-4">
+      <div class="bg-white/10 dark:bg-gray-800/80 backdrop-blur-md border border-white/20 dark:border-gray-700 rounded-2xl shadow-2xl p-8 text-center">
+        
+        <!-- Info -->
+        <h3 class="text-white text-3xl md:text-4xl font-extrabold tracking-wide">
+          Boost Your Profile 🚀
+        </h3>
+        <p class="text-white/90 text-lg md:text-xl font-medium mt-4 leading-relaxed">
+          Build your profile to unlock <span class="font-semibold">career guidance</span>, 
+          <span class="font-semibold">scholarship alerts</span>, and 
+          <span class="font-semibold">mentor connections</span>.  
+          Take our short quiz and start your journey today!
+        </p>
+
+        <!-- Button -->
+        <div class="mt-8">
+          <a href="quiz.html"
+             class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg transition duration-300">
+            Start Quiz
+          </a>
         </div>
       </div>
     </div>
-    <div class="text-center text-sm mt-8 border-t border-gray-700 pt-6">&copy; 2025 Disha J&K. All rights reserved.</div>
-  </footer>
+  </section>
+
+  <!-- Find Solutions Section -->
+  <section class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+    <h2 class="text-2xl sm:text-3xl font-bold text-center mb-12 dark:text-white">Find Solutions to Your Problems</h2>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Card 1 -->
+      <a href="Map.html" class="p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-md 
+                  hover:shadow-xl hover:-translate-y-2 transition duration-300">
+        <div class="flex items-center justify-center w-14 h-14 bg-green-100 text-green-600 rounded-lg mb-4">
+          <i class="fas fa-chart-line text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2 dark:text-white">Hyper-Local Aspiration Map</h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm">Discover success stories from your district and get inspired by local role models.</p>
+        <span class="text-indigo-600 dark:text-indigo-400 text-sm font-medium">Explore &rarr;</span>
+      </a>
+      
+      <!-- Card 2 -->
+      <a href="#" class="p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-md 
+                  hover:shadow-xl hover:-translate-y-2 transition duration-300">
+        <div class="flex items-center justify-center w-14 h-14 bg-pink-100 text-pink-600 rounded-lg mb-4">
+          <i class="fas fa-book text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2 dark:text-white">Conversational AI Test</h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm">Chat with our AI in Kashmiri, Urdu, or English to discover your passion and strengths.</p>
+        <!-- <span class="text-indigo-600 dark:text-indigo-400 text-sm font-medium">Chat Now &rarr;</span> -->
+      </a>
+
+      
+      <!-- Card 3 -->
+      <a href="Reels.html" class="p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-md 
+                  hover:shadow-xl hover:-translate-y-2 transition duration-300">
+        <div class="flex items-center justify-center w-14 h-14 bg-yellow-100 text-pink-600 rounded-lg mb-4">
+          <i class="fas fa-book text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2 dark:text-white">GenAI Career Reels</h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm">Watch AI-generated short videos showcasing different careers and day-in-the-life experiences.</p>
+        <span class="text-indigo-600 dark:text-indigo-400 text-sm font-medium">Watch &rarr;</span>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="Mentor.html" class="p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-md 
+                  hover:shadow-xl hover:-translate-y-2 transition duration-300">
+        <div class="flex items-center justify-center w-14 h-14 bg-green-100 text-pink-600 rounded-lg mb-4">
+          <i class="fas fa-book text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2 dark:text-white">Kashmir's Pride Mentorship</h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm">Connect with successful professionals from J&K who have walked the same path as you.</p>
+        <span class="text-indigo-600 dark:text-indigo-400 text-sm font-medium">Connect Now &rarr;</span>
+      </a>
+
+      <!-- Card 5 -->
+      <a href="FutureTrend.html" 
+         class="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+        <div class="flex items-center justify-center w-14 h-14 bg-yellow-100 text-yellow-600 rounded-lg mb-4">
+          <i class="fas fa-globe text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2 dark:text-white">Worried About Future Careers?</h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Check out <strong>Future Trends</strong> to prepare for upcoming opportunities.</p>
+        <span class="text-yellow-600 dark:text-yellow-400 text-sm font-medium">Discover &rarr;</span>
+      </a>
+
+      <!-- Card 6 -->
+      <a href="Admission.html" 
+         class="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+        <div class="flex items-center justify-center w-14 h-14 bg-pink-100 text-pink-600 rounded-lg mb-4">
+          <i class="fas fa-book text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2 dark:text-white">Confused About Admissions?</h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Track applications with our <strong>Admission Tracking</strong> system.</p>
+        <span class="text-pink-600 dark:text-pink-400 text-sm font-medium">Track Now &rarr;</span>
+      </a> 
+
+      <!-- card 7 -->
+       <a href="CareerShortlist.html" 
+         class="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+        <div class="flex items-center justify-center w-14 h-14 bg-indigo-100 text-indigo-600 rounded-lg mb-4">
+          <i class="fas fa-list text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2 dark:text-white">Too Many Career Choices?</h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Use our <strong>Career Shortlist</strong> tool to narrow down the best paths for you.</p>
+        <span class="text-indigo-600 dark:text-indigo-400 text-sm font-medium">Explore &rarr;</span>
+      </a> 
+
+      <!-- card 8 -->
+        <a href="CareerShortlist.html" 
+         class="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+        <div class="flex items-center justify-center w-14 h-14 bg-indigo-100 text-indigo-600 rounded-lg mb-4">
+          <i class="fas fa-list text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2 dark:text-white">Create Career Roadmap</h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Step-by-step plan tailored to your goals and aspirations which narrow down the best paths for you.</p>
+        <span class="text-indigo-600 dark:text-indigo-400 text-sm font-medium">Explore &rarr;</span>
+      </a> 
+       
+      <!-- card 9 -->
+        <div class="p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-md 
+                  hover:shadow-xl hover:-translate-y-2 transition duration-300">
+        <div class="flex items-center justify-center w-14 h-14 bg-green-100 text-green-600 rounded-lg mb-4">
+          <i class="fas fa-chart-line text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2 dark:text-white">Global Learning Journey</h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm">Explore worldwide educational and career opportunities.</p>
+        <span class="text-indigo-600 dark:text-indigo-400 text-sm font-medium">Explore &rarr;</span>
+      </div>
+    </div>
+  </section>
+
+    <!-- Virtual College Tours Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+              <div class="flex justify-between items-center mb-6">
+                  <h2 class="text-2xl font-bold dark:text-white">Virtual College Tours</h2>
+                  <a href="#" class="text-indigo-600 hover:underline dark:text-indigo-400">View all</a>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <!-- College 1 -->
+                  <div class="dashboard-card overflow-hidden">
+                      <div class="relative">
+                          <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=500" alt="College image" class="w-full h-48 object-cover">
+                          <div class="absolute inset-0 flex items-center justify-center">
+                              <div class="w-12 h-12 bg-white bg-opacity-80 rounded-full flex items-center justify-center">
+                                  <i class="fas fa-vr-cardboard text-indigo-600"></i>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="p-4">
+                          <h3 class="font-bold mb-1 dark:text-white">Govt. Degree College, Baramulla</h3>
+                          <p class="text-gray-600 text-sm dark:text-gray-300">Take a virtual tour of the campus and facilities</p>
+                      </div>
+                  </div>
+                  
+                  <!-- College 2 -->
+                  <div class="dashboard-card overflow-hidden">
+                      <div class="relative">
+                          <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=500" alt="College image" class="w-full h-48 object-cover">
+                          <div class="absolute inset-0 flex items-center justify-center">
+                              <div class="w-12 h-12 bg-white bg-opacity-80 rounded-full flex items-center justify-center">
+                                  <i class="fas fa-vr-cardboard text-indigo-600"></i>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="p-4">
+                          <h3 class="font-bold mb-1 dark:text-white">Islamia College of Science & Commerce</h3>
+                          <p class="text-gray-600 text-sm dark:text-gray-300">Explore this prestigious institution virtually</p>
+                      </div>
+                  </div>
+                  
+                  <!-- College 3 -->
+                  <div class="dashboard-card overflow-hidden">
+                      <div class="relative">
+                          <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=500" alt="College image" class="w-full h-48 object-cover">
+                          <div class="absolute inset-0 flex items-center justify-center">
+                              <div class="w-12 h-12 bg-white bg-opacity-80 rounded-full flex items-center justify-center">
+                                  <i class="fas fa-vr-cardboard text-indigo-600"></i>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="p-4">
+                          <h3 class="font-bold mb-1 dark:text-white">University of Kashmir</h3>
+                          <p class="text-gray-600 text-sm dark:text-gray-300">Virtual tour of the main campus and departments</p>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+  <!-- Awareness Hub Section -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+              <div class="flex justify-between items-center mb-6">
+                  <h2 class="text-2xl font-bold dark:text-white">Awareness Hub</h2>
+                  <a href="#" class="text-indigo-600 hover:underline dark:text-indigo-400">View all</a>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <!-- Article 1 -->
+                  <div class="dashboard-card overflow-hidden">
+                      <img src="https://images.unsplash.com/photo-1584697964358-3e14ca57658b?auto=format&fit=crop&q=80&w=500" alt="Article image" class="w-full h-48 object-cover">
+                      <div class="p-6">
+                          <span class="text-xs font-semibold text-indigo-500">MYTH BUSTER</span>
+                          <h3 class="text-lg font-bold mt-2 mb-3 dark:text-white">Is a B.A. Degree "Useless"? Think Again!</h3>
+                          <p class="text-gray-600 text-sm mb-4 dark:text-gray-300">Discover how an Arts degree can be your direct ticket to Civil Services, journalism, and creative industries.</p>
+                          <a href="#" class="text-indigo-600 font-semibold text-sm hover:underline dark:text-indigo-400">Read More &rarr;</a>
+                      </div>
+                  </div>
+                  
+                  <!-- Article 2 -->
+                  <div class="dashboard-card overflow-hidden">
+                      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=500" alt="Article image" class="w-full h-48 object-cover">
+                      <div class="p-6">
+                          <span class="text-xs font-semibold text-pink-500">SPOTLIGHT</span>
+                          <h3 class="text-lg font-bold mt-2 mb-3 dark:text-white">The Hidden Gems: Why J&K Govt. Colleges are Your Best Bet</h3>
+                          <p class="text-gray-600 text-sm mb-4 dark:text-gray-300">Low fees, experienced faculty, and a direct path to success. We uncover the real advantages.</p>
+                          <a href="#" class="text-indigo-600 font-semibold text-sm hover:underline dark:text-indigo-400">Read More &rarr;</a>
+                      </div>
+                  </div>
+                  
+                  <!-- Article 3 -->
+                  <div class="dashboard-card overflow-hidden">
+                      <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=500" alt="Article image" class="w-full h-48 object-cover">
+                      <div class="p-6">
+                          <span class="text-xs font-semibold text-green-500">GUIDE</span>
+                          <h3 class="text-lg font-bold mt-2 mb-3 dark:text-white">Your Guide to PMSSS and Other Scholarships</h3>
+                          <p class="text-gray-600 text-sm mb-4 dark:text-gray-300">Complete list of scholarships available for students from Jammu and Kashmir.</p>
+                          <a href="#" class="text-indigo-600 font-semibold text-sm hover:underline dark:text-indigo-400">Read More &rarr;</a>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+    <!-- Parent Section -->
+    <section class="max-w-6xl mx-auto px-6 py-16">
+    <div class="p-8 md:p-12 rounded-xl bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900
+                shadow-md hover:shadow-2xl border border-gray-100 dark:border-gray-700
+                transform hover:-translate-y-2 transition duration-300 flex flex-col md:flex-row items-center">
+      
+      <div class="flex-1 mb-6 md:mb-0">
+        <h2 class="text-2xl font-bold mb-4 dark:text-white">Learn about your student and their career</h2>
+        <p class="mb-6 text-gray-600 dark:text-gray-300">Resources to help parents and mentors guide students in making the best career decisions for their future.</p>
+        <a href="Parents.html" class="bg-cyan-700 text-white font-medium py-3 px-6 rounded-lg shadow hover:bg-indigo-700 transition">
+          <i class="fas fa-lightbulb mr-2"></i> Explore Now
+        </a>
+      </div>
+      
+      <div class="flex-1 flex justify-center">
+        <img src="Parent_Child.png" 
+             alt="Parent and child" 
+             class="rounded-lg shadow-md transition duration-300">
+      </div>
+    </div>
+  </section>
+  <!-- Chatbot-->
+   <df-messenger
+    intent="WELCOME"
+    chat-title="Career-Guru"
+    agent-id="df9df458-2107-4375-bf1d-51427b581e1c"
+    language-code="en"
+  ></df-messenger>
+    <!-- Footer -->
+    <footer class="dark-mode-footer py-10">
+      <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-lg font-bold text-white mb-4">Disha J&K</h3>
+          <p>Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white">About Us</a></li>
+            <li><a href="#" class="hover:text-white">Contact</a></li>
+            <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white mb-4">Resources</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white">Career Assessment</a></li>
+            <li><a href="#" class="hover:text-white">Scholarships</a></li>
+            <li><a href="#" class="hover:text-white">College Directory</a></li>
+            <li><a href="#" class="hover:text-white">Success Stories</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white mb-4">Connect</h3>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-white"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center text-sm mt-8 border-t border-gray-700 pt-6">&copy; 2025 Disha J&K. All rights reserved.</div>
+    </footer>
+  <!-- Admission/Scholarship Popup -->
+  <div id="popup-notice" 
+       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] hidden">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl max-w-md w-full p-6 relative animate-fadeIn">
+      
+      <!-- Close Button -->
+      <button onclick="closePopup()" 
+              class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 dark:hover:text-white">
+        ✕
+      </button>
+
+      <!-- Content -->
+      <h2 class="text-2xl font-bold text-cyan-700 dark:text-cyan-400 mb-3">
+        🎓 Admission & Scholarship Alert!
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300 mb-4">
+        Applications for <strong>PMSSS Scholarship 2025</strong> are now open.  
+        Don't miss out — apply before <strong>30th September</strong>.
+      </p>
+
+      <!-- Action Button -->
+      <div class="flex justify-end">
+        <a href="Admission.html" 
+           class="px-4 py-2 rounded-lg bg-cyan-600 text-white hover:bg-cyan-700">
+          Apply Now
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script>
+<<<<<<< HEAD
   document.addEventListener('DOMContentLoaded', function() {
     // Profile Dropdown
+=======
+document.addEventListener('DOMContentLoaded', function() {
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const currentTheme = localStorage.getItem('theme');
+
+    // Set initial theme
+    if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        if (themeToggle) themeToggle.checked = true;
+        if (themeToggleMobile) themeToggleMobile.checked = true;
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        if (themeToggle) themeToggle.checked = false;
+        if (themeToggleMobile) themeToggleMobile.checked = false;
+    }
+
+    // Toggle theme when switch is clicked
+    function toggleTheme(isChecked) {
+        if (isChecked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('change', function() {
+            toggleTheme(this.checked);
+            if (themeToggleMobile) themeToggleMobile.checked = this.checked;
+        });
+    }
+
+    if (themeToggleMobile) {
+        themeToggleMobile.addEventListener('change', function() {
+            toggleTheme(this.checked);
+            if (themeToggle) themeToggle.checked = this.checked;
+        });
+    }
+
+    // Profile dropdown
+>>>>>>> 69945db (Final)
     const profileButton = document.getElementById('profile-button');
     const profileMenu = document.getElementById('profile-menu');
 
@@ -470,15 +1243,31 @@
         });
     }
 
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
+    // Mobile menu functionality
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
-    if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', function(e) {
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function(e) {
             e.stopPropagation();
-            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.add('open');
+            mobileMenuOverlay.classList.add('open');
         });
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        mobileMenuOverlay.classList.remove('open');
+    }
+
+    if (closeMobileMenuButton) {
+        closeMobileMenuButton.addEventListener('click', closeMobileMenu);
+    }
+
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
     }
 
     // Close menus when clicking outside
@@ -489,10 +1278,6 @@
 
         if (appsMenu && !appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
             appsMenu.classList.remove('show');
-        }
-
-        if (mobileMenu && !menuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
-            mobileMenu.classList.add('hidden');
         }
     });
 
@@ -507,6 +1292,26 @@
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 });
+
+//notification
+function showPopup() {
+    const popup = document.getElementById("popup-notice");
+    popup.classList.remove("hidden");
+
+    // Auto-close after 10 seconds
+    setTimeout(() => {
+      popup.classList.add("hidden");
+    }, 15000);
+  }
+
+  function closePopup() {
+    document.getElementById("popup-notice").classList.add("hidden");
+  }
+
+  // Show popup every time home page loads
+  window.addEventListener("load", () => {
+    setTimeout(showPopup, 2000); // wait 2 sec before showing
+  });
 </script>
 <script src="main.js"></script>
 </body>

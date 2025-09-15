@@ -116,175 +116,164 @@
             color: #d97706;
         }
         
-        /* Apps menu styling */
-        .apps-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            width: 300px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            padding: 16px;
-            z-index: 1000;
-            margin-top: 10px;
-        }
-        
-        .apps-menu.active {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-        
-        .app-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 12px;
-            border-radius: 8px;
-            transition: background 0.2s;
-        }
-        
-        .app-item:hover {
-            background: #f3f4f6;
-        }
-        
-        .app-icon {
-            width: 40px;
-            height: 40px;
-            background: #4f46e5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            margin-bottom: 8px;
-            font-size: 18px;
-        }
-        
-        .app-name {
-            font-size: 12px;
-            text-align: center;
-            color: #4b5563;
-        }
+           /* Apps Menu */
+.apps-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 320px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  z-index: 50;
+  margin-top: 8px;
+  display: grid;
+}
+
+/* Keep hidden by default (Tailwind adds hidden class) */
+.apps-menu.hidden {
+  display: none;
+}
+
+.app-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: #4b5563;
+}
+
+.app-item:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-2px);
+}
+
+.app-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #e0e7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  color: #0891b2;
+  font-size: 18px;
+}
+
+.app-name {
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
+}
     </style>
 </head>
 <body class="text-gray-800">
     <!-- Header -->
-    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-indigo-600">
-                <i class="fas fa-compass mr-2"></i>Disha J&K
-            </a>
-            <div class="flex items-center space-x-4 relative">
-                <!-- Apps Menu Button -->
-                <div class="relative">
-                    <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all">
-                        <div class="grid grid-cols-3 gap-1 w-6 h-6">
-                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
-                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
-                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
-                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
-                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
-                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
-                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
-                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
-                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
-                        </div>
-                    </button>
-                    
-                    <!-- Apps Menu Dropdown -->
-                    <div id="apps-menu" class="apps-menu">
-                        <div class="app-item">
-                            <div class="app-icon">
-                                <i class="fas fa-road"></i>
-                            </div>
-                            <span class="app-name">Career Roadmap</span>
-                        </div>
-                        <div class="app-item">
-                            <div class="app-icon">
-                                <i class="fas fa-list"></i>
-                            </div>
-                            <span class="app-name">Career Shortlist</span>
-                        </div>
-                        <div class="app-item">
-                            <div class="app-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <span class="app-name">Future Trends</span>
-                        </div>
-                        <div class="app-item">
-                            <div class="app-icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <span class="app-name">Course Mapping</span>
-                        </div>
-                        <div class="app-item">
-                            <div class="app-icon">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <span class="app-name">AI Study Planner</span>
-                        </div>
-                        <div class="app-item">
-                            <div class="app-icon">
-                                <i class="fas fa-user-graduate"></i>
-                            </div>
-                            <span class="app-name">Guidance</span>
-                        </div>
-                        <div class="app-item">
-                            <div class="app-icon">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                            <span class="app-name">Global Learning</span>
-                        </div>
-                        <div class="app-item">
-                            <div class="app-icon">
-                                <i class="fas fa-video"></i>
-                            </div>
-                            <span class="app-name">Career Videos</span>
-                        </div>
-                        <div class="app-item">
-                            <div class="app-icon">
-                                <i class="fas fa-newspaper"></i>
-                            </div>
-                            <span class="app-name">Articles</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Profile Dropdown -->
-                <div class="relative">
-                    <button id="profile-button" class="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
-                        A
-                    </button>
-                    
-                    <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden">
-                        <div class="px-4 py-2 border-b">
-                            <p class="text-sm font-medium">Ayesha Khan</p>
-                            <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
-                        </div>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t">Logout</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
+<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+  <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center space-x-3">
+      <img src="Disha.png" alt="Disha J&K Logo" class="h-14 md:h-16 w-auto">
+      <span class="text-xl md:text-2xl font-bold text-gray-800">Disha J&amp;K</span>
+    </a>
+
+    <div class="flex items-center space-x-4 mr-2">
+      <!-- Apps Menu -->
+      <div class="relative">
+        <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all">
+          <div class="grid grid-cols-3 gap-1 w-6 h-6">
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+          </div>
+        </button>    
+
+        <!-- Apps Menu Dropdown -->
+        <div id="apps-menu" class="apps-menu hidden">
+          <a href="Home.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-road"></i></div>
+            <span class="app-name">Home</span>
+          </a>
+          <a href="CareerShortlist.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-list"></i></div>
+            <span class="app-name">Career Shortlist</span>
+          </a>
+          <a href="Quiz.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-chart-line"></i></div>
+            <span class="app-name">Quiz</span>
+          </a>
+          <a href="Admission.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-book"></i></div>
+            <span class="app-name">Admission Tracking</span>
+          </a>
+          <a href="CourseMap.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-brain"></i></div>
+            <span class="app-name">Course to Career Map</span>
+          </a>
+          <a href="Map.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-user-graduate"></i></div>
+            <span class="app-name">Map Feature</span>
+          </a>
+          <a href="FutureTrend.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-globe"></i></div>
+            <span class="app-name">Future Trends</span>
+          </a>
+          <a href="Reels.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-video"></i></div>
+            <span class="app-name">Career Reels</span>
+          </a>
+          <a href="About.html" class="app-item">
+            <div class="app-icon"><i class="fas fa-newspaper"></i></div>
+            <span class="app-name">About Us</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Profile Menu -->
+      <div class="relative">
+        <button id="profile-button" class="w-10 h-10 bg-cyan-700 text-white rounded-full flex items-center justify-center font-bold">
+          A
+        </button>
+        
+        <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden">
+          <div class="px-4 py-2 border-b">
+           <p class="text-sm font-medium">Aryan Shingare</p>
+            <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
+          </div>
+          <a href="Profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
 
     <main class="container mx-auto px-4 py-8">
         <!-- Quiz Intro Section -->
         <section class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-indigo-600 mb-4">Career Guidance Quiz</h1>
+            <h1 class="text-4xl font-bold text-cyan-600 mb-4">Career Guidance Quiz</h1>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">Discover your ideal career path with our personalized assessment. This quiz will help match your personality, skills, and interests with potential careers.</p>
             
             <div class="quiz-container p-8 mb-8">
                 <div class="text-center">
-                    <i class="fas fa-brain text-6xl text-indigo-500 mb-6"></i>
+                    <i class="fas fa-brain text-6xl text-cyan-500 mb-6"></i>
                     <h2 class="text-2xl font-bold mb-4">Ready to Discover Your Career Path?</h2>
                     <p class="text-gray-600 mb-6">This quiz has 5 parts with 13 questions total. It will take about 10-15 minutes to complete.</p>
-                    <button id="start-quiz" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-indigo-700 transform hover:scale-105 transition-all shadow-lg">
+                    <button id="start-quiz" class="bg-cyan-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-cyan-700 transform hover:scale-105 transition-all shadow-lg">
                         Start Quiz Now
                     </button>
                 </div>
@@ -298,7 +287,7 @@
                 <div class="p-4 border-b">
                     <div class="flex justify-between items-center mb-2">
                         <span id="quiz-progress-text" class="text-sm font-medium text-gray-600">Question 1 of 13</span>
-                        <span id="quiz-part-text" class="text-sm font-medium text-indigo-600">Part 1: Personality & Interest</span>
+                        <span id="quiz-part-text" class="text-sm font-medium text-cyan-600">Part 1: Personality & Interest</span>
                     </div>
                     <div class="quiz-progress">
                         <div id="quiz-progress-bar" class="quiz-progress-bar" style="width: 0%"></div>
@@ -311,10 +300,10 @@
                     <div id="options-container" class="space-y-3"></div>
                     
                     <div class="flex justify-between mt-8">
-                        <button id="prev-button" class="px-4 py-2 text-indigo-600 font-medium rounded-lg hover:bg-indigo-50 transition-all">
+                        <button id="prev-button" class="px-4 py-2 text-cyan-600 font-medium rounded-lg hover:bg-cyan-50 transition-all">
                             <i class="fas fa-arrow-left mr-2"></i> Previous
                         </button>
-                        <button id="next-button" class="px-6 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-all">
+                        <button id="next-button" class="px-6 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 transition-all">
                             Next <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                     </div>
@@ -327,11 +316,11 @@
             <div class="quiz-container p-8">
                 <div class="text-center mb-8">
                     <i class="fas fa-trophy text-6xl text-yellow-500 mb-4"></i>
-                    <h2 class="text-3xl font-bold text-indigo-600 mb-4">Quiz Completed!</h2>
+                    <h2 class="text-3xl font-bold text-cyan-600 mb-4">Quiz Completed!</h2>
                     <p class="text-gray-600">Based on your answers, here's your personalized career assessment.</p>
                 </div>
                 
-                <div class="bg-indigo-50 rounded-xl p-6 mb-8">
+                <div class="bg-cyan-50 rounded-xl p-6 mb-8">
                     <h3 class="text-xl font-bold mb-4">Your Career Profile</h3>
                     <div id="result-badges" class="mb-6"></div>
                     <p id="result-description" class="text-gray-700"></p>
@@ -342,27 +331,27 @@
                     <div id="career-suggestions" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
                 </div>
                 
-                <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl p-6">
+                <div class="bg-gradient-to-r from-cyan-400 to-cyan-700 text-white rounded-xl p-6">
                     <h3 class="text-xl font-bold mb-4">⚡ Pro Tip</h3>
                     <p class="mb-4">Your quiz results are just the beginning! Explore our detailed career profiles, connect with mentors from J&K, and try our interactive tools to dive deeper into each career option.</p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#" class="bg-white text-indigo-600 font-medium py-2 px-4 rounded-lg hover:bg-gray-100 transition-all">
+                        <a href="CareerShortlist.html" class="bg-white text-cyan-600 font-medium py-2 px-4 rounded-lg hover:bg-gray-100 transition-all">
                             <i class="fas fa-user-graduate mr-2"></i> Explore Career Profiles
                         </a>
-                        <a href="#" class="bg-white text-indigo-600 font-medium py-2 px-4 rounded-lg hover:bg-gray-100 transition-all">
+                        <a href="Mentor.html" class="bg-white text-cyan-600 font-medium py-2 px-4 rounded-lg hover:bg-gray-100 transition-all">
                             <i class="fas fa-hands-helping mr-2"></i> Connect with Mentors
                         </a>
-                        <a href="#" class="bg-white text-indigo-600 font-medium py-2 px-4 rounded-lg hover:bg-gray-100 transition-all">
+                        <a href="CourseMap.html" class="bg-white text-cyan-600 font-medium py-2 px-4 rounded-lg hover:bg-gray-100 transition-all">
                             <i class="fas fa-road mr-2"></i> Create Career Roadmap
                         </a>
                     </div>
                 </div>
                 
                 <div class="text-center mt-8">
-                    <button id="retake-quiz" class="px-6 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-all mr-4">
+                    <button id="retake-quiz" class="px-6 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 transition-all mr-4">
                         <i class="fas fa-redo mr-2"></i> Retake Quiz
                     </button>
-                    <a href="#" class="px-6 py-2 border border-indigo-600 text-indigo-600 font-medium rounded-lg hover:bg-indigo-50 transition-all">
+                    <a href="Home.html" class="px-6 py-2 border border-cyan-600 text-cyan-600 font-medium rounded-lg hover:bg-cyan-50 transition-all">
                         <i class="fas fa-home mr-2"></i> Back to Home
                     </a>
                 </div>
@@ -370,20 +359,43 @@
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-12 mt-12">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-xl font-bold mb-4">Disha J&K</p>
-            <p class="mb-6">An initiative for Smart India Hackathon 2025 to empower the youth of Jammu & Kashmir.</p>
-            <div class="flex justify-center space-x-6 text-2xl">
-                <a href="#" class="hover:text-indigo-400"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="hover:text-indigo-400"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="hover:text-indigo-400"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="hover:text-indigo-400"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p class="mt-8 text-sm text-gray-400">&copy; 2025 Your Team Name. All Rights Reserved.</p>
+<!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-10">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Disha J&K</h3>
+        <p>Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-white">About Us</a></li>
+          <li><a href="#" class="hover:text-white">Contact</a></li>
+          <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Resources</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-white">Career Assessment</a></li>
+          <li><a href="#" class="hover:text-white">Scholarships</a></li>
+          <li><a href="#" class="hover:text-white">College Directory</a></li>
+          <li><a href="#" class="hover:text-white">Success Stories</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Connect</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-youtube"></i></a>
         </div>
-    </footer>
-
+      </div>
+    </div>
+    <div class="text-center text-sm mt-8 border-t border-gray-700 pt-6">&copy; 2025 Disha J&K. All rights reserved.</div>
+  </footer>
     <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Quiz questions data
@@ -736,29 +748,45 @@ document.addEventListener('DOMContentLoaded', function() {
         resultsSection.classList.add('hidden');
         document.querySelector('.text-center').classList.remove('hidden');
     });
-
-    // Profile and apps menu functionality
-    profileButton.addEventListener('click', function() {
-        profileMenu.classList.toggle('hidden');
-        appsMenu.classList.remove('active');
-    });
-    
-    appsMenuButton.addEventListener('click', function(e) {
-        e.stopPropagation();
-        appsMenu.classList.toggle('active');
-        profileMenu.classList.add('hidden');
-    });
-    
-    // Close menus when clicking elsewhere
-    document.addEventListener('click', function(event) {
-        if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
-            profileMenu.classList.add('hidden');
-        }
-        if (!appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
-            appsMenu.classList.remove('active');
-        }
-    });
 });
+//Header
+document.addEventListener('DOMContentLoaded', function () {
+  const profileButton = document.getElementById('profile-button');
+  const profileMenu = document.getElementById('profile-menu');
+
+  const appsMenuButton = document.getElementById('apps-menu-button');
+  const appsMenu = document.getElementById('apps-menu');
+
+  function toggleMenu(button, menu) {
+    if (!button || !menu) return;
+    button.addEventListener('click', function (e) {
+      e.stopPropagation();
+
+      // Close other menus
+      document.querySelectorAll('#apps-menu, #profile-menu').forEach(m => {
+        if (m !== menu) m.classList.add('hidden');
+      });
+
+      // Toggle this menu
+      menu.classList.toggle('hidden');
+    });
+  }
+
+  toggleMenu(profileButton, profileMenu);
+  toggleMenu(appsMenuButton, appsMenu);
+
+  // Close menus when clicking outside
+  document.addEventListener('click', function (event) {
+    if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+      profileMenu.classList.add('hidden');
+    }
+    if (!appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
+      appsMenu.classList.add('hidden');
+    }
+  });
+});
+
+
 </script>
 <script src="main.js"></script>
 </body>

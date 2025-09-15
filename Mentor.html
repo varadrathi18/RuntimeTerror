@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kashmir's Pride Mentorship - Disha J&K</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .dashboard-card {
+            transition: all 0.3s ease;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mentor-card {
+            perspective: 1000px;
+            height: 380px;
+        }
+        
+        .mentor-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .mentor-card:hover .mentor-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .mentor-card-front, .mentor-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .mentor-card-back {
+            transform: rotateY(180deg);
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            height: 100%;
+            border-left: 4px solid #0891b2;
+        }
+        
+        .impact-card {
+            background: linear-gradient(135deg, #0e7490, #0891b2);
+            color: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Apps Menu Styles */
+        .apps-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 3rem;
+            width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            z-index: 50;
+        }
+        
+        .apps-menu.show {
+            display: grid;
+        }
+        
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+            color: #334155;
+            text-decoration: none;
+        }
+        
+        .app-item:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+        }
+        
+        .app-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: #e0f2fe;
+            color: #0891b2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .app-name {
+            font-size: 0.75rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        /* Profile Menu Styles */
+        #profile-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 3rem;
+            width: 200px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            z-index: 50;
+        }
+        
+        #profile-menu.show {
+            display: block;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #0891b2;
+            border-radius: 2px;
+        }
+        
+        .kashmir-icon {
+            color: #0891b2;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Header -->
+  <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-3">
+            <img src="Disha.png" alt="Disha J&K Logo" class="h-20 md:h-16 w-auto">
+            <span class="text-xl md:text-2xl font-bold text-gray-800">Disha J&amp;K</span>
+            </a>
+            <!-- <div class="hidden md:flex space-x-6 items-center">
+                <a href="index.html#features" class="text-gray-600 hover:text-indigo-600">Features</a>
+                <a href="index.html#innovations" class="text-gray-600 hover:text-indigo-600">Innovations</a>
+                <a href="index.html#awareness" class="text-gray-600 hover:text-indigo-600">Awareness Hub</a>
+                <a href="index.html#colleges" class="text-gray-600 hover:text-indigo-600">Colleges</a>
+            </div> -->
+            <div class="flex items-center space-x-4 mr-2">
+                <!-- Apps Menu Button -->
+                <div class="relative">
+                    <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all">
+                        <div class="grid grid-cols-3 gap-1 w-6 h-6">
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
+                        </div>
+                    </button>    
+                    <!-- Apps Menu Dropdown -->
+                    <div id="apps-menu" class="apps-menu">
+                        <a href="Home.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-road"></i></div>
+                            <span class="app-name">Home</span>
+                        </a>
+                        <a href="CareerShortlist.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-list"></i></div>
+                            <span class="app-name">Career Shortlist</span>
+                        </a>
+                        <a href="Quiz.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-chart-line"></i></div>
+                            <span class="app-name">Quiz</span>
+                        </a>
+                        <a href="Admission.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-book"></i></div>
+                            <span class="app-name">Admission Tracking</span>
+                        </a>
+                        <a href="CourseMap.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-brain"></i></div>
+                            <span class="app-name">Course to Career Map</span>
+                        </a>
+                        <a href="Map.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-user-graduate"></i></div>
+                            <span class="app-name">Map Feature</span>
+                        </a>
+                        <a href="FutureTrend.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-globe"></i></div>
+                            <span class="app-name">Future Trends</span>
+                        </a>
+                        <a href="Reels.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-video"></i></div>
+                            <span class="app-name">Career Reels</span>
+                        </a>
+                        <a href="About.html" class="app-item">
+                            <div class="app-icon"><i class="fas fa-newspaper"></i></div>
+                            <span class="app-name">About Us</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Profile Dropdown -->
+                <div class="relative">
+                    <button id="profile-button" class="w-10 h-10 bg-cyan-700 text-white rounded-full flex items-center justify-center font-bold">
+                        A
+                    </button>
+                    
+                    <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden">
+                        <div class="px-4 py-2 border-b">
+                            <p class="text-sm font-medium">Aryan Shingare</p>
+            <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
+                        <a href="Profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!--Sub Header Section -->
+    <div class="bg-cyan-50 py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold text-cyan-900 mb-4">Kashmir's Pride Mentorship</h1>
+            <p class="text-xl text-cyan-700 max-w-3xl mx-auto">
+                Connect with successful professionals from J&K who have walked the same path as you.
+            </p>
+            <button class="mt-8 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-3 px-8 rounded-lg transition-all">
+                Find Your Mentor
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-12">
+        <!-- Mentor Spotlight Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-cyan-900 section-title">Mentor Spotlight</h2>
+            <p class="text-gray-600 mb-8">Meet some of our distinguished mentors from Jammu & Kashmir</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mentor 1 -->
+                <div class="mentor-card dashboard-card">
+                    <div class="mentor-card-inner">
+                        <div class="mentor-card-front bg-white rounded-xl shadow-md p-6 h-full flex flex-col items-center">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" 
+                                 alt="Dr. Aaliya" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-cyan-100">
+                            <h3 class="text-xl font-semibold text-cyan-900">Dr. Aaliya</h3>
+                            <p class="text-cyan-600 mb-4">First Woman IAS Officer from Srinagar</p>
+                            <p class="text-gray-600 italic text-center mb-4">"Hard work beats talent when talent doesn't work hard."</p>
+                            <div class="mt-auto">
+                                <span class="text-sm text-cyan-600"><i class="fas fa-graduation-cap kashmir-icon"></i>UPSC Guidance</span>
+                            </div>
+                        </div>
+                        <div class="mentor-card-back bg-cyan-700 text-white rounded-xl shadow-md p-6 flex flex-col justify-center items-center">
+                            <h3 class="text-xl font-semibold mb-4">About Dr. Aaliya</h3>
+                            <p class="text-center mb-4">Topped the UPSC exams in 2018 with AIR 12. Passionate about education and women empowerment in J&K.</p>
+                            <p class="text-center mb-6">Specializes in guiding students for civil services exams.</p>
+                            <button class="bg-cyan-100 text-cyan-800 font-semibold py-2 px-6 rounded-lg hover:bg-cyan-50">
+                                Connect Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mentor 2 -->
+                <div class="mentor-card dashboard-card">
+                    <div class="mentor-card-inner">
+                        <div class="mentor-card-front bg-white rounded-xl shadow-md p-6 h-full flex flex-col items-center">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" 
+                                 alt="Dr. Sameer" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-cyan-100">
+                            <h3 class="text-xl font-semibold text-cyan-900">Dr. Sameer</h3>
+                            <p class="text-cyan-600 mb-4">Renowned Cardiologist from Anantnag</p>
+                            <p class="text-gray-600 italic text-center mb-4">"Healing hearts, both medically and metaphorically."</p>
+                            <div class="mt-auto">
+                                <span class="text-sm text-cyan-600"><i class="fas fa-heartbeat kashmir-icon"></i>Medical Career Guidance</span>
+                            </div>
+                        </div>
+                        <div class="mentor-card-back bg-cyan-700 text-white rounded-xl shadow-md p-6 flex flex-col justify-center items-center">
+                            <h3 class="text-xl font-semibold mb-4">About Dr. Sameer</h3>
+                            <p class="text-center mb-4">Leading cardiologist at AIIMS, with over 15 years of experience. Specialized in interventional cardiology.</p>
+                            <p class="text-center mb-6">Mentors medical aspirants from rural areas of Kashmir.</p>
+                            <button class="bg-cyan-100 text-cyan-800 font-semibold py-2 px-6 rounded-lg hover:bg-cyan-50">
+                                Connect Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mentor 3 -->
+                <div class="mentor-card dashboard-card">
+                    <div class="mentor-card-inner">
+                        <div class="mentor-card-front bg-white rounded-xl shadow-md p-6 h-full flex flex-col items-center">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" 
+                                 alt="Mr. Faisal" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-cyan-100">
+                            <h3 class="text-xl font-semibold text-cyan-900">Mr. Faisal</h3>
+                            <p class="text-cyan-600 mb-4">Tech Entrepreneur from Sopore</p>
+                            <p class="text-gray-600 italic text-center mb-4">"Innovation knows no geographical boundaries."</p>
+                            <div class="mt-auto">
+                                <span class="text-sm text-cyan-600"><i class="fas fa-laptop-code kashmir-icon"></i>Tech Career Guidance</span>
+                            </div>
+                        </div>
+                        <div class="mentor-card-back bg-cyan-700 text-white rounded-xl shadow-md p-6 flex flex-col justify-center items-center">
+                            <h3 class="text-xl font-semibold mb-4">About Mr. Faisal</h3>
+                            <p class="text-center mb-4">Founder of a successful tech startup valued at $20M. Passionate about creating tech opportunities in Kashmir.</p>
+                            <p class="text-center mb-6">Provides guidance on entrepreneurship and tech careers.</p>
+                            <button class="bg-cyan-100 text-cyan-800 font-semibold py-2 px-6 rounded-lg hover:bg-cyan-50">
+                                Connect Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <button class="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-3 px-8 rounded-lg transition-all">
+                    View All Mentors
+                </button>
+            </div>
+        </section>
+        
+        <!-- Impact Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-cyan-900 section-title">Our Impact</h2>
+            <p class="text-gray-600 mb-8">The difference we're making together for students in Jammu & Kashmir</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <div class="impact-card">
+                    <div class="text-4xl font-bold mb-2">500+</div>
+                    <div class="text-lg">Students Mentored</div>
+                </div>
+                <div class="impact-card">
+                    <div class="text-4xl font-bold mb-2">100+</div>
+                    <div class="text-lg">Mentors Across Fields</div>
+                </div>
+                <div class="impact-card">
+                    <div class="text-4xl font-bold mb-2">90%</div>
+                    <div class="text-lg">Success Stories</div>
+                </div>
+                <div class="impact-card">
+                    <div class="text-4xl font-bold mb-2">25+</div>
+                    <div class="text-lg">Cities & Towns Covered</div>
+                </div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold text-cyan-900 mb-6">Student Testimonials</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="testimonial-card">
+                    <p class="text-gray-600 mb-4">"Through this mentorship, I cracked NEET 2024 and got admission to my dream medical college."</p>
+                    <p class="text-cyan-700 font-semibold">— Sana from Baramulla</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="text-gray-600 mb-4">"My mentor helped me navigate the complex process of studying abroad. I'm now pursuing CS at Stanford."</p>
+                    <p class="text-cyan-700 font-semibold">— Arif from Srinagar</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="text-gray-600 mb-4">"The guidance I received for UPSC preparation was invaluable. I cleared my prelims in the first attempt!"</p>
+                    <p class="text-cyan-700 font-semibold">— Bilal from Anantnag</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="text-gray-600 mb-4">"As a first-generation college student, I had no guidance until I found this mentorship program."</p>
+                    <p class="text-cyan-700 font-semibold">— Fatima from Kupwara</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="text-gray-600 mb-4">"My mentor's advice helped me secure an internship at a leading tech company while still in college."</p>
+                    <p class="text-cyan-700 font-semibold">— Sameer from Jammu</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="text-gray-600 mb-4">"The mentorship program connected me with professionals who understood my background and challenges."</p>
+                    <p class="text-cyan-700 font-semibold">— Ayesha from Pulwama</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Program Features Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-cyan-900 section-title">Program Features</h2>
+            <p class="text-gray-600 mb-8">What makes our mentorship program unique and effective</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card">
+                    <div class="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-robot text-3xl text-cyan-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-cyan-900 mb-3">AI-Powered Matching</h3>
+                    <p class="text-gray-600">Our advanced algorithm matches you with the perfect mentor based on your goals, background, and preferences.</p>
+                    <span class="inline-block mt-4 px-3 py-1 bg-cyan-100 text-cyan-700 text-sm rounded-full">Coming Soon</span>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-trophy text-3xl text-cyan-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-cyan-900 mb-3">Progress Recognition</h3>
+                    <p class="text-gray-600">Earn badges and recognition as you achieve milestones in your mentorship journey.</p>
+                    <div class="mt-4">
+                        <span class="inline-block px-3 py-1 bg-cyan-100 text-cyan-700 text-sm rounded-full mr-2 mb-2">Mentee of the Month</span>
+                        <span class="inline-block px-3 py-1 bg-cyan-100 text-cyan-700 text-sm rounded-full mr-2 mb-2">Goal Achiever</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-map-marker-alt text-3xl text-cyan-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-cyan-900 mb-3">Regional Understanding</h3>
+                    <p class="text-gray-600">Mentors who understand the unique cultural context and opportunities in Jammu & Kashmir.</p>
+                    <div class="mt-4">
+                        <span class="inline-block px-3 py-1 bg-cyan-100 text-cyan-700 text-sm rounded-full mr-2 mb-2">Local Insights</span>
+                        <span class="inline-block px-3 py-1 bg-cyan-100 text-cyan-700 text-sm rounded-full mr-2 mb-2">Cultural Connection</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action -->
+        <section class="bg-cyan-700 rounded-2xl p-10 text-center text-white">
+            <h2 class="text-3xl font-bold mb-4">Ready to Find Your Mentor?</h2>
+            <p class="text-cyan-100 mb-8 max-w-2xl mx-auto">Join hundreds of students from Jammu & Kashmir who have transformed their career paths with personalized mentorship.</p>
+            <button class="bg-white text-cyan-700 font-semibold py-3 px-8 rounded-lg hover:bg-cyan-50 transition-all mr-4">
+                Find a Mentor
+            </button>
+            <!-- <button class="bg-transparent border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-cyan-700 transition-all">
+                Become a Mentor
+            </button> -->
+        </section>
+    </div>
+
+    <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-10">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Disha J&K</h3>
+        <p>Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-white">About Us</a></li>
+          <li><a href="#" class="hover:text-white">Contact</a></li>
+          <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Resources</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-white">Career Assessment</a></li>
+          <li><a href="#" class="hover:text-white">Scholarships</a></li>
+          <li><a href="#" class="hover:text-white">College Directory</a></li>
+          <li><a href="#" class="hover:text-white">Success Stories</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-white mb-4">Connect</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-sm mt-8 border-t border-gray-700 pt-6">&copy; 2025 Disha J&K. All rights reserved.</div>
+  </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apps menu toggle
+            const appsMenuButton = document.getElementById('apps-menu-button');
+            const appsMenu = document.getElementById('apps-menu');
+            
+            appsMenuButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                appsMenu.classList.toggle('show');
+            });
+            
+            // Profile menu toggle
+            const profileButton = document.getElementById('profile-button');
+            const profileMenu = document.getElementById('profile-menu');
+            
+            profileButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                profileMenu.classList.toggle('show');
+            });
+            
+            // Close dropdowns when clicking elsewhere
+            document.addEventListener('click', function() {
+                appsMenu.classList.remove('show');
+                profileMenu.classList.remove('show');
+            });
+            
+            // Prevent dropdowns from closing when clicking inside them
+            appsMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            profileMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>

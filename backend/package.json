@@ -10,7 +10,11 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+<<<<<<< HEAD
     "dotenv": "^16.4.5",
+=======
+    "dotenv": "^16.6.1",
+>>>>>>> 69945db (Final)
     "express": "^4.19.2",
     "helmet": "^7.1.0",
     "mongodb": "^6.19.0",

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - Disha J&K</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .sidebar {
+            width: 250px;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 0;
+                overflow: hidden;
+            }
+            
+            .sidebar.open {
+                width: 250px;
+            }
+        }
+        
+        .form-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .form-card:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-tag {
+            display: inline-block;
+            background-color: #e0e7ff;
+            color: #4f46e5;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin: 4px;
+            cursor: pointer;
+        }
+        
+        .skill-tag.selected {
+            background-color: #4f46e5;
+            color: white;
+        }
+        
+        .profile-header {
+            background: linear-gradient(135deg, #a4086e, #4f46e5);
+            color: white;
+        }
+    </style>
+</head>
+<body class="text-gray-800 flex">
+    <!-- Sidebar Navigation
+    <div class="sidebar bg-indigo-800 text-white h-screen fixed md:relative z-40">
+        <div class="p-6">
+            <a href="index.html" class="text-2xl font-bold text-white">
+                <i class="fas fa-compass mr-2"></i>Disha J&K
+            </a>
+        </div>
+        
+        <nav class="mt-6">
+            <a href="dashboard.html" class="block py-3 px-6 text-indigo-200 hover:bg-indigo-700 hover:text-white">
+                <i class="fas fa-home mr-3"></i> Dashboard
+            </a>
+            <a href="profile.html" class="block py-3 px-6 bg-indigo-900 text-white">
+                <i class="fas fa-user mr-3"></i> Profile
+            </a>
+            <a href="careers.html" class="block py-3 px-6 text-indigo-200 hover:bg-indigo-700 hover:text-white">
+                <i class="fas fa-briefcase mr-3"></i> Careers
+            </a>
+            <a href="resources.html" class="block py-3 px-6 text-indigo-200 hover:bg-indigo-700 hover:text-white">
+                <i class="fas fa-book-open mr-3"></i> Resources
+            </a>
+            <a href="quiz.html" class="block py-3 px-6 text-indigo-200 hover:bg-indigo-700 hover:text-white">
+                <i class="fas fa-question-circle mr-3"></i> Career Quiz
+            </a>
+            <a href="mentors.html" class="block py-3 px-6 text-indigo-200 hover:bg-indigo-700 hover:text-white">
+                <i class="fas fa-users mr-3"></i> Mentors
+            </a>
+        </nav>
+        
+        <div class="absolute bottom-0 w-full p-6">
+            <a href="#" class="block text-center py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500">
+                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            </a>
+        </div>
+    </div> -->
+    
+    <!-- Main Content -->
+    <div class="flex-1 md:ml-0">
+        <!-- Mobile Header -->
+        <div class="bg-white p-4 shadow flex justify-between items-center md:hidden">
+            <button id="sidebar-toggle" class="text-indigo-600">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            <a href="index.html" class="text-xl font-bold text-indigo-600">
+                Disha J&K
+            </a>
+            <div class="w-10"></div>
+        </div>
+        
+        <!-- Profile Header -->
+        <div class="profile-header p-6">
+            <div class="container mx-auto">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-lg mb-4 md:mb-0 md:mr-6">
+                        <i class="fas fa-user-circle text-6xl text-indigo-600"></i>
+                    </div>
+                    <div class="text-center md:text-left flex-1">
+                        <h1 class="text-3xl font-bold">Edit Your Profile</h1>
+                        <p class="text-indigo-100 mt-1">Update your information to get better career recommendations</p>
+                    </div>
+                    <button onclick="window.location.href='Profile.html'" class="mt-4 md:mt-0 bg-white text-indigo-600 font-semibold py-2 px-6 rounded-lg hover:bg-indigo-50">
+                        <i class="fas fa-arrow-left mr-2"></i> Back to Profile 
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class="container mx-auto p-4 md:p-6">
+            <form id="edit-profile-form">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Left Column - Basic Information -->
+                    <div class="space-y-6">
+                        <!-- Basic Information Card -->
+                        <div class="form-card p-6">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-4">Basic Information</h2>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                                    <input type="text" value="Ayesha Khan" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Age *</label>
+                                        <input type="number" value="17" min="13" max="25" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Gender *</label>
+                                        <select required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                                            <option value="female" selected>Female</option>
+                                            <option value="male">Male</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Class *</label>
+                                    <select required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                                        <option value="12" selected>12th Grade</option>
+                                        <option value="10">10th Grade</option>
+                                        <option value="graduate">Graduate</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">District in J&K *</label>
+                                    <select required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                                        <option value="Srinagar" selected>Srinagar</option>
+                                        <option value="Jammu">Jammu</option>
+                                        <option value="Anantnag">Anantnag</option>
+                                        <option value="Baramulla">Baramulla</option>
+                                        <option value="Budgam">Budgam</option>
+                                        <option value="Pulwama">Pulwama</option>
+                                        <option value="Kupwara">Kupwara</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                                    <input type="email" value="ayesha.k@example.com" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                    <input type="tel" value="+91 98765 43210" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Academic Background Card -->
+                        <div class="form-card p-6">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-4">Academic Background</h2>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Current Stream</label>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        <div class="flex items-center">
+                                            <input type="radio" id="stream-science" name="stream" value="science" class="mr-2" checked>
+                                            <label for="stream-science" class="cursor-pointer">Science</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="radio" id="stream-arts" name="stream" value="arts" class="mr-2">
+                                            <label for="stream-arts" class="cursor-pointer">Arts</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="radio" id="stream-commerce" name="stream" value="commerce" class="mr-2">
+                                            <label for="stream-commerce" class="cursor-pointer">Commerce</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Favorite Subjects (Select up to 3)</label>
+                                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="subject-biology" name="subjects" value="biology" class="mr-2" checked>
+                                            <label for="subject-biology" class="cursor-pointer">Biology</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="subject-chemistry" name="subjects" value="chemistry" class="mr-2" checked>
+                                            <label for="subject-chemistry" class="cursor-pointer">Chemistry</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="subject-physics" name="subjects" value="physics" class="mr-2">
+                                            <label for="subject-physics" class="cursor-pointer">Physics</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="subject-math" name="subjects" value="math" class="mr-2">
+                                            <label for="subject-math" class="cursor-pointer">Mathematics</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="subject-english" name="subjects" value="english" class="mr-2" checked>
+                                            <label for="subject-english" class="cursor-pointer">English</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="subject-psychology" name="subjects" value="psychology" class="mr-2" checked>
+                                            <label for="subject-psychology" class="cursor-pointer">Psychology</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="font-medium text-gray-700 mb-2">Academic Performance (Optional)</h3>
+                                    
+                                    <div class="space-y-4">
+                                        <div>
+                                            <div class="flex justify-between mb-1">
+                                                <label class="text-sm">Biology</label>
+                                                <span class="text-sm font-medium">92%</span>
+                                            </div>
+                                            <input type="range" min="0" max="100" value="92" class="w-full">
+                                        </div>
+                                        
+                                        <div>
+                                            <div class="flex justify-between mb-1">
+                                                <label class="text-sm">Chemistry</label>
+                                                <span class="text-sm font-medium">88%</span>
+                                            </div>
+                                            <input type="range" min="0" max="100" value="88" class="w-full">
+                                        </div>
+                                        
+                                        <div>
+                                            <div class="flex justify-between mb-1">
+                                                <label class="text-sm">Physics</label>
+                                                <span class="text-sm font-medium">85%</span>
+                                            </div>
+                                            <input type="range" min="0" max="100" value="85" class="w-full">
+                                        </div>
+                                        
+                                        <div>
+                                            <div class="flex justify-between mb-1">
+                                                <label class="text-sm">Mathematics</label>
+                                                <span class="text-sm font-medium">82%</span>
+                                            </div>
+                                            <input type="range" min="0" max="100" value="82" class="w-full">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column - Skills & Interests -->
+                    <div class="space-y-6">
+                        <!-- Skills & Extracurriculars Card -->
+                        <div class="form-card p-6">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-4">Skills & Extracurriculars</h2>
+                            
+                            <div class="mb-4">
+                                <h3 class="font-medium text-gray-700 mb-2">Key Skills</h3>
+                                <div class="flex flex-wrap">
+                                    <span class="skill-tag selected">Communication</span>
+                                    <span class="skill-tag selected">Empathy</span>
+                                    <span class="skill-tag selected">Teamwork</span>
+                                    <span class="skill-tag">Problem Solving</span>
+                                    <span class="skill-tag">Leadership</span>
+                                    <span class="skill-tag">Creativity</span>
+                                    <span class="skill-tag">Time Management</span>
+                                    <span class="skill-tag">Adaptability</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-medium text-gray-700 mb-2">Extracurricular Activities</h3>
+                                <div class="flex flex-wrap">
+                                    <span class="skill-tag selected">School Science Club</span>
+                                    <span class="skill-tag selected">Debate Team</span>
+                                    <span class="skill-tag selected">Volunteering</span>
+                                    <span class="skill-tag selected">Biology Olympiad</span>
+                                    <span class="skill-tag">Sports</span>
+                                    <span class="skill-tag">Music</span>
+                                    <span class="skill-tag">Dance</span>
+                                    <span class="skill-tag">Art</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Career Preferences Card -->
+                        <div class="form-card p-6">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-4">Career Preferences</h2>
+                            
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Career Fields of Interest (Select up to 3)</label>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="career-medicine" name="careers" value="medicine" class="mr-2" checked>
+                                        <label for="career-medicine" class="cursor-pointer">Medicine & Healthcare</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="career-education" name="careers" value="education" class="mr-2" checked>
+                                        <label for="career-education" class="cursor-pointer">Education & Teaching</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="career-psychology" name="careers" value="psychology" class="mr-2" checked>
+                                        <label for="career-psychology" class="cursor-pointer">Psychology</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="career-engineering" name="careers" value="engineering" class="mr-2">
+                                        <label for="career-engineering" class="cursor-pointer">Engineering</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="career-business" name="careers" value="business" class="mr-2">
+                                        <label for="career-business" class="cursor-pointer">Business</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="career-arts" name="careers" value="arts" class="mr-2">
+                                        <label for="career-arts" class="cursor-pointer">Arts & Media</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">What matters most to you in a career?</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                                    <option value="helping-others" selected>Helping others</option>
+                                    <option value="high-salary">High salary</option>
+                                    <option value="job-security">Job security</option>
+                                    <option value="creativity">Creativity & innovation</option>
+                                    <option value="flexibility">Work-life balance</option>
+                                    <option value="prestige">Prestige & recognition</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Quiz Results Card (Read-only) -->
+                        <div class="form-card p-6">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-4">Career Quiz Results</h2>
+                            
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <p class="text-sm text-indigo-600 mb-3">
+                                    Your quiz results are based on your previous assessment and cannot be edited here. 
+                                    To update these results, please retake the career quiz.
+                                </p>
+                                <div class="grid grid-cols-2 gap-4 mb-4">
+                                    <div class="bg-blue-50 p-3 rounded-lg">
+                                        <p class="text-sm text-blue-700">Logical</p>
+                                        <div class="flex items-center mt-1">
+                                            <div class="w-full bg-blue-200 rounded-full h-2.5">
+                                                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 60%"></div>
+                                            </div>
+                                            <span class="ml-2 text-xs font-medium">3/5</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-purple-50 p-3 rounded-lg">
+                                        <p class="text-sm text-purple-700">Creative</p>
+                                        <div class="flex items-center mt-1">
+                                            <div class="w-full bg-purple-200 rounded-full h-2.5">
+                                                <div class="bg-purple-600 h-2.5 rounded-full" style="width: 60%"></div>
+                                            </div>
+                                            <span class="ml-2 text-xs font-medium">3/5</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-pink-50 p-3 rounded-lg">
+                                        <p class="text-sm text-pink-700">People</p>
+                                        <div class="flex items-center mt-1">
+                                            <div class="w-full bg-pink-200 rounded-full h-2.5">
+                                                <div class="bg-pink-600 h-2.5 rounded-full" style="width: 100%"></div>
+                                            </div>
+                                            <span class="ml-2 text-xs font-medium">5/5</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-yellow-50 p-3 rounded-lg">
+                                        <p class="text-sm text-yellow-700">Leadership</p>
+                                        <div class="flex items-center mt-1">
+                                            <div class="w-full bg-yellow-200 rounded-full h-2.5">
+                                                <div class="bg-yellow-600 h-2.5 rounded-full" style="width: 40%"></div>
+                                            </div>
+                                            <span class="ml-2 text-xs font-medium">2/5</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white p-3 rounded-lg">
+                                    <h4 class="font-medium text-gray-700 mb-2">Quiz Insights</h4>
+                                    <p class="text-sm text-gray-600">
+                                        You answered mostly 'people' → You are empathetic and enjoy working with people. 
+                                        You have strong communication skills and want to make a difference in others' lives.
+                                    </p>
+                                </div>
+                                
+                                <div class="mt-4 text-center">
+                                    <a href="quiz.html" class="text-indigo-600 font-medium hover:text-indigo-800">
+                                        <i class="fas fa-redo mr-2"></i> Retake Quiz
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Form Actions -->
+                <div class="mt-8 flex justify-center gap-4">
+                    <button type="button" onclick="window.location.href='profile.html'" class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile sidebar toggle
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        
+        if (sidebarToggle && sidebar) {
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+            });
+        }
+        
+        // Skill tags selection
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+        });
+        
+        // Form submission
+        document.getElementById('edit-profile-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            alert('Profile updated successfully!');
+            window.location.href = 'profile.html';
+        });
+        
+        // Update slider values display
+        document.querySelectorAll('input[type="range"]').forEach(slider => {
+            const valueDisplay = slider.previousElementSibling.querySelector('.font-medium');
+            
+            slider.addEventListener('input', function() {
+                valueDisplay.textContent = `${this.value}%`;
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

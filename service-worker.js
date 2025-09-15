@@ -1,6 +1,6 @@
 const CACHE_NAME = "site-cache-v4";
 const urlsToCache = [
-  "index.html",
+  "Map.html",
   "Home.html",
   "Quiz.html",
   "CourseMap.html",

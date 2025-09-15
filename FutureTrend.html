@@ -1,178 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Labor Market Analytics - Disha J&K</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Labor Market Analytics - Disha J&K</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8fafc;
-        }
-        
-        .analytics-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: transform 0.2s;
-        }
-        
-        .analytics-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .growth-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-        
-        .growth-high {
-            background: #dcfce7;
-            color: #16a34a;
-        }
-        
-        .growth-medium {
-            background: #fef9c3;
-            color: #ca8a04;
-        }
-        
-        .growth-low {
-            background: #fee2e2;
-            color: #dc2626;
-        }
-        
-        .sector-tag {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            margin-right: 8px;
-            margin-bottom: 8px;
-            background: #e0e7ff;
-            color: #4f46e5;
-        }
-        
-        .tab-button {
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .tab-button.active {
-            background: #149dc0;
-            color: white;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .future-proof-card {
-            border-left: 4px solid #4f46e5;
-        }
-        /* Apps Menu */
-.apps-menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 320px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  padding: 16px;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  z-index: 50;
-  margin-top: 8px;
-  display: grid;
-}
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8fafc;
+    }
 
-/* Keep hidden by default (Tailwind adds hidden class) */
-.apps-menu.hidden {
-  display: none;
-}
+    .analytics-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: transform 0.2s;
+    }
+    .analytics-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+    .growth-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    .growth-high {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+    .growth-medium {
+      background: #fef9c3;
+      color: #ca8a04;
+    }
+    .growth-low {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+    .sector-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      background: #e0e7ff;
+      color: #4f46e5;
+    }
+    .tab-button {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-button.active {
+      background: #149dc0;
+      color: white;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .future-proof-card {
+      border-left: 4px solid #4f46e5;
+    }
 
-.app-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 12px;
-  border-radius: 8px;
-  transition: all 0.2s;
-  text-decoration: none;
-  color: #4b5563;
-}
+    /* Apps Menu */
+    .apps-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 320px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      z-index: 50;
+      margin-top: 8px;
+      display: grid;
+    }
+    /* Hide by default (Tailwind also adds hidden class) */
+    .apps-menu.hidden {
+      display: none;
+    }
+    .app-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: #4b5563;
+    }
+    .app-item:hover {
+      background-color: #f3f4f6;
+      transform: translateY(-2px);
+    }
+    .app-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #e0e7ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      color: #0891b2;
+      font-size: 18px;
+    }
+    .app-name {
+      font-size: 12px;
+      text-align: center;
+      font-weight: 500;
+    }
 
-.app-item:hover {
-  background-color: #f3f4f6;
-  transform: translateY(-2px);
-}
+    /* ===== Responsive Tweaks ==== */
+    @media (max-width: 768px) {
+      .analytics-card { padding: 1rem; }
+      .apps-menu {
+        width: 100vw;
+        right: 50%;
+        transform: translateX(50%);
+        grid-template-columns: repeat(2, 1fr);
+        padding: 10px;
+        margin-top: 5px;
+      }
+      .app-item { padding: 8px; }
+    }
 
-.app-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: #e0e7ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 8px;
-  color: #4f46e5;
-  font-size: 18px;
-}
-
-.app-name {
-  font-size: 12px;
-  text-align: center;
-  font-weight: 500;
-}
-    </style>
+    @media (max-width: 640px) {
+      .apps-menu {
+        min-width: 0;
+        width: 100vw;
+        right: 0;
+        left: 0;
+        border-radius: 0 0 18px 18px;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 8px;
+      }
+    }
+  </style>
 </head>
-<body class="text-gray-800">
-    <!-- Header -->
+<body class="text-gray-800 bg-gray-50">
+
+<!-- Header -->
 <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-  <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+  <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
     <!-- Logo -->
     <a href="index.html" class="flex items-center space-x-3">
-      <img src="Disha.png" alt="Disha J&K Logo" class="h-14 md:h-16 w-auto">
-      <span class="text-xl md:text-2xl font-bold text-gray-800">Disha J&amp;K</span>
+      <img src="Disha.png" alt="Disha J&K Logo" class="h-12 sm:h-14 md:h-16 w-auto">
+      <span class="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">Disha J&amp;K</span>
     </a>
 
-    <div class="flex items-center space-x-4 mr-2">
+    <div class="flex items-center space-x-3 sm:space-x-4 mr-1 sm:mr-2">
       <!-- Apps Menu -->
       <div class="relative">
-        <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all">
-          <div class="grid grid-cols-3 gap-1 w-6 h-6">
+        <button id="apps-menu-button" class="p-2 rounded-full hover:bg-gray-100 transition-all focus:outline-none" aria-label="Apps Menu" tabindex="0">
+          <div class="grid grid-cols-3 gap-[2px] w-6 h-6">
             <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
             <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
             <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
@@ -183,8 +196,7 @@
             <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
             <div class="w-1.5 h-1.5 bg-gray-600 rounded-full"></div>
           </div>
-        </button>    
-
+        </button>
         <!-- Apps Menu Dropdown -->
         <div id="apps-menu" class="apps-menu hidden">
           <a href="Home.html" class="app-item">
@@ -228,13 +240,12 @@
       
       <!-- Profile Menu -->
       <div class="relative">
-        <button id="profile-button" class="w-10 h-10 bg-cyan-700 text-white rounded-full flex items-center justify-center font-bold">
+        <button id="profile-button" class="w-9 sm:w-10 h-9 sm:h-10 bg-cyan-700 text-white rounded-full flex items-center justify-center font-bold focus:outline-none">
           A
         </button>
-        
-        <div id="profile-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden">
+        <div id="profile-menu" class="absolute right-0 mt-2 w-44 sm:w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden">
           <div class="px-4 py-2 border-b">
-            <p class="text-sm font-medium">Ayesha Khan</p>
+            <p class="text-sm font-medium">Aryan Shingare</p>
             <p class="text-xs text-gray-500">Grade 12, Srinagar</p>
           </div>
           <a href="Profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
@@ -245,478 +256,483 @@
   </nav>
 </header>
 
-    <main class="container mx-auto px-4 py-8">
-        <!-- Header Section -->
-        <section class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-cyan-600 mb-4">Labor Market Analytics for Jammu & Kashmir</h1>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">Discover future job trends, emerging careers, and future-proof career paths specifically tailored for the J&K region.</p>
-            
-            <div class="bg-gradient-to-r from-cyan-500 to-cyan-700 text-white rounded-xl p-6 max-w-3xl mx-auto">
-                <div class="flex items-center">
-                    <div class="flex-1">
-                        <h2 class="text-2xl font-bold mb-2">Stay Ahead of the Curve</h2>
-                        <p class="mb-4">Our AI-powered analytics predict job market trends up to 5 years in advance, helping you make informed career decisions.</p>
-                    </div>
-                    <div class="text-5xl">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tabs Navigation -->
-        <div class="flex space-x-4 mb-8 border-b">
-            <div class="tab-button active" data-tab="trends">Job Trends</div>
-            <div class="tab-button" data-tab="emerging">Emerging Careers</div>
-            <div class="tab-button" data-tab="declining">Declining Professions</div>
-            <div class="tab-button" data-tab="future">Future-Proof Paths</div>
+<main class="container mx-auto max-w-6xl px-2 sm:px-4 py-8">
+  <!-- Header Section -->
+  <section class="text-center mb-12 px-2">
+    <h1 class="text-3xl sm:text-4xl font-bold text-cyan-600 mb-4">Labor Market Analytics for Jammu & Kashmir</h1>
+    <p class="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto mb-8">Discover future job trends, emerging careers, and future-proof career paths specifically tailored for the J&amp;K region.</p>
+    <div class="bg-gradient-to-r from-cyan-500 to-cyan-700 text-white rounded-xl p-4 sm:p-6 max-w-3xl mx-auto">
+      <div class="flex flex-wrap items-center">
+        <div class="flex-1 min-w-[180px]">
+          <h2 class="text-xl sm:text-2xl font-bold mb-2">Stay Ahead of the Curve</h2>
+          <p class="mb-4">Our AI-powered analytics predict job market trends up to 5 years in advance, helping you make informed career decisions.</p>
         </div>
-
-        <!-- Job Trends Tab -->
-        <div class="tab-content active" id="trends-tab">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                <div class="analytics-card">
-                    <h2 class="text-2xl font-bold mb-4">Job Growth Projections in J&K (2024-2029)</h2>
-                    <div class="h-80">
-                        <canvas id="growthChart"></canvas>
-                    </div>
-                </div>
-                
-                <div class="analytics-card">
-                    <h2 class="text-2xl font-bold mb-4">Regional Employment Trends</h2>
-                    <div class="mb-6">
-                        <h3 class="text-lg font-bold mb-2">Jammu Division</h3>
-                        <div class="space-y-3">
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span>Tourism & Hospitality</span>
-                                    <span class="font-bold text-green-600">+22%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-green-600 h-2.5 rounded-full" style="width: 22%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span>Healthcare</span>
-                                    <span class="font-bold text-green-600">+18%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-green-600 h-2.5 rounded-full" style="width: 18%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span>Information Technology</span>
-                                    <span class="font-bold text-green-600">+15%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-green-600 h-2.5 rounded-full" style="width: 15%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-lg font-bold mb-2">Kashmir Division</h3>
-                        <div class="space-y-3">
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span>Handicrafts & Textiles</span>
-                                    <span class="font-bold text-green-600">+20%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-green-600 h-2.5 rounded-full" style="width: 20%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span>Agriculture Technology</span>
-                                    <span class="font-bold text-green-600">+16%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-green-600 h-2.5 rounded-full" style="width: 16%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span>Renewable Energy</span>
-                                    <span class="font-bold text-green-600">+25%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-green-600 h-2.5 rounded-full" style="width: 25%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="analytics-card">
-                <h2 class="text-2xl font-bold mb-4">Skill Demand Forecast</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="bg-indigo-50 p-4 rounded-lg">
-                        <div class="text-2xl text-indigo-600 mb-2"><i class="fas fa-laptop-code"></i></div>
-                        <h3 class="font-bold mb-1">Digital Skills</h3>
-                        <p class="text-sm text-gray-600">Expected to grow by 35% in next 5 years</p>
-                    </div>
-                    <div class="bg-green-50 p-4 rounded-lg">
-                        <div class="text-2xl text-green-600 mb-2"><i class="fas fa-leaf"></i></div>
-                        <h3 class="font-bold mb-1">Sustainability</h3>
-                        <p class="text-sm text-gray-600">Expected to grow by 40% in next 5 years</p>
-                    </div>
-                    <div class="bg-purple-50 p-4 rounded-lg">
-                        <div class="text-2xl text-purple-600 mb-2"><i class="fas fa-brain"></i></div>
-                        <h3 class="font-bold mb-1">AI & Machine Learning</h3>
-                        <p class="text-sm text-gray-600">Expected to grow by 60% in next 5 years</p>
-                    </div>
-                    <div class="bg-yellow-50 p-4 rounded-lg">
-                        <div class="text-2xl text-yellow-600 mb-2"><i class="fas fa-users"></i></div>
-                        <h3 class="font-bold mb-1">Healthcare</h3>
-                        <p class="text-sm text-gray-600">Expected to grow by 28% in next 5 years</p>
-                    </div>
-                </div>
-            </div>
+        <div class="text-4xl sm:text-5xl w-auto">
+          <i class="fas fa-chart-line"></i>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Emerging Careers Tab -->
-        <div class="tab-content" id="emerging-tab">
-            <div class="analytics-card mb-8">
-                <h2 class="text-2xl font-bold mb-6">Emerging Careers in Jammu & Kashmir</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                        <span class="growth-badge growth-high">High Growth</span>
-                        <h3 class="font-bold text-lg mb-2">Renewable Energy Technician</h3>
-                        <p class="text-gray-600 mb-3">With J&K's focus on hydroelectric and solar power, technicians in this field are in high demand.</p>
-                        <div class="sector-tag">Energy</div>
-                        <div class="sector-tag">Technology</div>
-                    </div>
-                    
-                    <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                        <span class="growth-badge growth-high">High Growth</span>
-                        <h3 class="font-bold text-lg mb-2">Telemedicine Specialist</h3>
-                        <p class="text-gray-600 mb-3">Remote healthcare services are expanding rapidly in mountainous regions.</p>
-                        <div class="sector-tag">Healthcare</div>
-                        <div class="sector-tag">Technology</div>
-                    </div>
-                    
-                    <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                        <span class="growth-badge growth-high">High Growth</span>
-                        <h3 class="font-bold text-lg mb-2">Data Analyst</h3>
-                        <p class="text-gray-600 mb-3">Businesses and government agencies need professionals who can interpret data for decision-making.</p>
-                        <div class="sector-tag">Technology</div>
-                        <div class="sector-tag">Business</div>
-                    </div>
-                    
-                    <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                        <span class="growth-badge growth-medium">Medium Growth</span>
-                        <h3 class="font-bold text-lg mb-2">E-commerce Specialist</h3>
-                        <p class="text-gray-600 mb-3">Helping local artisans and businesses sell products online to global markets.</p>
-                        <div class="sector-tag">Business</div>
-                        <div class="sector-tag">Technology</div>
-                    </div>
-                    
-                    <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                        <span class="growth-badge growth-high">High Growth</span>
-                        <h3 class="font-bold text-lg mb-2">Agricultural Technologist</h3>
-                        <p class="text-gray-600 mb-3">Modernizing traditional farming practices with technology for better yields.</p>
-                        <div class="sector-tag">Agriculture</div>
-                        <div class="sector-tag">Technology</div>
-                    </div>
-                    
-                    <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                        <span class="growth-badge growth-medium">Medium Growth</span>
-                        <h3 class="font-bold text-lg mb-2">Adventure Tourism Guide</h3>
-                        <p class="text-gray-600 mb-3">With J&K's natural beauty, adventure tourism is a growing sector.</p>
-                        <div class="sector-tag">Tourism</div>
-                        <div class="sector-tag">Recreation</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="analytics-card">
-                <h2 class="text-2xl font-bold mb-4">Education Pathways for Emerging Careers</h2>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Career</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Recommended Courses</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">J&K Institutions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">Renewable Energy Technician</td>
-                                <td class="px-6 py-4">Diploma in Electrical Engineering, Renewable Energy Certification</td>
-                                <td class="px-6 py-4">NIT Srinagar, IIT Jammu</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">Telemedicine Specialist</td>
-                                <td class="px-6 py-4">B.Sc Nursing, Health Informatics Certification</td>
-                                <td class="px-6 py-4">GMC Jammu, SKIMS Srinagar</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">Data Analyst</td>
-                                <td class="px-6 py-4">B.Tech Computer Science, Statistics Degree</td>
-                                <td class="px-6 py-4">University of Kashmir, University of Jammu</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+  <!-- Tabs Navigation -->
+  <div class="flex flex-wrap space-x-2 sm:space-x-4 mb-8 border-b px-1 overflow-x-auto">
+    <div class="tab-button active min-w-max" data-tab="trends">Job Trends</div>
+    <div class="tab-button min-w-max" data-tab="emerging">Emerging Careers</div>
+    <div class="tab-button min-w-max" data-tab="declining">Declining Professions</div>
+    <div class="tab-button min-w-max" data-tab="future">Future-Proof Paths</div>
+  </div>
+
+  <!-- Job Trends Tab -->
+  <div class="tab-content active" id="trends-tab">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div class="analytics-card">
+        <h2 class="text-lg sm:text-2xl font-bold mb-4">Job Growth Projections in J&K (2024-2029)</h2>
+        <div class="h-64 sm:h-80">
+          <canvas id="growthChart"></canvas>
         </div>
-
-        <!-- Declining Professions Tab -->
-        <div class="tab-content" id="declining-tab">
-            <div class="analytics-card">
-                <h2 class="text-2xl font-bold mb-6">Declining Professions in Jammu & Kashmir</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="border rounded-lg p-4 bg-red-50">
-                        <span class="growth-badge growth-low">Declining</span>
-                        <h3 class="font-bold text-lg mb-2">Traditional Textile Handloom Worker</h3>
-                        <p class="text-gray-600 mb-3">Automation and changing consumer preferences are reducing demand for traditional handloom products.</p>
-                        <div class="text-sm">
-                            <p class="font-semibold">Alternative Paths:</p>
-                            <ul class="list-disc list-inside">
-                                <li>Textile design with digital tools</li>
-                                <li>E-commerce for handmade products</li>
-                                <li>Textile quality management</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="border rounded-lg p-4 bg-red-50">
-                        <span class="growth-badge growth-low">Declining</span>
-                        <h3 class="font-bold text-lg mb-2">Data Entry Clerk</h3>
-                        <p class="text-gray-600 mb-3">Automation and AI are making manual data entry increasingly obsolete.</p>
-                        <div class="text-sm">
-                            <p class="font-semibold">Alternative Paths:</p>
-                            <ul class="list-disc list-inside">
-                                <li>Data analysis</li>
-                                <li>Database administration</li>
-                                <li>Business intelligence</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="border rounded-lg p-4 bg-orange-50">
-                        <span class="growth-badge growth-low">Moderate Decline</span>
-                        <h3 class="font-bold text-lg mb-2">Traditional Farming</h3>
-                        <p class="text-gray-600 mb-3">Climate change and economic pressures are making traditional farming less viable.</p>
-                        <div class="text-sm">
-                            <p class="font-semibold">Alternative Paths:</p>
-                            <ul class="list-disc list-inside">
-                                <li>Organic farming</li>
-                                <li>Agricultural technology</li>
-                                <li>Food processing</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="border rounded-lg p-4 bg-orange-50">
-                        <span class="growth-badge growth-low">Moderate Decline</span>
-                        <h3 class="font-bold text-lg mb-2">Print Journalism</h3>
-                        <p class="text-gray-600 mb-3">Digital media continues to replace traditional print media.</p>
-                        <div class="text-sm">
-                            <p class="font-semibold">Alternative Paths:</p>
-                            <ul class="list-disc list-inside">
-                                <li>Digital content creation</li>
-                                <li>Social media management</li>
-                                <li>Multimedia journalism</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+      </div>
+      <div class="analytics-card">
+        <h2 class="text-lg sm:text-2xl font-bold mb-4">Regional Employment Trends</h2>
+        <div class="mb-6">
+          <h3 class="text-base sm:text-lg font-bold mb-2">Jammu Division</h3>
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>Tourism & Hospitality</span>
+                <span class="font-bold text-green-600">+22%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-green-600 h-2.5 rounded-full" style="width: 22%"></div>
+              </div>
             </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>Healthcare</span>
+                <span class="font-bold text-green-600">+18%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-green-600 h-2.5 rounded-full" style="width: 18%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>Information Technology</span>
+                <span class="font-bold text-green-600">+15%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-green-600 h-2.5 rounded-full" style="width: 15%"></div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <!-- Future-Proof Paths Tab -->
-        <div class="tab-content" id="future-tab">
-            <div class="analytics-card mb-8">
-                <h2 class="text-2xl font-bold mb-6">Future-Proof Career Paths for J&K</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="future-proof-card p-4 bg-white rounded-lg shadow">
-                        <h3 class="font-bold text-lg mb-2">Healthcare & Telemedicine</h3>
-                        <p class="text-gray-600 mb-3">The healthcare sector in J&K is expanding with new hospitals and telemedicine services.</p>
-                        <div class="sector-tag">High Demand</div>
-                        <div class="sector-tag">Stable Growth</div>
-                    </div>
-                    
-                    <div class="future-proof-card p-4 bg-white rounded-lg shadow">
-                        <h3 class="font-bold text-lg mb-2">Information Technology</h3>
-                        <p class="text-gray-600 mb-3">With government initiatives like Digital J&K, IT professionals are in high demand.</p>
-                        <div class="sector-tag">High Growth</div>
-                        <div class="sector-tag">Remote Opportunities</div>
-                    </div>
-                    
-                    <div class="future-proof-card p-4 bg-white rounded-lg shadow">
-                        <h3 class="font-bold text-lg mb-2">Renewable Energy</h3>
-                        <p class="text-gray-600 mb-3">J&K's potential in hydroelectric and solar power creates opportunities in green energy.</p>
-                        <div class="sector-tag">Government Priority</div>
-                        <div class="sector-tag">High Growth</div>
-                    </div>
-                    
-                    <div class="future-proof-card p-4 bg-white rounded-lg shadow">
-                        <h3 class="font-bold text-lg mb-2">Tourism & Hospitality</h3>
-                        <p class="text-gray-600 mb-3">Despite challenges, tourism remains a cornerstone of J&K's economy with growth potential.</p>
-                        <div class="sector-tag">Regional Strength</div>
-                        <div class="sector-tag">Diverse Opportunities</div>
-                    </div>
-                </div>
+        <div>
+          <h3 class="text-base sm:text-lg font-bold mb-2">Kashmir Division</h3>
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>Handicrafts & Textiles</span>
+                <span class="font-bold text-green-600">+20%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-green-600 h-2.5 rounded-full" style="width: 20%"></div>
+              </div>
             </div>
-            
-            <div class="analytics-card">
-                <h2 class="text-2xl font-bold mb-4">Skills for Future-Proof Careers</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="bg-blue-50 p-4 rounded-lg">
-                        <div class="text-2xl text-blue-600 mb-2"><i class="fas fa-code"></i></div>
-                        <h3 class="font-bold mb-1">Digital Literacy</h3>
-                        <p class="text-sm text-gray-600">Essential for almost all future careers</p>
-                    </div>
-                    <div class="bg-green-50 p-4 rounded-lg">
-                        <div class="text-2xl text-green-600 mb-2"><i class="fas fa-brain"></i></div>
-                        <h3 class="font-bold mb-1">Critical Thinking</h3>
-                        <p class="text-sm text-gray-600">Ability to analyze and solve complex problems</p>
-                    </div>
-                    <div class="bg-purple-50 p-4 rounded-lg">
-                        <div class="text-2xl text-purple-600 mb-2"><i class="fas fa-users"></i></div>
-                        <h3 class="font-bold mb-1">Adaptability</h3>
-                        <p class="text-sm text-gray-600">Willingness to learn new skills as industries evolve</p>
-                    </div>
-                    <div class="bg-yellow-50 p-4 rounded-lg">
-                        <div class="text-2xl text-yellow-600 mb-2"><i class="fas fa-comments"></i></div>
-                        <h3 class="font-bold mb-1">Communication</h3>
-                        <p class="text-sm text-gray-600">Effective verbal and written communication skills</p>
-                    </div>
-                </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>Agriculture Technology</span>
+                <span class="font-bold text-green-600">+16%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-green-600 h-2.5 rounded-full" style="width: 16%"></div>
+              </div>
             </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>Renewable Energy</span>
+                <span class="font-bold text-green-600">+25%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-green-600 h-2.5 rounded-full" style="width: 25%"></div>
+              </div>
+            </div>
+          </div>
         </div>
-    </main>
-
-    <footer class="bg-gray-800 text-white py-12 mt-12">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-xl font-bold mb-4">Disha J&K</p>
-            <p class="mb-6">An initiative for Smart India Hackathon 2025 to empower the youth of Jammu & Kashmir.</p>
-            <div class="flex justify-center space-x-6 text-2xl">
-                <a href="#" class="hover:text-indigo-400"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="hover:text-indigo-400"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="hover:text-indigo-400"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="hover:text-indigo-400"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p class="mt-8 text-sm text-gray-400">&copy; 2025 Your Team Name. All Rights Reserved.</p>
+      </div>
+    </div>
+    <div class="analytics-card">
+      <h2 class="text-lg sm:text-2xl font-bold mb-4">Skill Demand Forecast</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-indigo-50 p-4 rounded-lg">
+          <div class="text-2xl text-indigo-600 mb-2"><i class="fas fa-laptop-code"></i></div>
+          <h3 class="font-bold mb-1">Digital Skills</h3>
+          <p class="text-sm text-gray-600">Expected to grow by 35% in next 5 years</p>
         </div>
-    </footer>
+        <div class="bg-green-50 p-4 rounded-lg">
+          <div class="text-2xl text-green-600 mb-2"><i class="fas fa-leaf"></i></div>
+          <h3 class="font-bold mb-1">Sustainability</h3>
+          <p class="text-sm text-gray-600">Expected to grow by 40% in next 5 years</p>
+        </div>
+        <div class="bg-purple-50 p-4 rounded-lg">
+          <div class="text-2xl text-purple-600 mb-2"><i class="fas fa-brain"></i></div>
+          <h3 class="font-bold mb-1">AI & Machine Learning</h3>
+          <p class="text-sm text-gray-600">Expected to grow by 60% in next 5 years</p>
+        </div>
+        <div class="bg-yellow-50 p-4 rounded-lg">
+          <div class="text-2xl text-yellow-600 mb-2"><i class="fas fa-users"></i></div>
+          <h3 class="font-bold mb-1">Healthcare</h3>
+          <p class="text-sm text-gray-600">Expected to grow by 28% in next 5 years</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script>
-        //header 
-        document.addEventListener('DOMContentLoaded', function () {
-  const profileButton = document.getElementById('profile-button');
-  const profileMenu = document.getElementById('profile-menu');
+  <!-- Emerging Careers Tab -->
+  <div class="tab-content" id="emerging-tab">
+    <div class="analytics-card mb-8">
+      <h2 class="text-lg sm:text-2xl font-bold mb-6">Emerging Careers in Jammu & Kashmir</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+          <span class="growth-badge growth-high">High Growth</span>
+          <h3 class="font-bold text-base sm:text-lg mb-2">Renewable Energy Technician</h3>
+          <p class="text-gray-600 mb-3">With J&amp;K&#39;s focus on hydroelectric and solar power, technicians in this field are in high demand.</p>
+          <div class="sector-tag">Energy</div>
+          <div class="sector-tag">Technology</div>
+        </div>
+        <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+          <span class="growth-badge growth-high">High Growth</span>
+          <h3 class="font-bold text-base sm:text-lg mb-2">Telemedicine Specialist</h3>
+          <p class="text-gray-600 mb-3">Remote healthcare services are expanding rapidly in mountainous regions.</p>
+          <div class="sector-tag">Healthcare</div>
+          <div class="sector-tag">Technology</div>
+        </div>
+        <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+          <span class="growth-badge growth-high">High Growth</span>
+          <h3 class="font-bold text-base sm:text-lg mb-2">Data Analyst</h3>
+          <p class="text-gray-600 mb-3">Businesses and government agencies need professionals who can interpret data for decision-making.</p>
+          <div class="sector-tag">Technology</div>
+          <div class="sector-tag">Business</div>
+        </div>
+        <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+          <span class="growth-badge growth-medium">Medium Growth</span>
+          <h3 class="font-bold text-base sm:text-lg mb-2">E-commerce Specialist</h3>
+          <p class="text-gray-600 mb-3">Helping local artisans and businesses sell products online to global markets.</p>
+          <div class="sector-tag">Business</div>
+          <div class="sector-tag">Technology</div>
+        </div>
+        <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+          <span class="growth-badge growth-high">High Growth</span>
+          <h3 class="font-bold text-base sm:text-lg mb-2">Agricultural Technologist</h3>
+          <p class="text-gray-600 mb-3">Modernizing traditional farming practices with technology for better yields.</p>
+          <div class="sector-tag">Agriculture</div>
+          <div class="sector-tag">Technology</div>
+        </div>
+        <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+          <span class="growth-badge growth-medium">Medium Growth</span>
+          <h3 class="font-bold text-base sm:text-lg mb-2">Adventure Tourism Guide</h3>
+          <p class="text-gray-600 mb-3">With J&K&#39;s natural beauty, adventure tourism is a growing sector.</p>
+          <div class="sector-tag">Tourism</div>
+          <div class="sector-tag">Recreation</div>
+        </div>
+      </div>
+    </div>
+    <div class="analytics-card overflow-x-auto">
+      <h2 class="text-lg sm:text-2xl font-bold mb-4">Education Pathways for Emerging Careers</h2>
+      <div class="w-full">
+        <table class="min-w-full divide-y divide-gray-200 text-[0.95rem]">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Career</th>
+              <th class="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Recommended Courses</th>
+              <th class="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">J&amp;K Institutions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr>
+              <td class="px-4 md:px-6 py-4 whitespace-nowrap">Renewable Energy Technician</td>
+              <td class="px-4 md:px-6 py-4">Diploma in Electrical Engineering, Renewable Energy Certification</td>
+              <td class="px-4 md:px-6 py-4">NIT Srinagar, IIT Jammu</td>
+            </tr>
+            <tr>
+              <td class="px-4 md:px-6 py-4 whitespace-nowrap">Telemedicine Specialist</td>
+              <td class="px-4 md:px-6 py-4">B.Sc Nursing, Health Informatics Certification</td>
+              <td class="px-4 md:px-6 py-4">GMC Jammu, SKIMS Srinagar</td>
+            </tr>
+            <tr>
+              <td class="px-4 md:px-6 py-4 whitespace-nowrap">Data Analyst</td>
+              <td class="px-4 md:px-6 py-4">B.Tech Computer Science, Statistics Degree</td>
+              <td class="px-4 md:px-6 py-4">University of Kashmir, University of Jammu</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-  const appsMenuButton = document.getElementById('apps-menu-button');
-  const appsMenu = document.getElementById('apps-menu');
+  <!-- Declining Professions Tab -->
+  <div class="tab-content" id="declining-tab">
+    <div class="analytics-card">
+      <h2 class="text-lg sm:text-2xl font-bold mb-6">Declining Professions in Jammu & Kashmir</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="border rounded-lg p-4 bg-red-50">
+          <span class="growth-badge growth-low">Declining</span>
+          <h3 class="font-bold text-base sm:text-lg mb-2">Traditional Textile Handloom Worker</h3>
+          <p class="text-gray-600 mb-3">Automation and changing consumer preferences are reducing demand for traditional handloom products.</p>
+          <div class="text-sm">
+            <p class="font-semibold">Alternative Paths:</p>
+            <ul class="list-disc list-inside">
+              <li>Textile design with digital tools</li>
+              <li>E-commerce for handmade products</li>
+              <li>Textile quality management</li>
+            </ul>
+          </div>
+        </div>
+        <div class="border rounded-lg p-4 bg-red-50">
+          <span class="growth-badge growth-low">Declining</span>
+          <h3 class="font-bold text-base sm:text-lg mb-2">Data Entry Clerk</h3>
+          <p class="text-gray-600 mb-3">Automation and AI are making manual data entry increasingly obsolete.</p>
+          <div class="text-sm">
+            <p class="font-semibold">Alternative Paths:</p>
+            <ul class="list-disc list-inside">
+              <li>Data analysis</li>
+              <li>Database administration</li>
+              <li>Business intelligence</li>
+            </ul>
+          </div>
+        </div>
+        <div class="border rounded-lg p-4 bg-orange-50">
+          <span class="growth-badge growth-low">Moderate Decline</span>
+          <h3 class="font-bold text-base sm:text-lg mb-2">Traditional Farming</h3>
+          <p class="text-gray-600 mb-3">Climate change and economic pressures are making traditional farming less viable.</p>
+          <div class="text-sm">
+            <p class="font-semibold">Alternative Paths:</p>
+            <ul class="list-disc list-inside">
+              <li>Organic farming</li>
+              <li>Agricultural technology</li>
+              <li>Food processing</li>
+            </ul>
+          </div>
+        </div>
+        <div class="border rounded-lg p-4 bg-orange-50">
+          <span class="growth-badge growth-low">Moderate Decline</span>
+          <h3 class="font-bold text-base sm:text-lg mb-2">Print Journalism</h3>
+          <p class="text-gray-600 mb-3">Digital media continues to replace traditional print media.</p>
+          <div class="text-sm">
+            <p class="font-semibold">Alternative Paths:</p>
+            <ul class="list-disc list-inside">
+              <li>Digital content creation</li>
+              <li>Social media management</li>
+              <li>Multimedia journalism</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  function toggleMenu(button, menu) {
-    if (!button || !menu) return;
-    button.addEventListener('click', function (e) {
-      e.stopPropagation();
+  <!-- Future-Proof Paths Tab -->
+  <div class="tab-content" id="future-tab">
+    <div class="analytics-card mb-8">
+      <h2 class="text-lg sm:text-2xl font-bold mb-6">Future-Proof Career Paths for J&K</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="future-proof-card p-4 bg-white rounded-lg shadow">
+          <h3 class="font-bold text-base sm:text-lg mb-2">Healthcare & Telemedicine</h3>
+          <p class="text-gray-600 mb-3">The healthcare sector in J&amp;K is expanding with new hospitals and telemedicine services.</p>
+          <div class="sector-tag">High Demand</div>
+          <div class="sector-tag">Stable Growth</div>
+        </div>
+        <div class="future-proof-card p-4 bg-white rounded-lg shadow">
+          <h3 class="font-bold text-base sm:text-lg mb-2">Information Technology</h3>
+          <p class="text-gray-600 mb-3">With government initiatives like Digital J&amp;K, IT professionals are in high demand.</p>
+          <div class="sector-tag">High Growth</div>
+          <div class="sector-tag">Remote Opportunities</div>
+        </div>
+        <div class="future-proof-card p-4 bg-white rounded-lg shadow">
+          <h3 class="font-bold text-base sm:text-lg mb-2">Renewable Energy</h3>
+          <p class="text-gray-600 mb-3">J&amp;K&#39;s potential in hydroelectric and solar power creates opportunities in green energy.</p>
+          <div class="sector-tag">Government Priority</div>
+          <div class="sector-tag">High Growth</div>
+        </div>
+        <div class="future-proof-card p-4 bg-white rounded-lg shadow">
+          <h3 class="font-bold text-base sm:text-lg mb-2">Tourism & Hospitality</h3>
+          <p class="text-gray-600 mb-3">Despite challenges, tourism remains a cornerstone of J&amp;K's economy with growth potential.</p>
+          <div class="sector-tag">Regional Strength</div>
+          <div class="sector-tag">Diverse Opportunities</div>
+        </div>
+      </div>
+    </div>
+    <div class="analytics-card">
+      <h2 class="text-lg sm:text-2xl font-bold mb-4">Skills for Future-Proof Careers</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <div class="text-2xl text-blue-600 mb-2"><i class="fas fa-code"></i></div>
+          <h3 class="font-bold mb-1">Digital Literacy</h3>
+          <p class="text-sm text-gray-600">Essential for almost all future careers</p>
+        </div>
+        <div class="bg-green-50 p-4 rounded-lg">
+          <div class="text-2xl text-green-600 mb-2"><i class="fas fa-brain"></i></div>
+          <h3 class="font-bold mb-1">Critical Thinking</h3>
+          <p class="text-sm text-gray-600">Ability to analyze and solve complex problems</p>
+        </div>
+        <div class="bg-purple-50 p-4 rounded-lg">
+          <div class="text-2xl text-purple-600 mb-2"><i class="fas fa-users"></i></div>
+          <h3 class="font-bold mb-1">Adaptability</h3>
+          <p class="text-sm text-gray-600">Willingness to learn new skills as industries evolve</p>
+        </div>
+        <div class="bg-yellow-50 p-4 rounded-lg">
+          <div class="text-2xl text-yellow-600 mb-2"><i class="fas fa-comments"></i></div>
+          <h3 class="font-bold mb-1">Communication</h3>
+          <p class="text-sm text-gray-600">Effective verbal and written communication skills</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
 
-      // Close other menus
-      document.querySelectorAll('#apps-menu, #profile-menu').forEach(m => {
-        if (m !== menu) m.classList.add('hidden');
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-400 py-10 mt-12">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div>
+      <h3 class="text-lg font-bold text-white mb-4">Disha J&K</h3>
+      <p>Empowering the youth of Jammu & Kashmir with career guidance and educational resources.</p>
+    </div>
+    <div>
+      <h3 class="text-lg font-bold text-white mb-4">Quick Links</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-white">About Us</a></li>
+        <li><a href="#" class="hover:text-white">Contact</a></li>
+        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="text-lg font-bold text-white mb-4">Resources</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-white">Career Assessment</a></li>
+        <li><a href="#" class="hover:text-white">Scholarships</a></li>
+        <li><a href="#" class="hover:text-white">College Directory</a></li>
+        <li><a href="#" class="hover:text-white">Success Stories</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="text-lg font-bold text-white mb-4">Connect</h3>
+      <div class="flex space-x-4">
+        <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-white"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="text-center text-sm mt-8 border-t border-gray-700 pt-6">&copy; 2025 Disha J&K. All rights reserved.</div>
+</footer>
+
+<script>
+  // header & menu
+  document.addEventListener('DOMContentLoaded', function () {
+    const profileButton = document.getElementById('profile-button');
+    const profileMenu = document.getElementById('profile-menu');
+
+    const appsMenuButton = document.getElementById('apps-menu-button');
+    const appsMenu = document.getElementById('apps-menu');
+
+    function toggleMenu(button, menu) {
+      if (!button || !menu) return;
+      button.addEventListener('click', function (e) {
+        e.stopPropagation();
+
+        // Close other menus
+        document.querySelectorAll('#apps-menu, #profile-menu').forEach(m => {
+          if (m !== menu) m.classList.add('hidden');
+        });
+
+        // Toggle this menu
+        menu.classList.toggle('hidden');
       });
+    }
 
-      // Toggle this menu
-      menu.classList.toggle('hidden');
+    toggleMenu(profileButton, profileMenu);
+    toggleMenu(appsMenuButton, appsMenu);
+
+    // Close menus when clicking outside
+    document.addEventListener('click', function (event) {
+      if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+        profileMenu.classList.add('hidden');
+      }
+      if (!appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
+        appsMenu.classList.add('hidden');
+      }
     });
-  }
-
-  toggleMenu(profileButton, profileMenu);
-  toggleMenu(appsMenuButton, appsMenu);
-
-  // Close menus when clicking outside
-  document.addEventListener('click', function (event) {
-    if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
-      profileMenu.classList.add('hidden');
-    }
-    if (!appsMenuButton.contains(event.target) && !appsMenu.contains(event.target)) {
-      appsMenu.classList.add('hidden');
-    }
   });
-});
-    document.addEventListener('DOMContentLoaded', function() {
-        // Tab functionality
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContents = document.querySelectorAll('.tab-content');
 
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const tabId = button.getAttribute('data-tab');
-
-                // Update active tab button
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                // Show active tab content
-                tabContents.forEach(content => {
-                    content.classList.remove('active');
-                    if (content.id === `${tabId}-tab`) {
-                        content.classList.add('active');
-                    }
-                });
-            });
+  document.addEventListener('DOMContentLoaded', function() {
+    // Tab functionality
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tabId = button.getAttribute('data-tab');
+        // Update active tab button
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        // Show active tab content
+        tabContents.forEach(content => {
+          content.classList.remove('active');
+          if (content.id === `${tabId}-tab`) {
+            content.classList.add('active');
+          }
         });
-
-        // Growth chart
-        const growthCtx = document.getElementById('growthChart').getContext('2d');
-        const growthChart = new Chart(growthCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Healthcare', 'Information Technology', 'Tourism', 'Education', 'Renewable Energy', 'Agriculture'],
-                datasets: [{
-                    label: 'Projected Growth (%)',
-                    data: [18, 25, 15, 12, 28, 16],
-                    backgroundColor: [
-                        'rgba(79, 70, 229, 0.7)',
-                        'rgba(99, 102, 241, 0.7)',
-                        'rgba(129, 140, 248, 0.7)',
-                        'rgba(165, 180, 252, 0.7)',
-                        'rgba(196, 181, 253, 0.7)',
-                        'rgba(167, 139, 250, 0.7)'
-                    ],
-                    borderColor: [
-                        'rgb(79, 70, 229)',
-                        'rgb(99, 102, 241)',
-                        'rgb(129, 140, 248)',
-                        'rgb(165, 180, 252)',
-                        'rgb(196, 181, 253)',
-                        'rgb(167, 139, 250)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Growth Percentage'
-                        }
-                    }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Projected Job Growth by Sector (2024-2029)'
-                    }
-                }
-            }
-        });
+      });
     });
+
+    // Growth chart
+    const growthCtx = document.getElementById('growthChart').getContext('2d');
+    const growthChart = new Chart(growthCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Healthcare', 'Information Technology', 'Tourism', 'Education', 'Renewable Energy', 'Agriculture'],
+        datasets: [{
+          label: 'Projected Growth (%)',
+          data: [18, 25, 15, 12, 28, 16],
+          backgroundColor: [
+            'rgba(79, 70, 229, 0.7)',
+            'rgba(99, 102, 241, 0.7)',
+            'rgba(129, 140, 248, 0.7)',
+            'rgba(165, 180, 252, 0.7)',
+            'rgba(196, 181, 253, 0.7)',
+            'rgba(167, 139, 250, 0.7)'
+          ],
+          borderColor: [
+            'rgb(79, 70, 229)',
+            'rgb(99, 102, 241)',
+            'rgb(129, 140, 248)',
+            'rgb(165, 180, 252)',
+            'rgb(196, 181, 253)',
+            'rgb(167, 139, 250)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Growth Percentage'
+            }
+          }
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Projected Job Growth by Sector (2024-2029)'
+          }
+        }
+      }
+    });
+  });
 </script>
 </body>
 </html>
